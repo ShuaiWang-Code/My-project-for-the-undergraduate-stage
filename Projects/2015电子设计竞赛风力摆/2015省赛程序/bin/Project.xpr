@@ -1,0 +1,4 @@
+Data:1 < ADDXPR ONLY_ADD_IF_NEW "Project.abs::right_point"
+Data:1 < ADDXPR ONLY_ADD_IF_NEW "Project.abs::_PowOfTwo_32"
+Data:1 < ADDXPR ONLY_ADD_IF_NEW "main.c::VSYN_C"
+Data:1 < ADDXPR ONLY_ADD_IF_NEW "Project.abs::_PERJ"

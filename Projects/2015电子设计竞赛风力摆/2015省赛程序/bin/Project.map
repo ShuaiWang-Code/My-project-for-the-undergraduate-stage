@@ -1,0 +1,3147 @@
+*** EVALUATION ***
+PROGRAM "C:\Users\Administrator\Desktop\已完成——初步\bin\Project.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: BANKED
+File Format : ELF\DWARF 2.0
+Linker      : SmartLinker V-5.0.40 Build 10203, Jul 23 2010
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+MC9S12XS128.c.o                         Model: BANKED,        Lang: ANSI-C
+main.c.o                                Model: BANKED,        Lang: ANSI-C
+Start12.c.o                             Model: BANKED,        Lang: ANSI-C
+MATH.C.o (ansixb.lib)                   Model: BANKED,        Lang: ANSI-C
+DANSI.C.o (ansixb.lib)                  Model: BANKED,        Lang: ANSI-C
+FADD.C.o (ansixb.lib)                   Model: BANKED,        Lang: ANSI-C
+FANSI.C.o (ansixb.lib)                  Model: BANKED,        Lang: ANSI-C
+FCMP.C.o (ansixb.lib)                   Model: BANKED,        Lang: ANSI-C
+FCONV.C.o (ansixb.lib)                  Model: BANKED,        Lang: ANSI-C
+FMUL.C.o (ansixb.lib)                   Model: BANKED,        Lang: ANSI-C
+FREGS.C.o (ansixb.lib)                  Model: BANKED,        Lang: ANSI-C
+rtshc12.c.o (ansixb.lib)                Model: BANKED,        Lang: ANSI-C
+VREGS.C.o (ansixb.lib)                  Model: BANKED,        Lang: ANSI-C
+Init.c.o                                Model: BANKED,        Lang: ANSI-C
+TFT.c.o                                 Model: BANKED,        Lang: ANSI-C
+Interrupt.c.o                           Model: BANKED,        Lang: ANSI-C
+key.c.o                                 Model: BANKED,        Lang: ANSI-C
+ATD.C.o                                 Model: BANKED,        Lang: ANSI-C
+Datehandle.c.o                          Model: BANKED,        Lang: ANSI-C
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+Entry point: 0xC000 (_Startup)
+_startupData is allocated at 0xC00F and uses 6 Bytes
+extern struct _tagStartup {
+  unsigned nofZeroOut     1
+  _Range   pZeroOut       0x2100     2770
+  _Copy    *toCopyDownBeg 0xC481
+} _startupData;
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.init                             15     R     0xC000     0xC00E   ROM_C000
+.startData                        10     R     0xC00F     0xC018   ROM_C000
+.rodata                            4     R     0xC019     0xC01C   ROM_C000
+.rodata1                         125     R     0xC01D     0xC099   ROM_C000
+NON_BANKED                       999     R     0xC09A     0xC480   ROM_C000
+.copy                           2016     R     0xC481     0xCC60   ROM_C000
+.text                          10055     R   0xFE8000   0xFEA746   PAGE_FE
+.stack                           256   R/W     0x2000     0x20FF   RAM
+.data                           2132   R/W     0x2100     0x2953   RAM
+.abs_section_8                     1   N/I        0x8        0x8   .absSeg0
+.abs_section_9                     1   N/I        0x9        0x9   .absSeg1
+.abs_section_b                     1   N/I        0xB        0xB   .absSeg2
+.abs_section_c                     1   N/I        0xC        0xC   .absSeg3
+.abs_section_d                     1   N/I        0xD        0xD   .absSeg4
+.abs_section_10                    1   N/I       0x10       0x10   .absSeg5
+.abs_section_11                    1   N/I       0x11       0x11   .absSeg6
+.abs_section_13                    1   N/I       0x13       0x13   .absSeg7
+.abs_section_15                    1   N/I       0x15       0x15   .absSeg8
+.abs_section_16                    1   N/I       0x16       0x16   .absSeg9
+.abs_section_17                    1   N/I       0x17       0x17   .absSeg10
+.abs_section_1c                    1   N/I       0x1C       0x1C   .absSeg11
+.abs_section_1e                    1   N/I       0x1E       0x1E   .absSeg12
+.abs_section_20                    1   N/I       0x20       0x20   .absSeg13
+.abs_section_21                    1   N/I       0x21       0x21   .absSeg14
+.abs_section_22                    1   N/I       0x22       0x22   .absSeg15
+.abs_section_23                    1   N/I       0x23       0x23   .absSeg16
+.abs_section_26                    1   N/I       0x26       0x26   .absSeg17
+.abs_section_27                    1   N/I       0x27       0x27   .absSeg18
+.abs_section_28                    1   N/I       0x28       0x28   .absSeg19
+.abs_section_29                    1   N/I       0x29       0x29   .absSeg20
+.abs_section_2a                    1   N/I       0x2A       0x2A   .absSeg21
+.abs_section_2b                    1   N/I       0x2B       0x2B   .absSeg22
+.abs_section_2c                    1   N/I       0x2C       0x2C   .absSeg23
+.abs_section_2d                    1   N/I       0x2D       0x2D   .absSeg24
+.abs_section_2e                    1   N/I       0x2E       0x2E   .absSeg25
+.abs_section_2f                    1   N/I       0x2F       0x2F   .absSeg26
+.abs_section_32                    1   N/I       0x32       0x32   .absSeg27
+.abs_section_33                    1   N/I       0x33       0x33   .absSeg28
+.abs_section_34                    1   N/I       0x34       0x34   .absSeg29
+.abs_section_35                    1   N/I       0x35       0x35   .absSeg30
+.abs_section_36                    1   N/I       0x36       0x36   .absSeg31
+.abs_section_37                    1   N/I       0x37       0x37   .absSeg32
+.abs_section_38                    1   N/I       0x38       0x38   .absSeg33
+.abs_section_39                    1   N/I       0x39       0x39   .absSeg34
+.abs_section_3a                    1   N/I       0x3A       0x3A   .absSeg35
+.abs_section_3b                    1   N/I       0x3B       0x3B   .absSeg36
+.abs_section_3c                    1   N/I       0x3C       0x3C   .absSeg37
+.abs_section_3f                    1   N/I       0x3F       0x3F   .absSeg38
+.abs_section_40                    1   N/I       0x40       0x40   .absSeg39
+.abs_section_41                    1   N/I       0x41       0x41   .absSeg40
+.abs_section_42                    1   N/I       0x42       0x42   .absSeg41
+.abs_section_43                    1   N/I       0x43       0x43   .absSeg42
+.abs_section_46                    1   N/I       0x46       0x46   .absSeg43
+.abs_section_47                    1   N/I       0x47       0x47   .absSeg44
+.abs_section_48                    1   N/I       0x48       0x48   .absSeg45
+.abs_section_49                    1   N/I       0x49       0x49   .absSeg46
+.abs_section_4a                    1   N/I       0x4A       0x4A   .absSeg47
+.abs_section_4b                    1   N/I       0x4B       0x4B   .absSeg48
+.abs_section_4c                    1   N/I       0x4C       0x4C   .absSeg49
+.abs_section_4d                    1   N/I       0x4D       0x4D   .absSeg50
+.abs_section_4e                    1   N/I       0x4E       0x4E   .absSeg51
+.abs_section_4f                    1   N/I       0x4F       0x4F   .absSeg52
+.abs_section_60                    1   N/I       0x60       0x60   .absSeg53
+.abs_section_61                    1   N/I       0x61       0x61   .absSeg54
+.abs_section_6c                    1   N/I       0x6C       0x6C   .absSeg55
+.abs_section_6e                    1   N/I       0x6E       0x6E   .absSeg56
+.abs_section_ca                    1   N/I       0xCA       0xCA   .absSeg57
+.abs_section_cb                    1   N/I       0xCB       0xCB   .absSeg58
+.abs_section_cc                    1   N/I       0xCC       0xCC   .absSeg59
+.abs_section_cd                    1   N/I       0xCD       0xCD   .absSeg60
+.abs_section_ce                    1   N/I       0xCE       0xCE   .absSeg61
+.abs_section_cf                    1   N/I       0xCF       0xCF   .absSeg62
+.abs_section_d2                    1   N/I       0xD2       0xD2   .absSeg63
+.abs_section_d3                    1   N/I       0xD3       0xD3   .absSeg64
+.abs_section_d4                    1   N/I       0xD4       0xD4   .absSeg65
+.abs_section_d5                    1   N/I       0xD5       0xD5   .absSeg66
+.abs_section_d6                    1   N/I       0xD6       0xD6   .absSeg67
+.abs_section_d7                    1   N/I       0xD7       0xD7   .absSeg68
+.abs_section_d8                    1   N/I       0xD8       0xD8   .absSeg69
+.abs_section_d9                    1   N/I       0xD9       0xD9   .absSeg70
+.abs_section_da                    1   N/I       0xDA       0xDA   .absSeg71
+.abs_section_db                    1   N/I       0xDB       0xDB   .absSeg72
+.abs_section_100                   1   N/I      0x100      0x100   .absSeg73
+.abs_section_101                   1   N/I      0x101      0x101   .absSeg74
+.abs_section_102                   1   N/I      0x102      0x102   .absSeg75
+.abs_section_103                   1   N/I      0x103      0x103   .absSeg76
+.abs_section_104                   1   N/I      0x104      0x104   .absSeg77
+.abs_section_105                   1   N/I      0x105      0x105   .absSeg78
+.abs_section_106                   1   N/I      0x106      0x106   .absSeg79
+.abs_section_107                   1   N/I      0x107      0x107   .absSeg80
+.abs_section_108                   1   N/I      0x108      0x108   .absSeg81
+.abs_section_109                   1   N/I      0x109      0x109   .absSeg82
+.abs_section_110                   1   N/I      0x110      0x110   .absSeg83
+.abs_section_121                   1   N/I      0x121      0x121   .absSeg84
+.abs_section_126                   1   N/I      0x126      0x126   .absSeg85
+.abs_section_127                   1   N/I      0x127      0x127   .absSeg86
+.abs_section_128                   1   N/I      0x128      0x128   .absSeg87
+.abs_section_129                   1   N/I      0x129      0x129   .absSeg88
+.abs_section_12a                   1   N/I      0x12A      0x12A   .absSeg89
+.abs_section_12b                   1   N/I      0x12B      0x12B   .absSeg90
+.abs_section_12c                   1   N/I      0x12C      0x12C   .absSeg91
+.abs_section_12d                   1   N/I      0x12D      0x12D   .absSeg92
+.abs_section_12e                   1   N/I      0x12E      0x12E   .absSeg93
+.abs_section_12f                   1   N/I      0x12F      0x12F   .absSeg94
+.abs_section_140                   1   N/I      0x140      0x140   .absSeg95
+.abs_section_141                   1   N/I      0x141      0x141   .absSeg96
+.abs_section_142                   1   N/I      0x142      0x142   .absSeg97
+.abs_section_143                   1   N/I      0x143      0x143   .absSeg98
+.abs_section_144                   1   N/I      0x144      0x144   .absSeg99
+.abs_section_145                   1   N/I      0x145      0x145   .absSeg100
+.abs_section_146                   1   N/I      0x146      0x146   .absSeg101
+.abs_section_147                   1   N/I      0x147      0x147   .absSeg102
+.abs_section_148                   1   N/I      0x148      0x148   .absSeg103
+.abs_section_149                   1   N/I      0x149      0x149   .absSeg104
+.abs_section_14a                   1   N/I      0x14A      0x14A   .absSeg105
+.abs_section_14b                   1   N/I      0x14B      0x14B   .absSeg106
+.abs_section_14d                   1   N/I      0x14D      0x14D   .absSeg107
+.abs_section_14e                   1   N/I      0x14E      0x14E   .absSeg108
+.abs_section_14f                   1   N/I      0x14F      0x14F   .absSeg109
+.abs_section_150                   1   N/I      0x150      0x150   .absSeg110
+.abs_section_151                   1   N/I      0x151      0x151   .absSeg111
+.abs_section_152                   1   N/I      0x152      0x152   .absSeg112
+.abs_section_153                   1   N/I      0x153      0x153   .absSeg113
+.abs_section_154                   1   N/I      0x154      0x154   .absSeg114
+.abs_section_155                   1   N/I      0x155      0x155   .absSeg115
+.abs_section_156                   1   N/I      0x156      0x156   .absSeg116
+.abs_section_157                   1   N/I      0x157      0x157   .absSeg117
+.abs_section_158                   1   N/I      0x158      0x158   .absSeg118
+.abs_section_159                   1   N/I      0x159      0x159   .absSeg119
+.abs_section_15a                   1   N/I      0x15A      0x15A   .absSeg120
+.abs_section_15b                   1   N/I      0x15B      0x15B   .absSeg121
+.abs_section_15c                   1   N/I      0x15C      0x15C   .absSeg122
+.abs_section_15d                   1   N/I      0x15D      0x15D   .absSeg123
+.abs_section_15e                   1   N/I      0x15E      0x15E   .absSeg124
+.abs_section_15f                   1   N/I      0x15F      0x15F   .absSeg125
+.abs_section_160                   1   N/I      0x160      0x160   .absSeg126
+.abs_section_161                   1   N/I      0x161      0x161   .absSeg127
+.abs_section_162                   1   N/I      0x162      0x162   .absSeg128
+.abs_section_163                   1   N/I      0x163      0x163   .absSeg129
+.abs_section_164                   1   N/I      0x164      0x164   .absSeg130
+.abs_section_165                   1   N/I      0x165      0x165   .absSeg131
+.abs_section_166                   1   N/I      0x166      0x166   .absSeg132
+.abs_section_167                   1   N/I      0x167      0x167   .absSeg133
+.abs_section_168                   1   N/I      0x168      0x168   .absSeg134
+.abs_section_169                   1   N/I      0x169      0x169   .absSeg135
+.abs_section_16a                   1   N/I      0x16A      0x16A   .absSeg136
+.abs_section_16b                   1   N/I      0x16B      0x16B   .absSeg137
+.abs_section_16c                   1   N/I      0x16C      0x16C   .absSeg138
+.abs_section_170                   1   N/I      0x170      0x170   .absSeg139
+.abs_section_171                   1   N/I      0x171      0x171   .absSeg140
+.abs_section_172                   1   N/I      0x172      0x172   .absSeg141
+.abs_section_173                   1   N/I      0x173      0x173   .absSeg142
+.abs_section_174                   1   N/I      0x174      0x174   .absSeg143
+.abs_section_175                   1   N/I      0x175      0x175   .absSeg144
+.abs_section_176                   1   N/I      0x176      0x176   .absSeg145
+.abs_section_177                   1   N/I      0x177      0x177   .absSeg146
+.abs_section_178                   1   N/I      0x178      0x178   .absSeg147
+.abs_section_179                   1   N/I      0x179      0x179   .absSeg148
+.abs_section_17a                   1   N/I      0x17A      0x17A   .absSeg149
+.abs_section_17b                   1   N/I      0x17B      0x17B   .absSeg150
+.abs_section_17c                   1   N/I      0x17C      0x17C   .absSeg151
+.abs_section_17d                   1   N/I      0x17D      0x17D   .absSeg152
+.abs_section_240                   1   N/I      0x240      0x240   .absSeg153
+.abs_section_241                   1   N/I      0x241      0x241   .absSeg154
+.abs_section_242                   1   N/I      0x242      0x242   .absSeg155
+.abs_section_243                   1   N/I      0x243      0x243   .absSeg156
+.abs_section_244                   1   N/I      0x244      0x244   .absSeg157
+.abs_section_245                   1   N/I      0x245      0x245   .absSeg158
+.abs_section_247                   1   N/I      0x247      0x247   .absSeg159
+.abs_section_248                   1   N/I      0x248      0x248   .absSeg160
+.abs_section_249                   1   N/I      0x249      0x249   .absSeg161
+.abs_section_24a                   1   N/I      0x24A      0x24A   .absSeg162
+.abs_section_24b                   1   N/I      0x24B      0x24B   .absSeg163
+.abs_section_24c                   1   N/I      0x24C      0x24C   .absSeg164
+.abs_section_24d                   1   N/I      0x24D      0x24D   .absSeg165
+.abs_section_24e                   1   N/I      0x24E      0x24E   .absSeg166
+.abs_section_250                   1   N/I      0x250      0x250   .absSeg167
+.abs_section_251                   1   N/I      0x251      0x251   .absSeg168
+.abs_section_252                   1   N/I      0x252      0x252   .absSeg169
+.abs_section_253                   1   N/I      0x253      0x253   .absSeg170
+.abs_section_254                   1   N/I      0x254      0x254   .absSeg171
+.abs_section_255                   1   N/I      0x255      0x255   .absSeg172
+.abs_section_256                   1   N/I      0x256      0x256   .absSeg173
+.abs_section_257                   1   N/I      0x257      0x257   .absSeg174
+.abs_section_258                   1   N/I      0x258      0x258   .absSeg175
+.abs_section_259                   1   N/I      0x259      0x259   .absSeg176
+.abs_section_25a                   1   N/I      0x25A      0x25A   .absSeg177
+.abs_section_25b                   1   N/I      0x25B      0x25B   .absSeg178
+.abs_section_25c                   1   N/I      0x25C      0x25C   .absSeg179
+.abs_section_25d                   1   N/I      0x25D      0x25D   .absSeg180
+.abs_section_25e                   1   N/I      0x25E      0x25E   .absSeg181
+.abs_section_25f                   1   N/I      0x25F      0x25F   .absSeg182
+.abs_section_260                   1   N/I      0x260      0x260   .absSeg183
+.abs_section_261                   1   N/I      0x261      0x261   .absSeg184
+.abs_section_262                   1   N/I      0x262      0x262   .absSeg185
+.abs_section_263                   1   N/I      0x263      0x263   .absSeg186
+.abs_section_264                   1   N/I      0x264      0x264   .absSeg187
+.abs_section_265                   1   N/I      0x265      0x265   .absSeg188
+.abs_section_266                   1   N/I      0x266      0x266   .absSeg189
+.abs_section_267                   1   N/I      0x267      0x267   .absSeg190
+.abs_section_268                   1   N/I      0x268      0x268   .absSeg191
+.abs_section_269                   1   N/I      0x269      0x269   .absSeg192
+.abs_section_26a                   1   N/I      0x26A      0x26A   .absSeg193
+.abs_section_26b                   1   N/I      0x26B      0x26B   .absSeg194
+.abs_section_26c                   1   N/I      0x26C      0x26C   .absSeg195
+.abs_section_26d                   1   N/I      0x26D      0x26D   .absSeg196
+.abs_section_26e                   1   N/I      0x26E      0x26E   .absSeg197
+.abs_section_26f                   1   N/I      0x26F      0x26F   .absSeg198
+.abs_section_2c6                   1   N/I      0x2C6      0x2C6   .absSeg199
+.abs_section_2f0                   1   N/I      0x2F0      0x2F0   .absSeg200
+.abs_section_2f1                   1   N/I      0x2F1      0x2F1   .absSeg201
+.abs_section_2f2                   1   N/I      0x2F2      0x2F2   .absSeg202
+.abs_section_2f3                   1   N/I      0x2F3      0x2F3   .absSeg203
+.abs_section_2f7                   1   N/I      0x2F7      0x2F7   .absSeg204
+.abs_section_300                   1   N/I      0x300      0x300   .absSeg205
+.abs_section_301                   1   N/I      0x301      0x301   .absSeg206
+.abs_section_302                   1   N/I      0x302      0x302   .absSeg207
+.abs_section_303                   1   N/I      0x303      0x303   .absSeg208
+.abs_section_304                   1   N/I      0x304      0x304   .absSeg209
+.abs_section_305                   1   N/I      0x305      0x305   .absSeg210
+.abs_section_308                   1   N/I      0x308      0x308   .absSeg211
+.abs_section_309                   1   N/I      0x309      0x309   .absSeg212
+.abs_section_324                   1   N/I      0x324      0x324   .absSeg213
+.abs_section_340                   1   N/I      0x340      0x340   .absSeg214
+.abs_section_341                   1   N/I      0x341      0x341   .absSeg215
+.abs_section_342                   1   N/I      0x342      0x342   .absSeg216
+.abs_section_343                   1   N/I      0x343      0x343   .absSeg217
+.abs_section_344                   1   N/I      0x344      0x344   .absSeg218
+.abs_section_345                   1   N/I      0x345      0x345   .absSeg219
+.abs_section_346                   1   N/I      0x346      0x346   .absSeg220
+.abs_section_347                   1   N/I      0x347      0x347   .absSeg221
+.abs_section_0                     2   N/I        0x0        0x1   .absSeg222
+.abs_section_2                     2   N/I        0x2        0x3   .absSeg223
+.abs_section_1a                    2   N/I       0x1A       0x1B   .absSeg224
+.abs_section_24                    2   N/I       0x24       0x25   .absSeg225
+.abs_section_44                    2   N/I       0x44       0x45   .absSeg226
+.abs_section_50                    2   N/I       0x50       0x51   .absSeg227
+.abs_section_52                    2   N/I       0x52       0x53   .absSeg228
+.abs_section_54                    2   N/I       0x54       0x55   .absSeg229
+.abs_section_56                    2   N/I       0x56       0x57   .absSeg230
+.abs_section_58                    2   N/I       0x58       0x59   .absSeg231
+.abs_section_5a                    2   N/I       0x5A       0x5B   .absSeg232
+.abs_section_5c                    2   N/I       0x5C       0x5D   .absSeg233
+.abs_section_5e                    2   N/I       0x5E       0x5F   .absSeg234
+.abs_section_62                    2   N/I       0x62       0x63   .absSeg235
+.abs_section_c8                    2   N/I       0xC8       0xC9   .absSeg236
+.abs_section_d0                    2   N/I       0xD0       0xD1   .absSeg237
+.abs_section_dc                    2   N/I       0xDC       0xDD   .absSeg238
+.abs_section_10a                   2   N/I      0x10A      0x10B   .absSeg239
+.abs_section_10e                   2   N/I      0x10E      0x10F   .absSeg240
+.abs_section_16e                   2   N/I      0x16E      0x16F   .absSeg241
+.abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg242
+.abs_section_270                   2   N/I      0x270      0x271   .absSeg243
+.abs_section_272                   2   N/I      0x272      0x273   .absSeg244
+.abs_section_274                   2   N/I      0x274      0x275   .absSeg245
+.abs_section_276                   2   N/I      0x276      0x277   .absSeg246
+.abs_section_2c0                   2   N/I      0x2C0      0x2C1   .absSeg247
+.abs_section_2c2                   2   N/I      0x2C2      0x2C3   .absSeg248
+.abs_section_2c4                   2   N/I      0x2C4      0x2C5   .absSeg249
+.abs_section_2c8                   2   N/I      0x2C8      0x2C9   .absSeg250
+.abs_section_2ca                   2   N/I      0x2CA      0x2CB   .absSeg251
+.abs_section_2cc                   2   N/I      0x2CC      0x2CD   .absSeg252
+.abs_section_2ce                   2   N/I      0x2CE      0x2CF   .absSeg253
+.abs_section_2d0                   2   N/I      0x2D0      0x2D1   .absSeg254
+.abs_section_2d2                   2   N/I      0x2D2      0x2D3   .absSeg255
+.abs_section_2d4                   2   N/I      0x2D4      0x2D5   .absSeg256
+.abs_section_2d6                   2   N/I      0x2D6      0x2D7   .absSeg257
+.abs_section_2d8                   2   N/I      0x2D8      0x2D9   .absSeg258
+.abs_section_2da                   2   N/I      0x2DA      0x2DB   .absSeg259
+.abs_section_2dc                   2   N/I      0x2DC      0x2DD   .absSeg260
+.abs_section_2de                   2   N/I      0x2DE      0x2DF   .absSeg261
+.abs_section_2e0                   2   N/I      0x2E0      0x2E1   .absSeg262
+.abs_section_2e2                   2   N/I      0x2E2      0x2E3   .absSeg263
+.abs_section_2e4                   2   N/I      0x2E4      0x2E5   .absSeg264
+.abs_section_2e6                   2   N/I      0x2E6      0x2E7   .absSeg265
+.abs_section_2e8                   2   N/I      0x2E8      0x2E9   .absSeg266
+.abs_section_2ea                   2   N/I      0x2EA      0x2EB   .absSeg267
+.abs_section_2ec                   2   N/I      0x2EC      0x2ED   .absSeg268
+.abs_section_2ee                   2   N/I      0x2EE      0x2EF   .absSeg269
+.abs_section_2f4                   2   N/I      0x2F4      0x2F5   .absSeg270
+.abs_section_30c                   2   N/I      0x30C      0x30D   .absSeg271
+.abs_section_30e                   2   N/I      0x30E      0x30F   .absSeg272
+.abs_section_310                   2   N/I      0x310      0x311   .absSeg273
+.abs_section_312                   2   N/I      0x312      0x313   .absSeg274
+.abs_section_314                   2   N/I      0x314      0x315   .absSeg275
+.abs_section_316                   2   N/I      0x316      0x317   .absSeg276
+.abs_section_318                   2   N/I      0x318      0x319   .absSeg277
+.abs_section_31a                   2   N/I      0x31A      0x31B   .absSeg278
+.abs_section_31c                   2   N/I      0x31C      0x31D   .absSeg279
+.abs_section_31e                   2   N/I      0x31E      0x31F   .absSeg280
+.abs_section_320                   2   N/I      0x320      0x321   .absSeg281
+.abs_section_322                   2   N/I      0x322      0x323   .absSeg282
+.abs_section_348                   2   N/I      0x348      0x349   .absSeg283
+.abs_section_34a                   2   N/I      0x34A      0x34B   .absSeg284
+.abs_section_34c                   2   N/I      0x34C      0x34D   .absSeg285
+.abs_section_34e                   2   N/I      0x34E      0x34F   .absSeg286
+.abs_section_350                   2   N/I      0x350      0x351   .absSeg287
+.abs_section_352                   2   N/I      0x352      0x353   .absSeg288
+.abs_section_354                   2   N/I      0x354      0x355   .absSeg289
+.abs_section_356                   2   N/I      0x356      0x357   .absSeg290
+.abs_section_ff7a                  2     R     0xFF7A     0xFF7B   .absSeg291
+.bss                             193   R/W     0x2954     0x2A14   RAM
+.common                          445   R/W     0x2A15     0x2BD1   RAM
+.vectSeg292_vect                   2     R     0xFFFE     0xFFFF   .vectSeg292
+
+Summary of section sizes per section type:
+READ_ONLY (R):        33AC (dec:    13228)
+READ_WRITE (R/W):      BD2 (dec:     3026)
+NO_INIT (N/I):         168 (dec:      360)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+     0xFFFE        0xC000   _Startup
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+MODULE:                 -- MC9S12XS128.c.o --
+- PROCEDURES:
+- VARIABLES:
+     _PORTE                                       8       1       1       0   .abs_section_8
+     _DDRE                                        9       1       1       0   .abs_section_9
+     _MODE                                        B       1       1       0   .abs_section_b
+     _PUCR                                        C       1       1       0   .abs_section_c
+     _RDRIV                                       D       1       1       0   .abs_section_d
+     _GPAGE                                      10       1       1       0   .abs_section_10
+     _DIRECT                                     11       1       1       0   .abs_section_11
+     _MMCCTL1                                    13       1       1       0   .abs_section_13
+     _PPAGE                                      15       1       1       0   .abs_section_15
+     _RPAGE                                      16       1       1       0   .abs_section_16
+     _EPAGE                                      17       1       1       0   .abs_section_17
+     _ECLKCTL                                    1C       1       1       0   .abs_section_1c
+     _IRQCR                                      1E       1       1       0   .abs_section_1e
+     _DBGC1                                      20       1       1       0   .abs_section_20
+     _DBGSR                                      21       1       1       0   .abs_section_21
+     _DBGTCR                                     22       1       1       0   .abs_section_22
+     _DBGC2                                      23       1       1       0   .abs_section_23
+     _DBGCNT                                     26       1       1       0   .abs_section_26
+     _DBGSCRX                                    27       1       1       0   .abs_section_27
+     _DBGXCTL                                    28       1       1       0   .abs_section_28
+     _DBGXAH                                     29       1       1       0   .abs_section_29
+     _DBGXAM                                     2A       1       1       0   .abs_section_2a
+     _DBGXAL                                     2B       1       1       0   .abs_section_2b
+     _DBGXDH                                     2C       1       1       0   .abs_section_2c
+     _DBGXDL                                     2D       1       1       0   .abs_section_2d
+     _DBGXDHM                                    2E       1       1       0   .abs_section_2e
+     _DBGXDLM                                    2F       1       1       0   .abs_section_2f
+     _PORTK                                      32       1       1       8   .abs_section_32
+     _DDRK                                       33       1       1       1   .abs_section_33
+     _SYNR                                       34       1       1       1   .abs_section_34
+     _REFDV                                      35       1       1       1   .abs_section_35
+     _POSTDIV                                    36       1       1       1   .abs_section_36
+     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _CRGINT                                     38       1       1       0   .abs_section_38
+     _CLKSEL                                     39       1       1       2   .abs_section_39
+     _PLLCTL                                     3A       1       1       1   .abs_section_3a
+     _RTICTL                                     3B       1       1       0   .abs_section_3b
+     _COPCTL                                     3C       1       1       0   .abs_section_3c
+     _ARMCOP                                     3F       1       1       0   .abs_section_3f
+     _TIOS                                       40       1       1       0   .abs_section_40
+     _CFORC                                      41       1       1       0   .abs_section_41
+     _OC7M                                       42       1       1       0   .abs_section_42
+     _OC7D                                       43       1       1       0   .abs_section_43
+     _TSCR1                                      46       1       1       0   .abs_section_46
+     _TTOV                                       47       1       1       0   .abs_section_47
+     _TCTL1                                      48       1       1       0   .abs_section_48
+     _TCTL2                                      49       1       1       0   .abs_section_49
+     _TCTL3                                      4A       1       1       0   .abs_section_4a
+     _TCTL4                                      4B       1       1       0   .abs_section_4b
+     _TIE                                        4C       1       1       0   .abs_section_4c
+     _TSCR2                                      4D       1       1       0   .abs_section_4d
+     _TFLG1                                      4E       1       1       0   .abs_section_4e
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
+     _PACTL                                      60       1       1       0   .abs_section_60
+     _PAFLG                                      61       1       1       0   .abs_section_61
+     _OCPD                                       6C       1       1       0   .abs_section_6c
+     _PTPSR                                      6E       1       1       0   .abs_section_6e
+     _SCI0ACR2                                   CA       1       1       0   .abs_section_ca
+     _SCI0CR2                                    CB       1       1       0   .abs_section_cb
+     _SCI0SR1                                    CC       1       1       0   .abs_section_cc
+     _SCI0SR2                                    CD       1       1       0   .abs_section_cd
+     _SCI0DRH                                    CE       1       1       0   .abs_section_ce
+     _SCI0DRL                                    CF       1       1       0   .abs_section_cf
+     _SCI1ACR2                                   D2       1       1       0   .abs_section_d2
+     _SCI1CR2                                    D3       1       1       0   .abs_section_d3
+     _SCI1SR1                                    D4       1       1       0   .abs_section_d4
+     _SCI1SR2                                    D5       1       1       0   .abs_section_d5
+     _SCI1DRH                                    D6       1       1       0   .abs_section_d6
+     _SCI1DRL                                    D7       1       1       0   .abs_section_d7
+     _SPI0CR1                                    D8       1       1       0   .abs_section_d8
+     _SPI0CR2                                    D9       1       1       0   .abs_section_d9
+     _SPI0BR                                     DA       1       1       0   .abs_section_da
+     _SPI0SR                                     DB       1       1       0   .abs_section_db
+     _FCLKDIV                                   100       1       1       0   .abs_section_100
+     _FSEC                                      101       1       1       0   .abs_section_101
+     _FCCOBIX                                   102       1       1       0   .abs_section_102
+     _FECCRIX                                   103       1       1       0   .abs_section_103
+     _FCNFG                                     104       1       1       0   .abs_section_104
+     _FERCNFG                                   105       1       1       0   .abs_section_105
+     _FSTAT                                     106       1       1       0   .abs_section_106
+     _FERSTAT                                   107       1       1       0   .abs_section_107
+     _FPROT                                     108       1       1       0   .abs_section_108
+     _DFPROT                                    109       1       1       0   .abs_section_109
+     _FOPT                                      110       1       1       0   .abs_section_110
+     _IVBR                                      121       1       1       0   .abs_section_121
+     _INT_XGPRIO                                126       1       1       0   .abs_section_126
+     _INT_CFADDR                                127       1       1       0   .abs_section_127
+     _INT_CFDATA0                               128       1       1       0   .abs_section_128
+     _INT_CFDATA1                               129       1       1       0   .abs_section_129
+     _INT_CFDATA2                               12A       1       1       0   .abs_section_12a
+     _INT_CFDATA3                               12B       1       1       0   .abs_section_12b
+     _INT_CFDATA4                               12C       1       1       0   .abs_section_12c
+     _INT_CFDATA5                               12D       1       1       0   .abs_section_12d
+     _INT_CFDATA6                               12E       1       1       0   .abs_section_12e
+     _INT_CFDATA7                               12F       1       1       0   .abs_section_12f
+     _CAN0CTL0                                  140       1       1       0   .abs_section_140
+     _CAN0CTL1                                  141       1       1       0   .abs_section_141
+     _CAN0BTR0                                  142       1       1       0   .abs_section_142
+     _CAN0BTR1                                  143       1       1       0   .abs_section_143
+     _CAN0RFLG                                  144       1       1       0   .abs_section_144
+     _CAN0RIER                                  145       1       1       0   .abs_section_145
+     _CAN0TFLG                                  146       1       1       0   .abs_section_146
+     _CAN0TIER                                  147       1       1       0   .abs_section_147
+     _CAN0TARQ                                  148       1       1       0   .abs_section_148
+     _CAN0TAAK                                  149       1       1       0   .abs_section_149
+     _CAN0TBSEL                                 14A       1       1       0   .abs_section_14a
+     _CAN0IDAC                                  14B       1       1       0   .abs_section_14b
+     _CAN0MISC                                  14D       1       1       0   .abs_section_14d
+     _CAN0RXERR                                 14E       1       1       0   .abs_section_14e
+     _CAN0TXERR                                 14F       1       1       0   .abs_section_14f
+     _CAN0IDAR0                                 150       1       1       0   .abs_section_150
+     _CAN0IDAR1                                 151       1       1       0   .abs_section_151
+     _CAN0IDAR2                                 152       1       1       0   .abs_section_152
+     _CAN0IDAR3                                 153       1       1       0   .abs_section_153
+     _CAN0IDMR0                                 154       1       1       0   .abs_section_154
+     _CAN0IDMR1                                 155       1       1       0   .abs_section_155
+     _CAN0IDMR2                                 156       1       1       0   .abs_section_156
+     _CAN0IDMR3                                 157       1       1       0   .abs_section_157
+     _CAN0IDAR4                                 158       1       1       0   .abs_section_158
+     _CAN0IDAR5                                 159       1       1       0   .abs_section_159
+     _CAN0IDAR6                                 15A       1       1       0   .abs_section_15a
+     _CAN0IDAR7                                 15B       1       1       0   .abs_section_15b
+     _CAN0IDMR4                                 15C       1       1       0   .abs_section_15c
+     _CAN0IDMR5                                 15D       1       1       0   .abs_section_15d
+     _CAN0IDMR6                                 15E       1       1       0   .abs_section_15e
+     _CAN0IDMR7                                 15F       1       1       0   .abs_section_15f
+     _CAN0RXIDR0                                160       1       1       0   .abs_section_160
+     _CAN0RXIDR1                                161       1       1       0   .abs_section_161
+     _CAN0RXIDR2                                162       1       1       0   .abs_section_162
+     _CAN0RXIDR3                                163       1       1       0   .abs_section_163
+     _CAN0RXDSR0                                164       1       1       0   .abs_section_164
+     _CAN0RXDSR1                                165       1       1       0   .abs_section_165
+     _CAN0RXDSR2                                166       1       1       0   .abs_section_166
+     _CAN0RXDSR3                                167       1       1       0   .abs_section_167
+     _CAN0RXDSR4                                168       1       1       0   .abs_section_168
+     _CAN0RXDSR5                                169       1       1       0   .abs_section_169
+     _CAN0RXDSR6                                16A       1       1       0   .abs_section_16a
+     _CAN0RXDSR7                                16B       1       1       0   .abs_section_16b
+     _CAN0RXDLR                                 16C       1       1       0   .abs_section_16c
+     _CAN0TXIDR0                                170       1       1       0   .abs_section_170
+     _CAN0TXIDR1                                171       1       1       0   .abs_section_171
+     _CAN0TXIDR2                                172       1       1       0   .abs_section_172
+     _CAN0TXIDR3                                173       1       1       0   .abs_section_173
+     _CAN0TXDSR0                                174       1       1       0   .abs_section_174
+     _CAN0TXDSR1                                175       1       1       0   .abs_section_175
+     _CAN0TXDSR2                                176       1       1       0   .abs_section_176
+     _CAN0TXDSR3                                177       1       1       0   .abs_section_177
+     _CAN0TXDSR4                                178       1       1       0   .abs_section_178
+     _CAN0TXDSR5                                179       1       1       0   .abs_section_179
+     _CAN0TXDSR6                                17A       1       1       0   .abs_section_17a
+     _CAN0TXDSR7                                17B       1       1       0   .abs_section_17b
+     _CAN0TXDLR                                 17C       1       1       0   .abs_section_17c
+     _CAN0TXTBPR                                17D       1       1       0   .abs_section_17d
+     _PTT                                       240       1       1       0   .abs_section_240
+     _PTIT                                      241       1       1       0   .abs_section_241
+     _DDRT                                      242       1       1       0   .abs_section_242
+     _RDRT                                      243       1       1       0   .abs_section_243
+     _PERT                                      244       1       1       0   .abs_section_244
+     _PPST                                      245       1       1       0   .abs_section_245
+     _PTTRR                                     247       1       1       0   .abs_section_247
+     _PTS                                       248       1       1       0   .abs_section_248
+     _PTIS                                      249       1       1       0   .abs_section_249
+     _DDRS                                      24A       1       1       0   .abs_section_24a
+     _RDRS                                      24B       1       1       0   .abs_section_24b
+     _PERS                                      24C       1       1       0   .abs_section_24c
+     _PPSS                                      24D       1       1       0   .abs_section_24d
+     _WOMS                                      24E       1       1       0   .abs_section_24e
+     _PTM                                       250       1       1      21   .abs_section_250
+     _PTIM                                      251       1       1       0   .abs_section_251
+     _DDRM                                      252       1       1       1   .abs_section_252
+     _RDRM                                      253       1       1       0   .abs_section_253
+     _PERM                                      254       1       1       0   .abs_section_254
+     _PPSM                                      255       1       1       0   .abs_section_255
+     _WOMM                                      256       1       1       0   .abs_section_256
+     _MODRR                                     257       1       1       0   .abs_section_257
+     _PTP                                       258       1       1       0   .abs_section_258
+     _PTIP                                      259       1       1       0   .abs_section_259
+     _DDRP                                      25A       1       1       0   .abs_section_25a
+     _RDRP                                      25B       1       1       0   .abs_section_25b
+     _PERP                                      25C       1       1       0   .abs_section_25c
+     _PPSP                                      25D       1       1       0   .abs_section_25d
+     _PIEP                                      25E       1       1       0   .abs_section_25e
+     _PIFP                                      25F       1       1       0   .abs_section_25f
+     _PTH                                       260       1       1       5   .abs_section_260
+     _PTIH                                      261       1       1       0   .abs_section_261
+     _DDRH                                      262       1       1       1   .abs_section_262
+     _RDRH                                      263       1       1       0   .abs_section_263
+     _PERH                                      264       1       1       1   .abs_section_264
+     _PPSH                                      265       1       1       1   .abs_section_265
+     _PIEH                                      266       1       1       1   .abs_section_266
+     _PIFH                                      267       1       1       1   .abs_section_267
+     _PTJ                                       268       1       1       0   .abs_section_268
+     _PTIJ                                      269       1       1       0   .abs_section_269
+     _DDRJ                                      26A       1       1       0   .abs_section_26a
+     _RDRJ                                      26B       1       1       0   .abs_section_26b
+     _PERJ                                      26C       1       1       0   .abs_section_26c
+     _PPSJ                                      26D       1       1       0   .abs_section_26d
+     _PIEJ                                      26E       1       1       0   .abs_section_26e
+     _PIFJ                                      26F       1       1       0   .abs_section_26f
+     _ATD0STAT0                                 2C6       1       1       4   .abs_section_2c6
+     _VREGHTCL                                  2F0       1       1       0   .abs_section_2f0
+     _VREGCTRL                                  2F1       1       1       0   .abs_section_2f1
+     _VREGAPICL                                 2F2       1       1       0   .abs_section_2f2
+     _VREGAPITR                                 2F3       1       1       0   .abs_section_2f3
+     _VREGHTTR                                  2F7       1       1       0   .abs_section_2f7
+     _PWME                                      300       1       1       5   .abs_section_300
+     _PWMPOL                                    301       1       1       4   .abs_section_301
+     _PWMCLK                                    302       1       1       4   .abs_section_302
+     _PWMPRCLK                                  303       1       1       1   .abs_section_303
+     _PWMCAE                                    304       1       1       4   .abs_section_304
+     _PWMCTL                                    305       1       1       4   .abs_section_305
+     _PWMSCLA                                   308       1       1       1   .abs_section_308
+     _PWMSCLB                                   309       1       1       1   .abs_section_309
+     _PWMSDN                                    324       1       1       0   .abs_section_324
+     _PITCFLMT                                  340       1       1       2   .abs_section_340
+     _PITFLT                                    341       1       1       0   .abs_section_341
+     _PITCE                                     342       1       1       1   .abs_section_342
+     _PITMUX                                    343       1       1       1   .abs_section_343
+     _PITINTE                                   344       1       1       1   .abs_section_344
+     _PITTF                                     345       1       1       1   .abs_section_345
+     _PITMTLD0                                  346       1       1       1   .abs_section_346
+     _PITMTLD1                                  347       1       1       0   .abs_section_347
+     _PORTAB                                      0       2       2      27   .abs_section_0
+     _DDRAB                                       2       2       2       1   .abs_section_2
+     _PARTID                                     1A       2       2       0   .abs_section_1a
+     _DBGTB                                      24       2       2       0   .abs_section_24
+     _TCNT                                       44       2       2       0   .abs_section_44
+     _TC0                                        50       2       2       0   .abs_section_50
+     _TC1                                        52       2       2       0   .abs_section_52
+     _TC2                                        54       2       2       0   .abs_section_54
+     _TC3                                        56       2       2       0   .abs_section_56
+     _TC4                                        58       2       2       0   .abs_section_58
+     _TC5                                        5A       2       2       0   .abs_section_5a
+     _TC6                                        5C       2       2       0   .abs_section_5c
+     _TC7                                        5E       2       2       0   .abs_section_5e
+     _PACNT                                      62       2       2       0   .abs_section_62
+     _SCI0BD                                     C8       2       2       0   .abs_section_c8
+     _SCI1BD                                     D0       2       2       0   .abs_section_d0
+     _SPI0DR                                     DC       2       2       0   .abs_section_dc
+     _FCCOB                                     10A       2       2       0   .abs_section_10a
+     _FECCR                                     10E       2       2       0   .abs_section_10e
+     _CAN0RXTSR                                 16E       2       2       0   .abs_section_16e
+     _CAN0TXTSR                                 17E       2       2       0   .abs_section_17e
+     _PT01AD0                                   270       2       2       0   .abs_section_270
+     _DDR01AD0                                  272       2       2       0   .abs_section_272
+     _RDR01AD0                                  274       2       2       0   .abs_section_274
+     _PER01AD0                                  276       2       2       0   .abs_section_276
+     _ATD0CTL01                                 2C0       2       2       1   .abs_section_2c0
+     _ATD0CTL23                                 2C2       2       2       2   .abs_section_2c2
+     _ATD0CTL45                                 2C4       2       2       2   .abs_section_2c4
+     _ATD0CMPE                                  2C8       2       2       0   .abs_section_2c8
+     _ATD0STAT2                                 2CA       2       2       0   .abs_section_2ca
+     _ATD0DIEN                                  2CC       2       2       1   .abs_section_2cc
+     _ATD0CMPHT                                 2CE       2       2       0   .abs_section_2ce
+     _ATD0DR0                                   2D0       2       2       0   .abs_section_2d0
+     _ATD0DR1                                   2D2       2       2       1   .abs_section_2d2
+     _ATD0DR2                                   2D4       2       2       2   .abs_section_2d4
+     _ATD0DR3                                   2D6       2       2       1   .abs_section_2d6
+     _ATD0DR4                                   2D8       2       2       2   .abs_section_2d8
+     _ATD0DR5                                   2DA       2       2       0   .abs_section_2da
+     _ATD0DR6                                   2DC       2       2       0   .abs_section_2dc
+     _ATD0DR7                                   2DE       2       2       0   .abs_section_2de
+     _ATD0DR8                                   2E0       2       2       0   .abs_section_2e0
+     _ATD0DR9                                   2E2       2       2       0   .abs_section_2e2
+     _ATD0DR10                                  2E4       2       2       0   .abs_section_2e4
+     _ATD0DR11                                  2E6       2       2       0   .abs_section_2e6
+     _ATD0DR12                                  2E8       2       2       0   .abs_section_2e8
+     _ATD0DR13                                  2EA       2       2       0   .abs_section_2ea
+     _ATD0DR14                                  2EC       2       2       0   .abs_section_2ec
+     _ATD0DR15                                  2EE       2       2       0   .abs_section_2ee
+     _VREGAPIR                                  2F4       2       2       0   .abs_section_2f4
+     _PWMCNT01                                  30C       2       2       1   .abs_section_30c
+     _PWMCNT23                                  30E       2       2       1   .abs_section_30e
+     _PWMCNT45                                  310       2       2       1   .abs_section_310
+     _PWMCNT67                                  312       2       2       1   .abs_section_312
+     _PWMPER01                                  314       2       2       1   .abs_section_314
+     _PWMPER23                                  316       2       2       1   .abs_section_316
+     _PWMPER45                                  318       2       2       1   .abs_section_318
+     _PWMPER67                                  31A       2       2       1   .abs_section_31a
+     _PWMDTY01                                  31C       2       2      10   .abs_section_31c
+     _PWMDTY23                                  31E       2       2      19   .abs_section_31e
+     _PWMDTY45                                  320       2       2      10   .abs_section_320
+     _PWMDTY67                                  322       2       2      22   .abs_section_322
+     _PITLD0                                    348       2       2       1   .abs_section_348
+     _PITCNT0                                   34A       2       2       0   .abs_section_34a
+     _PITLD1                                    34C       2       2       0   .abs_section_34c
+     _PITCNT1                                   34E       2       2       0   .abs_section_34e
+     _PITLD2                                    350       2       2       0   .abs_section_350
+     _PITCNT2                                   352       2       2       0   .abs_section_352
+     _PITLD3                                    354       2       2       0   .abs_section_354
+     _PITCNT3                                   356       2       2       0   .abs_section_356
+MODULE:                 -- main.c.o --
+- PROCEDURES:
+     delay1                                  FE8000      1C      28       2   .text       
+     delay_us                                FE801C      1F      31       4   .text       
+     main                                    FE803B     FBA    4026     283   .text       
+- VARIABLES:
+     STRING.Model.1.1                          C01D       8       8       1   .rodata1    
+     STRING..Straight.line.2                   C025       F      15       1   .rodata1    
+     STRING.Model.2.3                          C034       8       8       1   .rodata1    
+     STRING.Line.4                             C03C       5       5       1   .rodata1    
+     STRING.long..5                            C041       6       6       1   .rodata1    
+     STRING.cm.6                               C047       3       3       1   .rodata1    
+     STRING.Model.3.7                          C04A       8       8       1   .rodata1    
+     STRING.direction..8                       C052       B      11       1   .rodata1    
+     STRING.Model.4.9                          C05D       8       8       1   .rodata1    
+     STRING.STOP.10                            C065       5       5       1   .rodata1    
+     STRING.Model.5.11                         C06A       8       8       1   .rodata1    
+     STRING.Circle.12                          C072       7       7       1   .rodata1    
+     STRING.R..13                              C079       3       3       1   .rodata1    
+     STRING.20.14                              C07C       3       3       1   .rodata1    
+     STRING.cm.15                              C07F       3       3       1   .rodata1    
+     STRING.Model.5.16                         C082       8       8       1   .rodata1    
+     STRING.Circle.17                          C08A       7       7       1   .rodata1    
+     STRING.R..18                              C091       3       3       1   .rodata1    
+     STRING.20.19                              C094       3       3       1   .rodata1    
+     STRING.cm.20                              C097       3       3       1   .rodata1    
+     yuan_flag                                 2100       2       2       8   .data       
+     yuan_flag1                                2102       2       2       1   .data       
+     i                                         2954       2       2      10   .bss        
+     j                                         2956       2       2       1   .bss        
+     R                                         2958       2       2       1   .bss        
+     count                                     295A       2       2       2   .bss        
+     count2                                    295C       2       2       5   .bss        
+     count3                                    295E       2       2       3   .bss        
+     shua_flag                                 2960       2       2       2   .bss        
+     shua_flag1                                2962       2       2       2   .bss        
+     shua_flag2                                2964       2       2       2   .bss        
+     shua_flag3                                2966       2       2       2   .bss        
+     shua_flag4                                2968       2       2       3   .bss        
+     jiaodu                                    296A       2       2      20   .bss        
+     rq                                        296C       4       4       4   .bss        
+     rh                                        2970       4       4       4   .bss        
+     rz                                        2974       4       4      10   .bss        
+     lq                                        2978       4       4       4   .bss        
+     lh                                        297C       4       4       4   .bss        
+     lz                                        2980       4       4      10   .bss        
+     SDZ                                       2984       4       4      14   .bss        
+     JIAO                                      2988       4       4       2   .bss        
+     JIAOQ                                     298C       4       4       6   .bss        
+     JIAOH                                     2990       4       4       2   .bss        
+     SDZX                                      2994       4       4       6   .bss        
+     SDZY                                      2998       4       4       6   .bss        
+     JIAOX                                     299C       4       4       2   .bss        
+     JIAOQX                                    29A0       4       4       6   .bss        
+     JIAOHX                                    29A4       4       4       2   .bss        
+     JIAOY                                     29A8       4       4       2   .bss        
+     JIAOQY                                    29AC       4       4       6   .bss        
+     JIAOHY                                    29B0       4       4       2   .bss        
+     rqX                                       29B4       4       4       6   .bss        
+     rhX                                       29B8       4       4       6   .bss        
+     rzX                                       29BC       4       4      17   .bss        
+     lqX                                       29C0       4       4       4   .bss        
+     lhX                                       29C4       4       4       4   .bss        
+     lzX                                       29C8       4       4      14   .bss        
+     rqY                                       29CC       4       4       6   .bss        
+     rhY                                       29D0       4       4       6   .bss        
+     rzY                                       29D4       4       4      19   .bss        
+     lqY                                       29D8       4       4       4   .bss        
+     lhY                                       29DC       4       4       4   .bss        
+     lzY                                       29E0       4       4      14   .bss        
+     t1                                        2A15       2       2       3   .common     
+     j1                                        2A17       2       2       1   .common     
+     P1X                                       2A19       4       4       2   .common     
+     D1X                                       2A1D       4       4       2   .common     
+     P1Y                                       2A21       4       4       2   .common     
+     D1Y                                       2A25       4       4       2   .common     
+MODULE:                 -- Start12.c.o --
+- PROCEDURES:
+     Init                                    FE8FF5      29      41       2   .text       
+     _Startup                                  C000       F      15       0   .init       
+- VARIABLES:
+     _startupData                              C00F       6       6       3   .startData  
+- LABELS:
+     __SEG_END_SSTACK                          2100       0       0       1               
+MODULE:                 -- MATH.C.o (ansixb.lib) --
+- PROCEDURES:
+     logb                                    FE901E       E      14       4   .text       
+     fabs                                    FE902C      10      16       6   .text       
+     is_special                              FE903C      39      57       6   .text       
+     SetSign                                 FE9075      21      33       4   .text       
+     atan2                                   FE9096     503    1283      35   .text       
+     atan                                    FE9599       E      14       2   .text       
+- VARIABLES:
+     infinity                                  C019       4       4       2   .rodata     
+MODULE:                 -- DANSI.C.o (ansixb.lib) --
+- PROCEDURES:
+     frexp                                     C09A       3       3       1   NON_BANKED  
+     ldexp                                     C09D       3       3       2   NON_BANKED  
+- VARIABLES:
+MODULE:                 -- FADD.C.o (ansixb.lib) --
+- PROCEDURES:
+     F_ADDKL                                   C0A0      5E      94       1   NON_BANKED  
+     _FADD                                     C0FE      15      21     122   NON_BANKED  
+     _FSUB                                     C113      13      19      24   NON_BANKED  
+     _FNEG                                     C126       B      11       5   NON_BANKED  
+- VARIABLES:
+MODULE:                 -- FANSI.C.o (ansixb.lib) --
+- PROCEDURES:
+     F_FREXP                                   C131      1F      31       1   NON_BANKED  
+     F_LDEXP                                   C150      15      21       1   NON_BANKED  
+     frexpf                                    C165      19      25       1   NON_BANKED  
+     RetErrDom                                 C17E       D      13       1   NON_BANKED  
+     ldexpf                                    C18B      1E      30       1   NON_BANKED  
+- VARIABLES:
+MODULE:                 -- FCMP.C.o (ansixb.lib) --
+- PROCEDURES:
+     _FCMP                                     C1A9      26      38      22   NON_BANKED  
+- VARIABLES:
+MODULE:                 -- FCONV.C.o (ansixb.lib) --
+- PROCEDURES:
+     F_TOLONGK                                 C1CF      32      50       1   NON_BANKED  
+     F_FRLONGK                                 C201      1E      30       1   NON_BANKED  
+     _FUFLOAT                                  C21F      12      18      10   NON_BANKED  
+     _FSTRUNC                                  C231      11      17       3   NON_BANKED  
+- VARIABLES:
+MODULE:                 -- FMUL.C.o (ansixb.lib) --
+- PROCEDURES:
+     F_DIVKL                                   C242      84     132       1   NON_BANKED  
+     F_MULKL                                   C2C6      57      87       1   NON_BANKED  
+     _FMUL                                     C31D      14      20      21   NON_BANKED  
+     _FDIV                                     C331      1E      30      19   NON_BANKED  
+- VARIABLES:
+MODULE:                 -- FREGS.C.o (ansixb.lib) --
+- PROCEDURES:
+     F_PULK                                    C34F      15      21       4   NON_BANKED  
+     F_PULL                                    C364      15      21       5   NON_BANKED  
+     F_PSHK                                    C379      13      19       6   NON_BANKED  
+     F_TLK                                     C38C       D      13       2   NON_BANKED  
+     F_XGKL                                    C399      21      33       2   NON_BANKED  
+     F_CLRK                                    C3BA       B      11       2   NON_BANKED  
+     F_MAXK                                    C3C5       9       9       2   NON_BANKED  
+     F_NORMK                                   C3CE      37      55       4   NON_BANKED  
+- VARIABLES:
+MODULE:                 -- rtshc12.c.o (ansixb.lib) --
+- PROCEDURES:
+     _BSHL                                     C405       8       8       2   NON_BANKED  
+     _LCMP                                     C40D       A      10       1   NON_BANKED  
+     _NEG_P                                    C417       C      12       1   NON_BANKED  
+     _CASE_CHECKED_BYTE                        C423      14      20       3   NON_BANKED  
+     _CASE_SEARCH_8_BYTE                       C437      1A      26       4   NON_BANKED  
+- VARIABLES:
+     errno                                     2A29       2       2       2   .common     
+MODULE:                 -- VREGS.C.o (ansixb.lib) --
+- PROCEDURES:
+     L_NEGK                                    C451       7       7       1   NON_BANKED  
+     L_PSHK                                    C458       8       8       1   NON_BANKED  
+     UL_PULK                                   C460       3       3       1   NON_BANKED  
+- VARIABLES:
+MODULE:                 -- Init.c.o --
+- PROCEDURES:
+     SetBusCLK_64M                           FE95A7      1A      26       2   .text       
+     IO_init                                 FE95C1      10      16       2   .text       
+     PWM_int                                 FE95D1      8B     139       2   .text       
+     PIT_Init_1ms                            FE965C      20      32       2   .text       
+     TFT_Init                                FE967C      20      32       2   .text       
+     Init_all                                FE969C      19      25       2   .text       
+- VARIABLES:
+MODULE:                 -- TFT.c.o --
+- PROCEDURES:
+     ILI9163B_write_command                  FE96B5      2F      47      14   .text       
+     ILI9163B_write_para8                    FE96E4      2F      47      14   .text       
+     ILI9163B_write_para16                   FE9713      56      86       6   .text       
+     ILI9163B_init                           FE9769     132     306      36   .text       
+     ILI9163B_SetPos                         FE989B      36      54       4   .text       
+     ILI9163B_address_rst                    FE98D1      34      52       2   .text       
+     delay                                   FE9905      1B      27       8   .text       
+     ILI9163B_display_full                   FE9920      26      38       2   .text       
+     LCD_printc16                            FE9946      57      87       2   .text       
+     LCD_prints16                            FE999D      26      38      40   .text       
+     LCD_printc7                             FE99C3      57      87       8   .text       
+     LCD_bianliang                           FE9A1A      AF     175      10   .text       
+- VARIABLES:
+     Font_code8                                2104     25E     606       1   .data       
+     Font_code16                               2362     5F0    1520       1   .data       
+MODULE:                 -- Interrupt.c.o --
+- PROCEDURES:
+     bee_didi                                FE9AC9      40      64       2   .text       
+     PIT_ISR                                   C463      1E      30       1   NON_BANKED  
+- VARIABLES:
+     bee_flag                                  2952       2       2       5   .data       
+     bee_count                                 29E4       2       2       4   .bss        
+     bee_count1                                29E6       2       2       4   .bss        
+     num                                       29E8       2       2       1   .bss        
+     num1                                      29EA       2       2       1   .bss        
+     time_35_                                  29EC       2       2       1   .bss        
+     _Vector_66                                FF7A       2       2       0   .abs_section_ff7a
+MODULE:                 -- key.c.o --
+- PROCEDURES:
+     KB_Init                                 FE9B09      17      23       2   .text       
+     keyscan                                 FE9B20     18C     396      25   .text       
+     Calc                                    FE9CAC      1F      31       2   .text       
+     Calc_3                                  FE9CCB      2A      42       2   .text       
+     set_data                                FE9CF5      C1     193       9   .text       
+- VARIABLES:
+     jisuan                                    29EE       6       6      11   .bss        
+     result                                    29F4       2       2       7   .bss        
+     result1                                   29F6       2       2       4   .bss        
+     n                                         29F8       1       1      12   .bss        
+     flag                                      29F9       1       1       5   .bss        
+     flag1                                     29FA       1       1       3   .bss        
+     flag2                                     29FB       1       1       4   .bss        
+     flag3                                     29FC       1       1       2   .bss        
+     m                                         2A2B       1       1      24   .common     
+     k                                         2A2C       1       1       3   .common     
+     p                                         2A2D       1       1       1   .common     
+MODULE:                 -- ATD.C.o --
+- PROCEDURES:
+     ATD0_Init                               FE9DB6      1B      27       2   .text       
+     ADtransform                             FE9DD1     126     294       2   .text       
+     ADtransform1                            FE9EF7     126     294       2   .text       
+     Get_ADresultY                           FEA01D     26C     620       2   .text       
+     Get_ADresultX                           FEA289     26C     620       2   .text       
+     Get_Gyr_OFFSET                          FEA4F5      C8     200       2   .text       
+- VARIABLES:
+     Gyr_OFFSET                                29FD       4       4      12   .bss        
+     Gyr_OFFSET0                               2A01       4       4       4   .bss        
+     Gyr_OFFSET1                               2A05       4       4       4   .bss        
+     Gyr_OFFSET3                               2A09       4       4      12   .bss        
+     Gyr_OFFSET4                               2A0D       4       4       4   .bss        
+     Gyr_OFFSET5                               2A11       4       4       4   .bss        
+     mm                                        2A2E       2       2      10   .common     
+     nn                                        2A30       2       2       4   .common     
+     ADValue1                                  2A32       4       4       6   .common     
+     ADValue2                                  2A36       4       4       6   .common     
+     ADValue3                                  2A3A       4       4       4   .common     
+     ADValue4                                  2A3E       4       4       4   .common     
+     AD1                                       2A42      50      80      52   .common     
+     AD2                                       2A92      50      80      51   .common     
+     AD3                                       2AE2      50      80      52   .common     
+     AD4                                       2B32      50      80      51   .common     
+     AD1_MAX                                   2B82       4       4       8   .common     
+     AD1_MIN                                   2B86       4       4       8   .common     
+     AD2_MAX                                   2B8A       4       4       8   .common     
+     AD2_MIN                                   2B8E       4       4       8   .common     
+     AD3_MAX                                   2B92       4       4       8   .common     
+     AD3_MIN                                   2B96       4       4       8   .common     
+     AD4_MAX                                   2B9A       4       4       8   .common     
+     AD4_MIN                                   2B9E       4       4       8   .common     
+MODULE:                 -- Datehandle.c.o --
+- PROCEDURES:
+     DatehandleY                             FEA5BD      C5     197       2   .text       
+     DatehandleX                             FEA682      C5     197       2   .text       
+- VARIABLES:
+     real_angleY                               2BA2       4       4       6   .common     
+     AccY                                      2BA6       4       4       4   .common     
+     GyrY                                      2BAA       4       4       4   .common     
+     Gyr_jiaoY                                 2BAE       4       4       4   .common     
+     Acc_jiaoY                                 2BB2       4       4       4   .common     
+     real_angleX                               2BB6       4       4       6   .common     
+     AccX                                      2BBA       4       4       4   .common     
+     GyrX                                      2BBE       4       4       4   .common     
+     Gyr_jiaoX                                 2BC2       4       4       4   .common     
+     Acc_jiaoX                                 2BC6       4       4       4   .common     
+     GyrAccCraY                                2BCA       4       4      12   .common     
+     GyrAccCraX                                2BCE       4       4      11   .common     
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+  MC9S12XS128.c.o                            360      0      0
+  main.c.o                                   168   4085    125
+  Start12.c.o                                  0     56      0
+  MATH.C.o (ansixb.lib)                        0   1417      4
+  DANSI.C.o (ansixb.lib)                       0      6      0
+  FADD.C.o (ansixb.lib)                        0    145      0
+  FANSI.C.o (ansixb.lib)                       0    120      0
+  FCMP.C.o (ansixb.lib)                        0     38      0
+  FCONV.C.o (ansixb.lib)                       0    115      0
+  FMUL.C.o (ansixb.lib)                        0    269      0
+  FREGS.C.o (ansixb.lib)                       0    182      0
+  rtshc12.c.o (ansixb.lib)                     2     76      0
+  VREGS.C.o (ansixb.lib)                       0     18      0
+  Init.c.o                                     0    270      0
+  TFT.c.o                                   2126   1044      0
+  Interrupt.c.o                               12     94      2
+  key.c.o                                     18    685      0
+  ATD.C.o                                    396   2055      0
+  Datehandle.c.o                              48    394      0
+  other                                      256     12   2016
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+SECTION: ".text"
+  delay1 delay_us main Init logb fabs is_special SetSign atan2 atan 
+  SetBusCLK_64M IO_init PWM_int PIT_Init_1ms TFT_Init Init_all 
+  ILI9163B_write_command ILI9163B_write_para8 ILI9163B_write_para16 
+  ILI9163B_init ILI9163B_SetPos ILI9163B_address_rst delay 
+  ILI9163B_display_full LCD_printc16 LCD_prints16 LCD_printc7 LCD_bianliang 
+  bee_didi KB_Init keyscan Calc Calc_3 set_data ATD0_Init ADtransform 
+  ADtransform1 Get_ADresultY Get_ADresultX Get_Gyr_OFFSET DatehandleY 
+  DatehandleX 
+SECTION: ".data"
+  yuan_flag yuan_flag1 Font_code8 Font_code16 bee_flag 
+SECTION: ".bss"
+  i j R count count2 count3 shua_flag shua_flag1 shua_flag2 shua_flag3 
+  shua_flag4 jiaodu rq rh rz lq lh lz SDZ JIAO JIAOQ JIAOH SDZX SDZY JIAOX 
+  JIAOQX JIAOHX JIAOY JIAOQY JIAOHY rqX rhX rzX lqX lhX lzX rqY rhY rzY lqY lhY 
+  lzY bee_count bee_count1 num num1 time_35_ jisuan result result1 n flag flag1 
+  flag2 flag3 Gyr_OFFSET Gyr_OFFSET0 Gyr_OFFSET1 Gyr_OFFSET3 Gyr_OFFSET4 
+  Gyr_OFFSET5 
+SECTION: ".init"
+  _Startup 
+SECTION: ".rodata"
+  infinity 
+SECTION: ".rodata1"
+  STRING.Model.1.1 STRING..Straight.line.2 STRING.Model.2.3 STRING.Line.4 
+  STRING.long..5 STRING.cm.6 STRING.Model.3.7 STRING.direction..8 
+  STRING.Model.4.9 STRING.STOP.10 STRING.Model.5.11 STRING.Circle.12 
+  STRING.R..13 STRING.20.14 STRING.cm.15 STRING.Model.5.16 STRING.Circle.17 
+  STRING.R..18 STRING.20.19 STRING.cm.20 
+SECTION: "NON_BANKED"
+  frexp ldexp F_ADDKL _FADD _FSUB _FNEG F_FREXP F_LDEXP frexpf RetErrDom 
+  ldexpf _FCMP F_TOLONGK F_FRLONGK _FUFLOAT _FSTRUNC F_DIVKL F_MULKL _FMUL 
+  _FDIV F_PULK F_PULL F_PSHK F_TLK F_XGKL F_CLRK F_MAXK F_NORMK _BSHL _LCMP 
+  _NEG_P _CASE_CHECKED_BYTE _CASE_SEARCH_8_BYTE L_NEGK L_PSHK UL_PULK PIT_ISR 
+SECTION: ".abs_section_8"
+  _PORTE 
+SECTION: ".abs_section_9"
+  _DDRE 
+SECTION: ".abs_section_b"
+  _MODE 
+SECTION: ".abs_section_c"
+  _PUCR 
+SECTION: ".abs_section_d"
+  _RDRIV 
+SECTION: ".abs_section_10"
+  _GPAGE 
+SECTION: ".abs_section_11"
+  _DIRECT 
+SECTION: ".abs_section_13"
+  _MMCCTL1 
+SECTION: ".abs_section_15"
+  _PPAGE 
+SECTION: ".abs_section_16"
+  _RPAGE 
+SECTION: ".abs_section_17"
+  _EPAGE 
+SECTION: ".abs_section_1c"
+  _ECLKCTL 
+SECTION: ".abs_section_1e"
+  _IRQCR 
+SECTION: ".abs_section_20"
+  _DBGC1 
+SECTION: ".abs_section_21"
+  _DBGSR 
+SECTION: ".abs_section_22"
+  _DBGTCR 
+SECTION: ".abs_section_23"
+  _DBGC2 
+SECTION: ".abs_section_26"
+  _DBGCNT 
+SECTION: ".abs_section_27"
+  _DBGSCRX 
+SECTION: ".abs_section_28"
+  _DBGXCTL 
+SECTION: ".abs_section_29"
+  _DBGXAH 
+SECTION: ".abs_section_2a"
+  _DBGXAM 
+SECTION: ".abs_section_2b"
+  _DBGXAL 
+SECTION: ".abs_section_2c"
+  _DBGXDH 
+SECTION: ".abs_section_2d"
+  _DBGXDL 
+SECTION: ".abs_section_2e"
+  _DBGXDHM 
+SECTION: ".abs_section_2f"
+  _DBGXDLM 
+SECTION: ".abs_section_32"
+  _PORTK 
+SECTION: ".abs_section_33"
+  _DDRK 
+SECTION: ".abs_section_34"
+  _SYNR 
+SECTION: ".abs_section_35"
+  _REFDV 
+SECTION: ".abs_section_36"
+  _POSTDIV 
+SECTION: ".abs_section_37"
+  _CRGFLG 
+SECTION: ".abs_section_38"
+  _CRGINT 
+SECTION: ".abs_section_39"
+  _CLKSEL 
+SECTION: ".abs_section_3a"
+  _PLLCTL 
+SECTION: ".abs_section_3b"
+  _RTICTL 
+SECTION: ".abs_section_3c"
+  _COPCTL 
+SECTION: ".abs_section_3f"
+  _ARMCOP 
+SECTION: ".abs_section_40"
+  _TIOS 
+SECTION: ".abs_section_41"
+  _CFORC 
+SECTION: ".abs_section_42"
+  _OC7M 
+SECTION: ".abs_section_43"
+  _OC7D 
+SECTION: ".abs_section_46"
+  _TSCR1 
+SECTION: ".abs_section_47"
+  _TTOV 
+SECTION: ".abs_section_48"
+  _TCTL1 
+SECTION: ".abs_section_49"
+  _TCTL2 
+SECTION: ".abs_section_4a"
+  _TCTL3 
+SECTION: ".abs_section_4b"
+  _TCTL4 
+SECTION: ".abs_section_4c"
+  _TIE 
+SECTION: ".abs_section_4d"
+  _TSCR2 
+SECTION: ".abs_section_4e"
+  _TFLG1 
+SECTION: ".abs_section_4f"
+  _TFLG2 
+SECTION: ".abs_section_60"
+  _PACTL 
+SECTION: ".abs_section_61"
+  _PAFLG 
+SECTION: ".abs_section_6c"
+  _OCPD 
+SECTION: ".abs_section_6e"
+  _PTPSR 
+SECTION: ".abs_section_ca"
+  _SCI0ACR2 
+SECTION: ".abs_section_cb"
+  _SCI0CR2 
+SECTION: ".abs_section_cc"
+  _SCI0SR1 
+SECTION: ".abs_section_cd"
+  _SCI0SR2 
+SECTION: ".abs_section_ce"
+  _SCI0DRH 
+SECTION: ".abs_section_cf"
+  _SCI0DRL 
+SECTION: ".abs_section_d2"
+  _SCI1ACR2 
+SECTION: ".abs_section_d3"
+  _SCI1CR2 
+SECTION: ".abs_section_d4"
+  _SCI1SR1 
+SECTION: ".abs_section_d5"
+  _SCI1SR2 
+SECTION: ".abs_section_d6"
+  _SCI1DRH 
+SECTION: ".abs_section_d7"
+  _SCI1DRL 
+SECTION: ".abs_section_d8"
+  _SPI0CR1 
+SECTION: ".abs_section_d9"
+  _SPI0CR2 
+SECTION: ".abs_section_da"
+  _SPI0BR 
+SECTION: ".abs_section_db"
+  _SPI0SR 
+SECTION: ".abs_section_100"
+  _FCLKDIV 
+SECTION: ".abs_section_101"
+  _FSEC 
+SECTION: ".abs_section_102"
+  _FCCOBIX 
+SECTION: ".abs_section_103"
+  _FECCRIX 
+SECTION: ".abs_section_104"
+  _FCNFG 
+SECTION: ".abs_section_105"
+  _FERCNFG 
+SECTION: ".abs_section_106"
+  _FSTAT 
+SECTION: ".abs_section_107"
+  _FERSTAT 
+SECTION: ".abs_section_108"
+  _FPROT 
+SECTION: ".abs_section_109"
+  _DFPROT 
+SECTION: ".abs_section_110"
+  _FOPT 
+SECTION: ".abs_section_121"
+  _IVBR 
+SECTION: ".abs_section_126"
+  _INT_XGPRIO 
+SECTION: ".abs_section_127"
+  _INT_CFADDR 
+SECTION: ".abs_section_128"
+  _INT_CFDATA0 
+SECTION: ".abs_section_129"
+  _INT_CFDATA1 
+SECTION: ".abs_section_12a"
+  _INT_CFDATA2 
+SECTION: ".abs_section_12b"
+  _INT_CFDATA3 
+SECTION: ".abs_section_12c"
+  _INT_CFDATA4 
+SECTION: ".abs_section_12d"
+  _INT_CFDATA5 
+SECTION: ".abs_section_12e"
+  _INT_CFDATA6 
+SECTION: ".abs_section_12f"
+  _INT_CFDATA7 
+SECTION: ".abs_section_140"
+  _CAN0CTL0 
+SECTION: ".abs_section_141"
+  _CAN0CTL1 
+SECTION: ".abs_section_142"
+  _CAN0BTR0 
+SECTION: ".abs_section_143"
+  _CAN0BTR1 
+SECTION: ".abs_section_144"
+  _CAN0RFLG 
+SECTION: ".abs_section_145"
+  _CAN0RIER 
+SECTION: ".abs_section_146"
+  _CAN0TFLG 
+SECTION: ".abs_section_147"
+  _CAN0TIER 
+SECTION: ".abs_section_148"
+  _CAN0TARQ 
+SECTION: ".abs_section_149"
+  _CAN0TAAK 
+SECTION: ".abs_section_14a"
+  _CAN0TBSEL 
+SECTION: ".abs_section_14b"
+  _CAN0IDAC 
+SECTION: ".abs_section_14d"
+  _CAN0MISC 
+SECTION: ".abs_section_14e"
+  _CAN0RXERR 
+SECTION: ".abs_section_14f"
+  _CAN0TXERR 
+SECTION: ".abs_section_150"
+  _CAN0IDAR0 
+SECTION: ".abs_section_151"
+  _CAN0IDAR1 
+SECTION: ".abs_section_152"
+  _CAN0IDAR2 
+SECTION: ".abs_section_153"
+  _CAN0IDAR3 
+SECTION: ".abs_section_154"
+  _CAN0IDMR0 
+SECTION: ".abs_section_155"
+  _CAN0IDMR1 
+SECTION: ".abs_section_156"
+  _CAN0IDMR2 
+SECTION: ".abs_section_157"
+  _CAN0IDMR3 
+SECTION: ".abs_section_158"
+  _CAN0IDAR4 
+SECTION: ".abs_section_159"
+  _CAN0IDAR5 
+SECTION: ".abs_section_15a"
+  _CAN0IDAR6 
+SECTION: ".abs_section_15b"
+  _CAN0IDAR7 
+SECTION: ".abs_section_15c"
+  _CAN0IDMR4 
+SECTION: ".abs_section_15d"
+  _CAN0IDMR5 
+SECTION: ".abs_section_15e"
+  _CAN0IDMR6 
+SECTION: ".abs_section_15f"
+  _CAN0IDMR7 
+SECTION: ".abs_section_160"
+  _CAN0RXIDR0 
+SECTION: ".abs_section_161"
+  _CAN0RXIDR1 
+SECTION: ".abs_section_162"
+  _CAN0RXIDR2 
+SECTION: ".abs_section_163"
+  _CAN0RXIDR3 
+SECTION: ".abs_section_164"
+  _CAN0RXDSR0 
+SECTION: ".abs_section_165"
+  _CAN0RXDSR1 
+SECTION: ".abs_section_166"
+  _CAN0RXDSR2 
+SECTION: ".abs_section_167"
+  _CAN0RXDSR3 
+SECTION: ".abs_section_168"
+  _CAN0RXDSR4 
+SECTION: ".abs_section_169"
+  _CAN0RXDSR5 
+SECTION: ".abs_section_16a"
+  _CAN0RXDSR6 
+SECTION: ".abs_section_16b"
+  _CAN0RXDSR7 
+SECTION: ".abs_section_16c"
+  _CAN0RXDLR 
+SECTION: ".abs_section_170"
+  _CAN0TXIDR0 
+SECTION: ".abs_section_171"
+  _CAN0TXIDR1 
+SECTION: ".abs_section_172"
+  _CAN0TXIDR2 
+SECTION: ".abs_section_173"
+  _CAN0TXIDR3 
+SECTION: ".abs_section_174"
+  _CAN0TXDSR0 
+SECTION: ".abs_section_175"
+  _CAN0TXDSR1 
+SECTION: ".abs_section_176"
+  _CAN0TXDSR2 
+SECTION: ".abs_section_177"
+  _CAN0TXDSR3 
+SECTION: ".abs_section_178"
+  _CAN0TXDSR4 
+SECTION: ".abs_section_179"
+  _CAN0TXDSR5 
+SECTION: ".abs_section_17a"
+  _CAN0TXDSR6 
+SECTION: ".abs_section_17b"
+  _CAN0TXDSR7 
+SECTION: ".abs_section_17c"
+  _CAN0TXDLR 
+SECTION: ".abs_section_17d"
+  _CAN0TXTBPR 
+SECTION: ".abs_section_240"
+  _PTT 
+SECTION: ".abs_section_241"
+  _PTIT 
+SECTION: ".abs_section_242"
+  _DDRT 
+SECTION: ".abs_section_243"
+  _RDRT 
+SECTION: ".abs_section_244"
+  _PERT 
+SECTION: ".abs_section_245"
+  _PPST 
+SECTION: ".abs_section_247"
+  _PTTRR 
+SECTION: ".abs_section_248"
+  _PTS 
+SECTION: ".abs_section_249"
+  _PTIS 
+SECTION: ".abs_section_24a"
+  _DDRS 
+SECTION: ".abs_section_24b"
+  _RDRS 
+SECTION: ".abs_section_24c"
+  _PERS 
+SECTION: ".abs_section_24d"
+  _PPSS 
+SECTION: ".abs_section_24e"
+  _WOMS 
+SECTION: ".abs_section_250"
+  _PTM 
+SECTION: ".abs_section_251"
+  _PTIM 
+SECTION: ".abs_section_252"
+  _DDRM 
+SECTION: ".abs_section_253"
+  _RDRM 
+SECTION: ".abs_section_254"
+  _PERM 
+SECTION: ".abs_section_255"
+  _PPSM 
+SECTION: ".abs_section_256"
+  _WOMM 
+SECTION: ".abs_section_257"
+  _MODRR 
+SECTION: ".abs_section_258"
+  _PTP 
+SECTION: ".abs_section_259"
+  _PTIP 
+SECTION: ".abs_section_25a"
+  _DDRP 
+SECTION: ".abs_section_25b"
+  _RDRP 
+SECTION: ".abs_section_25c"
+  _PERP 
+SECTION: ".abs_section_25d"
+  _PPSP 
+SECTION: ".abs_section_25e"
+  _PIEP 
+SECTION: ".abs_section_25f"
+  _PIFP 
+SECTION: ".abs_section_260"
+  _PTH 
+SECTION: ".abs_section_261"
+  _PTIH 
+SECTION: ".abs_section_262"
+  _DDRH 
+SECTION: ".abs_section_263"
+  _RDRH 
+SECTION: ".abs_section_264"
+  _PERH 
+SECTION: ".abs_section_265"
+  _PPSH 
+SECTION: ".abs_section_266"
+  _PIEH 
+SECTION: ".abs_section_267"
+  _PIFH 
+SECTION: ".abs_section_268"
+  _PTJ 
+SECTION: ".abs_section_269"
+  _PTIJ 
+SECTION: ".abs_section_26a"
+  _DDRJ 
+SECTION: ".abs_section_26b"
+  _RDRJ 
+SECTION: ".abs_section_26c"
+  _PERJ 
+SECTION: ".abs_section_26d"
+  _PPSJ 
+SECTION: ".abs_section_26e"
+  _PIEJ 
+SECTION: ".abs_section_26f"
+  _PIFJ 
+SECTION: ".abs_section_2c6"
+  _ATD0STAT0 
+SECTION: ".abs_section_2f0"
+  _VREGHTCL 
+SECTION: ".abs_section_2f1"
+  _VREGCTRL 
+SECTION: ".abs_section_2f2"
+  _VREGAPICL 
+SECTION: ".abs_section_2f3"
+  _VREGAPITR 
+SECTION: ".abs_section_2f7"
+  _VREGHTTR 
+SECTION: ".abs_section_300"
+  _PWME 
+SECTION: ".abs_section_301"
+  _PWMPOL 
+SECTION: ".abs_section_302"
+  _PWMCLK 
+SECTION: ".abs_section_303"
+  _PWMPRCLK 
+SECTION: ".abs_section_304"
+  _PWMCAE 
+SECTION: ".abs_section_305"
+  _PWMCTL 
+SECTION: ".abs_section_308"
+  _PWMSCLA 
+SECTION: ".abs_section_309"
+  _PWMSCLB 
+SECTION: ".abs_section_324"
+  _PWMSDN 
+SECTION: ".abs_section_340"
+  _PITCFLMT 
+SECTION: ".abs_section_341"
+  _PITFLT 
+SECTION: ".abs_section_342"
+  _PITCE 
+SECTION: ".abs_section_343"
+  _PITMUX 
+SECTION: ".abs_section_344"
+  _PITINTE 
+SECTION: ".abs_section_345"
+  _PITTF 
+SECTION: ".abs_section_346"
+  _PITMTLD0 
+SECTION: ".abs_section_347"
+  _PITMTLD1 
+SECTION: ".abs_section_0"
+  _PORTAB 
+SECTION: ".abs_section_2"
+  _DDRAB 
+SECTION: ".abs_section_1a"
+  _PARTID 
+SECTION: ".abs_section_24"
+  _DBGTB 
+SECTION: ".abs_section_44"
+  _TCNT 
+SECTION: ".abs_section_50"
+  _TC0 
+SECTION: ".abs_section_52"
+  _TC1 
+SECTION: ".abs_section_54"
+  _TC2 
+SECTION: ".abs_section_56"
+  _TC3 
+SECTION: ".abs_section_58"
+  _TC4 
+SECTION: ".abs_section_5a"
+  _TC5 
+SECTION: ".abs_section_5c"
+  _TC6 
+SECTION: ".abs_section_5e"
+  _TC7 
+SECTION: ".abs_section_62"
+  _PACNT 
+SECTION: ".abs_section_c8"
+  _SCI0BD 
+SECTION: ".abs_section_d0"
+  _SCI1BD 
+SECTION: ".abs_section_dc"
+  _SPI0DR 
+SECTION: ".abs_section_10a"
+  _FCCOB 
+SECTION: ".abs_section_10e"
+  _FECCR 
+SECTION: ".abs_section_16e"
+  _CAN0RXTSR 
+SECTION: ".abs_section_17e"
+  _CAN0TXTSR 
+SECTION: ".abs_section_270"
+  _PT01AD0 
+SECTION: ".abs_section_272"
+  _DDR01AD0 
+SECTION: ".abs_section_274"
+  _RDR01AD0 
+SECTION: ".abs_section_276"
+  _PER01AD0 
+SECTION: ".abs_section_2c0"
+  _ATD0CTL01 
+SECTION: ".abs_section_2c2"
+  _ATD0CTL23 
+SECTION: ".abs_section_2c4"
+  _ATD0CTL45 
+SECTION: ".abs_section_2c8"
+  _ATD0CMPE 
+SECTION: ".abs_section_2ca"
+  _ATD0STAT2 
+SECTION: ".abs_section_2cc"
+  _ATD0DIEN 
+SECTION: ".abs_section_2ce"
+  _ATD0CMPHT 
+SECTION: ".abs_section_2d0"
+  _ATD0DR0 
+SECTION: ".abs_section_2d2"
+  _ATD0DR1 
+SECTION: ".abs_section_2d4"
+  _ATD0DR2 
+SECTION: ".abs_section_2d6"
+  _ATD0DR3 
+SECTION: ".abs_section_2d8"
+  _ATD0DR4 
+SECTION: ".abs_section_2da"
+  _ATD0DR5 
+SECTION: ".abs_section_2dc"
+  _ATD0DR6 
+SECTION: ".abs_section_2de"
+  _ATD0DR7 
+SECTION: ".abs_section_2e0"
+  _ATD0DR8 
+SECTION: ".abs_section_2e2"
+  _ATD0DR9 
+SECTION: ".abs_section_2e4"
+  _ATD0DR10 
+SECTION: ".abs_section_2e6"
+  _ATD0DR11 
+SECTION: ".abs_section_2e8"
+  _ATD0DR12 
+SECTION: ".abs_section_2ea"
+  _ATD0DR13 
+SECTION: ".abs_section_2ec"
+  _ATD0DR14 
+SECTION: ".abs_section_2ee"
+  _ATD0DR15 
+SECTION: ".abs_section_2f4"
+  _VREGAPIR 
+SECTION: ".abs_section_30c"
+  _PWMCNT01 
+SECTION: ".abs_section_30e"
+  _PWMCNT23 
+SECTION: ".abs_section_310"
+  _PWMCNT45 
+SECTION: ".abs_section_312"
+  _PWMCNT67 
+SECTION: ".abs_section_314"
+  _PWMPER01 
+SECTION: ".abs_section_316"
+  _PWMPER23 
+SECTION: ".abs_section_318"
+  _PWMPER45 
+SECTION: ".abs_section_31a"
+  _PWMPER67 
+SECTION: ".abs_section_31c"
+  _PWMDTY01 
+SECTION: ".abs_section_31e"
+  _PWMDTY23 
+SECTION: ".abs_section_320"
+  _PWMDTY45 
+SECTION: ".abs_section_322"
+  _PWMDTY67 
+SECTION: ".abs_section_348"
+  _PITLD0 
+SECTION: ".abs_section_34a"
+  _PITCNT0 
+SECTION: ".abs_section_34c"
+  _PITLD1 
+SECTION: ".abs_section_34e"
+  _PITCNT1 
+SECTION: ".abs_section_350"
+  _PITLD2 
+SECTION: ".abs_section_352"
+  _PITCNT2 
+SECTION: ".abs_section_354"
+  _PITLD3 
+SECTION: ".abs_section_356"
+  _PITCNT3 
+SECTION: ".common"
+  t1 j1 P1X D1X P1Y D1Y errno m k p mm nn ADValue1 ADValue2 ADValue3 ADValue4 
+  AD1 AD2 AD3 AD4 AD1_MAX AD1_MIN AD2_MAX AD2_MIN AD3_MAX AD3_MIN AD4_MAX 
+  AD4_MIN real_angleY AccY GyrY Gyr_jiaoY Acc_jiaoY real_angleX AccX GyrX 
+  Gyr_jiaoX Acc_jiaoX GyrAccCraY GyrAccCraX 
+SECTION: ".abs_section_ff7a"
+  _Vector_66 
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+     _PORTAB                                      0       2       2      27   .abs_section_0
+     _DDRAB                                       2       2       2       1   .abs_section_2
+     _PORTE                                       8       1       1       0   .abs_section_8
+     _DDRE                                        9       1       1       0   .abs_section_9
+     _MODE                                        B       1       1       0   .abs_section_b
+     _PUCR                                        C       1       1       0   .abs_section_c
+     _RDRIV                                       D       1       1       0   .abs_section_d
+     _GPAGE                                      10       1       1       0   .abs_section_10
+     _DIRECT                                     11       1       1       0   .abs_section_11
+     _MMCCTL1                                    13       1       1       0   .abs_section_13
+     _PPAGE                                      15       1       1       0   .abs_section_15
+     _RPAGE                                      16       1       1       0   .abs_section_16
+     _EPAGE                                      17       1       1       0   .abs_section_17
+     _PARTID                                     1A       2       2       0   .abs_section_1a
+     _ECLKCTL                                    1C       1       1       0   .abs_section_1c
+     _IRQCR                                      1E       1       1       0   .abs_section_1e
+     _DBGC1                                      20       1       1       0   .abs_section_20
+     _DBGSR                                      21       1       1       0   .abs_section_21
+     _DBGTCR                                     22       1       1       0   .abs_section_22
+     _DBGC2                                      23       1       1       0   .abs_section_23
+     _DBGTB                                      24       2       2       0   .abs_section_24
+     _DBGCNT                                     26       1       1       0   .abs_section_26
+     _DBGSCRX                                    27       1       1       0   .abs_section_27
+     _DBGXCTL                                    28       1       1       0   .abs_section_28
+     _DBGXAH                                     29       1       1       0   .abs_section_29
+     _DBGXAM                                     2A       1       1       0   .abs_section_2a
+     _DBGXAL                                     2B       1       1       0   .abs_section_2b
+     _DBGXDH                                     2C       1       1       0   .abs_section_2c
+     _DBGXDL                                     2D       1       1       0   .abs_section_2d
+     _DBGXDHM                                    2E       1       1       0   .abs_section_2e
+     _DBGXDLM                                    2F       1       1       0   .abs_section_2f
+     _PORTK                                      32       1       1       8   .abs_section_32
+     _DDRK                                       33       1       1       1   .abs_section_33
+     _SYNR                                       34       1       1       1   .abs_section_34
+     _REFDV                                      35       1       1       1   .abs_section_35
+     _POSTDIV                                    36       1       1       1   .abs_section_36
+     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _CRGINT                                     38       1       1       0   .abs_section_38
+     _CLKSEL                                     39       1       1       2   .abs_section_39
+     _PLLCTL                                     3A       1       1       1   .abs_section_3a
+     _RTICTL                                     3B       1       1       0   .abs_section_3b
+     _COPCTL                                     3C       1       1       0   .abs_section_3c
+     _ARMCOP                                     3F       1       1       0   .abs_section_3f
+     _TIOS                                       40       1       1       0   .abs_section_40
+     _CFORC                                      41       1       1       0   .abs_section_41
+     _OC7M                                       42       1       1       0   .abs_section_42
+     _OC7D                                       43       1       1       0   .abs_section_43
+     _TCNT                                       44       2       2       0   .abs_section_44
+     _TSCR1                                      46       1       1       0   .abs_section_46
+     _TTOV                                       47       1       1       0   .abs_section_47
+     _TCTL1                                      48       1       1       0   .abs_section_48
+     _TCTL2                                      49       1       1       0   .abs_section_49
+     _TCTL3                                      4A       1       1       0   .abs_section_4a
+     _TCTL4                                      4B       1       1       0   .abs_section_4b
+     _TIE                                        4C       1       1       0   .abs_section_4c
+     _TSCR2                                      4D       1       1       0   .abs_section_4d
+     _TFLG1                                      4E       1       1       0   .abs_section_4e
+     _TFLG2                                      4F       1       1       0   .abs_section_4f
+     _TC0                                        50       2       2       0   .abs_section_50
+     _TC1                                        52       2       2       0   .abs_section_52
+     _TC2                                        54       2       2       0   .abs_section_54
+     _TC3                                        56       2       2       0   .abs_section_56
+     _TC4                                        58       2       2       0   .abs_section_58
+     _TC5                                        5A       2       2       0   .abs_section_5a
+     _TC6                                        5C       2       2       0   .abs_section_5c
+     _TC7                                        5E       2       2       0   .abs_section_5e
+     _PACTL                                      60       1       1       0   .abs_section_60
+     _PAFLG                                      61       1       1       0   .abs_section_61
+     _PACNT                                      62       2       2       0   .abs_section_62
+     _OCPD                                       6C       1       1       0   .abs_section_6c
+     _PTPSR                                      6E       1       1       0   .abs_section_6e
+     _SCI0BD                                     C8       2       2       0   .abs_section_c8
+     _SCI0ACR2                                   CA       1       1       0   .abs_section_ca
+     _SCI0CR2                                    CB       1       1       0   .abs_section_cb
+     _SCI0SR1                                    CC       1       1       0   .abs_section_cc
+     _SCI0SR2                                    CD       1       1       0   .abs_section_cd
+     _SCI0DRH                                    CE       1       1       0   .abs_section_ce
+     _SCI0DRL                                    CF       1       1       0   .abs_section_cf
+     _SCI1BD                                     D0       2       2       0   .abs_section_d0
+     _SCI1ACR2                                   D2       1       1       0   .abs_section_d2
+     _SCI1CR2                                    D3       1       1       0   .abs_section_d3
+     _SCI1SR1                                    D4       1       1       0   .abs_section_d4
+     _SCI1SR2                                    D5       1       1       0   .abs_section_d5
+     _SCI1DRH                                    D6       1       1       0   .abs_section_d6
+     _SCI1DRL                                    D7       1       1       0   .abs_section_d7
+     _SPI0CR1                                    D8       1       1       0   .abs_section_d8
+     _SPI0CR2                                    D9       1       1       0   .abs_section_d9
+     _SPI0BR                                     DA       1       1       0   .abs_section_da
+     _SPI0SR                                     DB       1       1       0   .abs_section_db
+     _SPI0DR                                     DC       2       2       0   .abs_section_dc
+     _FCLKDIV                                   100       1       1       0   .abs_section_100
+     _FSEC                                      101       1       1       0   .abs_section_101
+     _FCCOBIX                                   102       1       1       0   .abs_section_102
+     _FECCRIX                                   103       1       1       0   .abs_section_103
+     _FCNFG                                     104       1       1       0   .abs_section_104
+     _FERCNFG                                   105       1       1       0   .abs_section_105
+     _FSTAT                                     106       1       1       0   .abs_section_106
+     _FERSTAT                                   107       1       1       0   .abs_section_107
+     _FPROT                                     108       1       1       0   .abs_section_108
+     _DFPROT                                    109       1       1       0   .abs_section_109
+     _FCCOB                                     10A       2       2       0   .abs_section_10a
+     _FECCR                                     10E       2       2       0   .abs_section_10e
+     _FOPT                                      110       1       1       0   .abs_section_110
+     _IVBR                                      121       1       1       0   .abs_section_121
+     _INT_XGPRIO                                126       1       1       0   .abs_section_126
+     _INT_CFADDR                                127       1       1       0   .abs_section_127
+     _INT_CFDATA0                               128       1       1       0   .abs_section_128
+     _INT_CFDATA1                               129       1       1       0   .abs_section_129
+     _INT_CFDATA2                               12A       1       1       0   .abs_section_12a
+     _INT_CFDATA3                               12B       1       1       0   .abs_section_12b
+     _INT_CFDATA4                               12C       1       1       0   .abs_section_12c
+     _INT_CFDATA5                               12D       1       1       0   .abs_section_12d
+     _INT_CFDATA6                               12E       1       1       0   .abs_section_12e
+     _INT_CFDATA7                               12F       1       1       0   .abs_section_12f
+     _CAN0CTL0                                  140       1       1       0   .abs_section_140
+     _CAN0CTL1                                  141       1       1       0   .abs_section_141
+     _CAN0BTR0                                  142       1       1       0   .abs_section_142
+     _CAN0BTR1                                  143       1       1       0   .abs_section_143
+     _CAN0RFLG                                  144       1       1       0   .abs_section_144
+     _CAN0RIER                                  145       1       1       0   .abs_section_145
+     _CAN0TFLG                                  146       1       1       0   .abs_section_146
+     _CAN0TIER                                  147       1       1       0   .abs_section_147
+     _CAN0TARQ                                  148       1       1       0   .abs_section_148
+     _CAN0TAAK                                  149       1       1       0   .abs_section_149
+     _CAN0TBSEL                                 14A       1       1       0   .abs_section_14a
+     _CAN0IDAC                                  14B       1       1       0   .abs_section_14b
+     _CAN0MISC                                  14D       1       1       0   .abs_section_14d
+     _CAN0RXERR                                 14E       1       1       0   .abs_section_14e
+     _CAN0TXERR                                 14F       1       1       0   .abs_section_14f
+     _CAN0IDAR0                                 150       1       1       0   .abs_section_150
+     _CAN0IDAR1                                 151       1       1       0   .abs_section_151
+     _CAN0IDAR2                                 152       1       1       0   .abs_section_152
+     _CAN0IDAR3                                 153       1       1       0   .abs_section_153
+     _CAN0IDMR0                                 154       1       1       0   .abs_section_154
+     _CAN0IDMR1                                 155       1       1       0   .abs_section_155
+     _CAN0IDMR2                                 156       1       1       0   .abs_section_156
+     _CAN0IDMR3                                 157       1       1       0   .abs_section_157
+     _CAN0IDAR4                                 158       1       1       0   .abs_section_158
+     _CAN0IDAR5                                 159       1       1       0   .abs_section_159
+     _CAN0IDAR6                                 15A       1       1       0   .abs_section_15a
+     _CAN0IDAR7                                 15B       1       1       0   .abs_section_15b
+     _CAN0IDMR4                                 15C       1       1       0   .abs_section_15c
+     _CAN0IDMR5                                 15D       1       1       0   .abs_section_15d
+     _CAN0IDMR6                                 15E       1       1       0   .abs_section_15e
+     _CAN0IDMR7                                 15F       1       1       0   .abs_section_15f
+     _CAN0RXIDR0                                160       1       1       0   .abs_section_160
+     _CAN0RXIDR1                                161       1       1       0   .abs_section_161
+     _CAN0RXIDR2                                162       1       1       0   .abs_section_162
+     _CAN0RXIDR3                                163       1       1       0   .abs_section_163
+     _CAN0RXDSR0                                164       1       1       0   .abs_section_164
+     _CAN0RXDSR1                                165       1       1       0   .abs_section_165
+     _CAN0RXDSR2                                166       1       1       0   .abs_section_166
+     _CAN0RXDSR3                                167       1       1       0   .abs_section_167
+     _CAN0RXDSR4                                168       1       1       0   .abs_section_168
+     _CAN0RXDSR5                                169       1       1       0   .abs_section_169
+     _CAN0RXDSR6                                16A       1       1       0   .abs_section_16a
+     _CAN0RXDSR7                                16B       1       1       0   .abs_section_16b
+     _CAN0RXDLR                                 16C       1       1       0   .abs_section_16c
+     _CAN0RXTSR                                 16E       2       2       0   .abs_section_16e
+     _CAN0TXIDR0                                170       1       1       0   .abs_section_170
+     _CAN0TXIDR1                                171       1       1       0   .abs_section_171
+     _CAN0TXIDR2                                172       1       1       0   .abs_section_172
+     _CAN0TXIDR3                                173       1       1       0   .abs_section_173
+     _CAN0TXDSR0                                174       1       1       0   .abs_section_174
+     _CAN0TXDSR1                                175       1       1       0   .abs_section_175
+     _CAN0TXDSR2                                176       1       1       0   .abs_section_176
+     _CAN0TXDSR3                                177       1       1       0   .abs_section_177
+     _CAN0TXDSR4                                178       1       1       0   .abs_section_178
+     _CAN0TXDSR5                                179       1       1       0   .abs_section_179
+     _CAN0TXDSR6                                17A       1       1       0   .abs_section_17a
+     _CAN0TXDSR7                                17B       1       1       0   .abs_section_17b
+     _CAN0TXDLR                                 17C       1       1       0   .abs_section_17c
+     _CAN0TXTBPR                                17D       1       1       0   .abs_section_17d
+     _CAN0TXTSR                                 17E       2       2       0   .abs_section_17e
+     _PTT                                       240       1       1       0   .abs_section_240
+     _PTIT                                      241       1       1       0   .abs_section_241
+     _DDRT                                      242       1       1       0   .abs_section_242
+     _RDRT                                      243       1       1       0   .abs_section_243
+     _PERT                                      244       1       1       0   .abs_section_244
+     _PPST                                      245       1       1       0   .abs_section_245
+     _PTTRR                                     247       1       1       0   .abs_section_247
+     _PTS                                       248       1       1       0   .abs_section_248
+     _PTIS                                      249       1       1       0   .abs_section_249
+     _DDRS                                      24A       1       1       0   .abs_section_24a
+     _RDRS                                      24B       1       1       0   .abs_section_24b
+     _PERS                                      24C       1       1       0   .abs_section_24c
+     _PPSS                                      24D       1       1       0   .abs_section_24d
+     _WOMS                                      24E       1       1       0   .abs_section_24e
+     _PTM                                       250       1       1      21   .abs_section_250
+     _PTIM                                      251       1       1       0   .abs_section_251
+     _DDRM                                      252       1       1       1   .abs_section_252
+     _RDRM                                      253       1       1       0   .abs_section_253
+     _PERM                                      254       1       1       0   .abs_section_254
+     _PPSM                                      255       1       1       0   .abs_section_255
+     _WOMM                                      256       1       1       0   .abs_section_256
+     _MODRR                                     257       1       1       0   .abs_section_257
+     _PTP                                       258       1       1       0   .abs_section_258
+     _PTIP                                      259       1       1       0   .abs_section_259
+     _DDRP                                      25A       1       1       0   .abs_section_25a
+     _RDRP                                      25B       1       1       0   .abs_section_25b
+     _PERP                                      25C       1       1       0   .abs_section_25c
+     _PPSP                                      25D       1       1       0   .abs_section_25d
+     _PIEP                                      25E       1       1       0   .abs_section_25e
+     _PIFP                                      25F       1       1       0   .abs_section_25f
+     _PTH                                       260       1       1       5   .abs_section_260
+     _PTIH                                      261       1       1       0   .abs_section_261
+     _DDRH                                      262       1       1       1   .abs_section_262
+     _RDRH                                      263       1       1       0   .abs_section_263
+     _PERH                                      264       1       1       1   .abs_section_264
+     _PPSH                                      265       1       1       1   .abs_section_265
+     _PIEH                                      266       1       1       1   .abs_section_266
+     _PIFH                                      267       1       1       1   .abs_section_267
+     _PTJ                                       268       1       1       0   .abs_section_268
+     _PTIJ                                      269       1       1       0   .abs_section_269
+     _DDRJ                                      26A       1       1       0   .abs_section_26a
+     _RDRJ                                      26B       1       1       0   .abs_section_26b
+     _PERJ                                      26C       1       1       0   .abs_section_26c
+     _PPSJ                                      26D       1       1       0   .abs_section_26d
+     _PIEJ                                      26E       1       1       0   .abs_section_26e
+     _PIFJ                                      26F       1       1       0   .abs_section_26f
+     _PT01AD0                                   270       2       2       0   .abs_section_270
+     _DDR01AD0                                  272       2       2       0   .abs_section_272
+     _RDR01AD0                                  274       2       2       0   .abs_section_274
+     _PER01AD0                                  276       2       2       0   .abs_section_276
+     _ATD0CTL01                                 2C0       2       2       1   .abs_section_2c0
+     _ATD0CTL23                                 2C2       2       2       2   .abs_section_2c2
+     _ATD0CTL45                                 2C4       2       2       2   .abs_section_2c4
+     _ATD0STAT0                                 2C6       1       1       4   .abs_section_2c6
+     _ATD0CMPE                                  2C8       2       2       0   .abs_section_2c8
+     _ATD0STAT2                                 2CA       2       2       0   .abs_section_2ca
+     _ATD0DIEN                                  2CC       2       2       1   .abs_section_2cc
+     _ATD0CMPHT                                 2CE       2       2       0   .abs_section_2ce
+     _ATD0DR0                                   2D0       2       2       0   .abs_section_2d0
+     _ATD0DR1                                   2D2       2       2       1   .abs_section_2d2
+     _ATD0DR2                                   2D4       2       2       2   .abs_section_2d4
+     _ATD0DR3                                   2D6       2       2       1   .abs_section_2d6
+     _ATD0DR4                                   2D8       2       2       2   .abs_section_2d8
+     _ATD0DR5                                   2DA       2       2       0   .abs_section_2da
+     _ATD0DR6                                   2DC       2       2       0   .abs_section_2dc
+     _ATD0DR7                                   2DE       2       2       0   .abs_section_2de
+     _ATD0DR8                                   2E0       2       2       0   .abs_section_2e0
+     _ATD0DR9                                   2E2       2       2       0   .abs_section_2e2
+     _ATD0DR10                                  2E4       2       2       0   .abs_section_2e4
+     _ATD0DR11                                  2E6       2       2       0   .abs_section_2e6
+     _ATD0DR12                                  2E8       2       2       0   .abs_section_2e8
+     _ATD0DR13                                  2EA       2       2       0   .abs_section_2ea
+     _ATD0DR14                                  2EC       2       2       0   .abs_section_2ec
+     _ATD0DR15                                  2EE       2       2       0   .abs_section_2ee
+     _VREGHTCL                                  2F0       1       1       0   .abs_section_2f0
+     _VREGCTRL                                  2F1       1       1       0   .abs_section_2f1
+     _VREGAPICL                                 2F2       1       1       0   .abs_section_2f2
+     _VREGAPITR                                 2F3       1       1       0   .abs_section_2f3
+     _VREGAPIR                                  2F4       2       2       0   .abs_section_2f4
+     _VREGHTTR                                  2F7       1       1       0   .abs_section_2f7
+     _PWME                                      300       1       1       5   .abs_section_300
+     _PWMPOL                                    301       1       1       4   .abs_section_301
+     _PWMCLK                                    302       1       1       4   .abs_section_302
+     _PWMPRCLK                                  303       1       1       1   .abs_section_303
+     _PWMCAE                                    304       1       1       4   .abs_section_304
+     _PWMCTL                                    305       1       1       4   .abs_section_305
+     _PWMSCLA                                   308       1       1       1   .abs_section_308
+     _PWMSCLB                                   309       1       1       1   .abs_section_309
+     _PWMCNT01                                  30C       2       2       1   .abs_section_30c
+     _PWMCNT23                                  30E       2       2       1   .abs_section_30e
+     _PWMCNT45                                  310       2       2       1   .abs_section_310
+     _PWMCNT67                                  312       2       2       1   .abs_section_312
+     _PWMPER01                                  314       2       2       1   .abs_section_314
+     _PWMPER23                                  316       2       2       1   .abs_section_316
+     _PWMPER45                                  318       2       2       1   .abs_section_318
+     _PWMPER67                                  31A       2       2       1   .abs_section_31a
+     _PWMDTY01                                  31C       2       2      10   .abs_section_31c
+     _PWMDTY23                                  31E       2       2      19   .abs_section_31e
+     _PWMDTY45                                  320       2       2      10   .abs_section_320
+     _PWMDTY67                                  322       2       2      22   .abs_section_322
+     _PWMSDN                                    324       1       1       0   .abs_section_324
+     _PITCFLMT                                  340       1       1       2   .abs_section_340
+     _PITFLT                                    341       1       1       0   .abs_section_341
+     _PITCE                                     342       1       1       1   .abs_section_342
+     _PITMUX                                    343       1       1       1   .abs_section_343
+     _PITINTE                                   344       1       1       1   .abs_section_344
+     _PITTF                                     345       1       1       1   .abs_section_345
+     _PITMTLD0                                  346       1       1       1   .abs_section_346
+     _PITMTLD1                                  347       1       1       0   .abs_section_347
+     _PITLD0                                    348       2       2       1   .abs_section_348
+     _PITCNT0                                   34A       2       2       0   .abs_section_34a
+     _PITLD1                                    34C       2       2       0   .abs_section_34c
+     _PITCNT1                                   34E       2       2       0   .abs_section_34e
+     _PITLD2                                    350       2       2       0   .abs_section_350
+     _PITCNT2                                   352       2       2       0   .abs_section_352
+     _PITLD3                                    354       2       2       0   .abs_section_354
+     _PITCNT3                                   356       2       2       0   .abs_section_356
+     yuan_flag                                 2100       2       2       8   .data       
+     yuan_flag1                                2102       2       2       1   .data       
+     Font_code8                                2104     25E     606       1   .data       
+     Font_code16                               2362     5F0    1520       1   .data       
+     bee_flag                                  2952       2       2       5   .data       
+     i                                         2954       2       2      10   .bss        
+     j                                         2956       2       2       1   .bss        
+     R                                         2958       2       2       1   .bss        
+     count                                     295A       2       2       2   .bss        
+     count2                                    295C       2       2       5   .bss        
+     count3                                    295E       2       2       3   .bss        
+     shua_flag                                 2960       2       2       2   .bss        
+     shua_flag1                                2962       2       2       2   .bss        
+     shua_flag2                                2964       2       2       2   .bss        
+     shua_flag3                                2966       2       2       2   .bss        
+     shua_flag4                                2968       2       2       3   .bss        
+     jiaodu                                    296A       2       2      20   .bss        
+     rq                                        296C       4       4       4   .bss        
+     rh                                        2970       4       4       4   .bss        
+     rz                                        2974       4       4      10   .bss        
+     lq                                        2978       4       4       4   .bss        
+     lh                                        297C       4       4       4   .bss        
+     lz                                        2980       4       4      10   .bss        
+     SDZ                                       2984       4       4      14   .bss        
+     JIAO                                      2988       4       4       2   .bss        
+     JIAOQ                                     298C       4       4       6   .bss        
+     JIAOH                                     2990       4       4       2   .bss        
+     SDZX                                      2994       4       4       6   .bss        
+     SDZY                                      2998       4       4       6   .bss        
+     JIAOX                                     299C       4       4       2   .bss        
+     JIAOQX                                    29A0       4       4       6   .bss        
+     JIAOHX                                    29A4       4       4       2   .bss        
+     JIAOY                                     29A8       4       4       2   .bss        
+     JIAOQY                                    29AC       4       4       6   .bss        
+     JIAOHY                                    29B0       4       4       2   .bss        
+     rqX                                       29B4       4       4       6   .bss        
+     rhX                                       29B8       4       4       6   .bss        
+     rzX                                       29BC       4       4      17   .bss        
+     lqX                                       29C0       4       4       4   .bss        
+     lhX                                       29C4       4       4       4   .bss        
+     lzX                                       29C8       4       4      14   .bss        
+     rqY                                       29CC       4       4       6   .bss        
+     rhY                                       29D0       4       4       6   .bss        
+     rzY                                       29D4       4       4      19   .bss        
+     lqY                                       29D8       4       4       4   .bss        
+     lhY                                       29DC       4       4       4   .bss        
+     lzY                                       29E0       4       4      14   .bss        
+     bee_count                                 29E4       2       2       4   .bss        
+     bee_count1                                29E6       2       2       4   .bss        
+     num                                       29E8       2       2       1   .bss        
+     num1                                      29EA       2       2       1   .bss        
+     time_35_                                  29EC       2       2       1   .bss        
+     jisuan                                    29EE       6       6      11   .bss        
+     result                                    29F4       2       2       7   .bss        
+     result1                                   29F6       2       2       4   .bss        
+     n                                         29F8       1       1      12   .bss        
+     flag                                      29F9       1       1       5   .bss        
+     flag1                                     29FA       1       1       3   .bss        
+     flag2                                     29FB       1       1       4   .bss        
+     flag3                                     29FC       1       1       2   .bss        
+     Gyr_OFFSET                                29FD       4       4      12   .bss        
+     Gyr_OFFSET0                               2A01       4       4       4   .bss        
+     Gyr_OFFSET1                               2A05       4       4       4   .bss        
+     Gyr_OFFSET3                               2A09       4       4      12   .bss        
+     Gyr_OFFSET4                               2A0D       4       4       4   .bss        
+     Gyr_OFFSET5                               2A11       4       4       4   .bss        
+     t1                                        2A15       2       2       3   .common     
+     j1                                        2A17       2       2       1   .common     
+     P1X                                       2A19       4       4       2   .common     
+     D1X                                       2A1D       4       4       2   .common     
+     P1Y                                       2A21       4       4       2   .common     
+     D1Y                                       2A25       4       4       2   .common     
+     errno                                     2A29       2       2       2   .common     
+     m                                         2A2B       1       1      24   .common     
+     k                                         2A2C       1       1       3   .common     
+     p                                         2A2D       1       1       1   .common     
+     mm                                        2A2E       2       2      10   .common     
+     nn                                        2A30       2       2       4   .common     
+     ADValue1                                  2A32       4       4       6   .common     
+     ADValue2                                  2A36       4       4       6   .common     
+     ADValue3                                  2A3A       4       4       4   .common     
+     ADValue4                                  2A3E       4       4       4   .common     
+     AD1                                       2A42      50      80      52   .common     
+     AD2                                       2A92      50      80      51   .common     
+     AD3                                       2AE2      50      80      52   .common     
+     AD4                                       2B32      50      80      51   .common     
+     AD1_MAX                                   2B82       4       4       8   .common     
+     AD1_MIN                                   2B86       4       4       8   .common     
+     AD2_MAX                                   2B8A       4       4       8   .common     
+     AD2_MIN                                   2B8E       4       4       8   .common     
+     AD3_MAX                                   2B92       4       4       8   .common     
+     AD3_MIN                                   2B96       4       4       8   .common     
+     AD4_MAX                                   2B9A       4       4       8   .common     
+     AD4_MIN                                   2B9E       4       4       8   .common     
+     real_angleY                               2BA2       4       4       6   .common     
+     AccY                                      2BA6       4       4       4   .common     
+     GyrY                                      2BAA       4       4       4   .common     
+     Gyr_jiaoY                                 2BAE       4       4       4   .common     
+     Acc_jiaoY                                 2BB2       4       4       4   .common     
+     real_angleX                               2BB6       4       4       6   .common     
+     AccX                                      2BBA       4       4       4   .common     
+     GyrX                                      2BBE       4       4       4   .common     
+     Gyr_jiaoX                                 2BC2       4       4       4   .common     
+     Acc_jiaoX                                 2BC6       4       4       4   .common     
+     GyrAccCraY                                2BCA       4       4      12   .common     
+     GyrAccCraX                                2BCE       4       4      11   .common     
+     _Startup                                  C000       F      15       0   .init       
+     infinity                                  C019       4       4       2   .rodata     
+     STRING.Model.1.1                          C01D       8       8       1   .rodata1    
+     STRING..Straight.line.2                   C025       F      15       1   .rodata1    
+     STRING.Model.2.3                          C034       8       8       1   .rodata1    
+     STRING.Line.4                             C03C       5       5       1   .rodata1    
+     STRING.long..5                            C041       6       6       1   .rodata1    
+     STRING.cm.6                               C047       3       3       1   .rodata1    
+     STRING.Model.3.7                          C04A       8       8       1   .rodata1    
+     STRING.direction..8                       C052       B      11       1   .rodata1    
+     STRING.Model.4.9                          C05D       8       8       1   .rodata1    
+     STRING.STOP.10                            C065       5       5       1   .rodata1    
+     STRING.Model.5.11                         C06A       8       8       1   .rodata1    
+     STRING.Circle.12                          C072       7       7       1   .rodata1    
+     STRING.R..13                              C079       3       3       1   .rodata1    
+     STRING.20.14                              C07C       3       3       1   .rodata1    
+     STRING.cm.15                              C07F       3       3       1   .rodata1    
+     STRING.Model.5.16                         C082       8       8       1   .rodata1    
+     STRING.Circle.17                          C08A       7       7       1   .rodata1    
+     STRING.R..18                              C091       3       3       1   .rodata1    
+     STRING.20.19                              C094       3       3       1   .rodata1    
+     STRING.cm.20                              C097       3       3       1   .rodata1    
+     frexp                                     C09A       3       3       1   NON_BANKED  
+     ldexp                                     C09D       3       3       2   NON_BANKED  
+     F_ADDKL                                   C0A0      5E      94       1   NON_BANKED  
+     _FADD                                     C0FE      15      21     122   NON_BANKED  
+     _FSUB                                     C113      13      19      24   NON_BANKED  
+     _FNEG                                     C126       B      11       5   NON_BANKED  
+     F_FREXP                                   C131      1F      31       1   NON_BANKED  
+     F_LDEXP                                   C150      15      21       1   NON_BANKED  
+     frexpf                                    C165      19      25       1   NON_BANKED  
+     RetErrDom                                 C17E       D      13       1   NON_BANKED  
+     ldexpf                                    C18B      1E      30       1   NON_BANKED  
+     _FCMP                                     C1A9      26      38      22   NON_BANKED  
+     F_TOLONGK                                 C1CF      32      50       1   NON_BANKED  
+     F_FRLONGK                                 C201      1E      30       1   NON_BANKED  
+     _FUFLOAT                                  C21F      12      18      10   NON_BANKED  
+     _FSTRUNC                                  C231      11      17       3   NON_BANKED  
+     F_DIVKL                                   C242      84     132       1   NON_BANKED  
+     F_MULKL                                   C2C6      57      87       1   NON_BANKED  
+     _FMUL                                     C31D      14      20      21   NON_BANKED  
+     _FDIV                                     C331      1E      30      19   NON_BANKED  
+     F_PULK                                    C34F      15      21       4   NON_BANKED  
+     F_PULL                                    C364      15      21       5   NON_BANKED  
+     F_PSHK                                    C379      13      19       6   NON_BANKED  
+     F_TLK                                     C38C       D      13       2   NON_BANKED  
+     F_XGKL                                    C399      21      33       2   NON_BANKED  
+     F_CLRK                                    C3BA       B      11       2   NON_BANKED  
+     F_MAXK                                    C3C5       9       9       2   NON_BANKED  
+     F_NORMK                                   C3CE      37      55       4   NON_BANKED  
+     _BSHL                                     C405       8       8       2   NON_BANKED  
+     _LCMP                                     C40D       A      10       1   NON_BANKED  
+     _NEG_P                                    C417       C      12       1   NON_BANKED  
+     _CASE_CHECKED_BYTE                        C423      14      20       3   NON_BANKED  
+     _CASE_SEARCH_8_BYTE                       C437      1A      26       4   NON_BANKED  
+     L_NEGK                                    C451       7       7       1   NON_BANKED  
+     L_PSHK                                    C458       8       8       1   NON_BANKED  
+     UL_PULK                                   C460       3       3       1   NON_BANKED  
+     PIT_ISR                                   C463      1E      30       1   NON_BANKED  
+     _Vector_66                                FF7A       2       2       0   .abs_section_ff7a
+     delay1                                  FE8000      1C      28       2   .text       
+     delay_us                                FE801C      1F      31       4   .text       
+     main                                    FE803B     FBA    4026     283   .text       
+     Init                                    FE8FF5      29      41       2   .text       
+     logb                                    FE901E       E      14       4   .text       
+     fabs                                    FE902C      10      16       6   .text       
+     is_special                              FE903C      39      57       6   .text       
+     SetSign                                 FE9075      21      33       4   .text       
+     atan2                                   FE9096     503    1283      35   .text       
+     atan                                    FE9599       E      14       2   .text       
+     SetBusCLK_64M                           FE95A7      1A      26       2   .text       
+     IO_init                                 FE95C1      10      16       2   .text       
+     PWM_int                                 FE95D1      8B     139       2   .text       
+     PIT_Init_1ms                            FE965C      20      32       2   .text       
+     TFT_Init                                FE967C      20      32       2   .text       
+     Init_all                                FE969C      19      25       2   .text       
+     ILI9163B_write_command                  FE96B5      2F      47      14   .text       
+     ILI9163B_write_para8                    FE96E4      2F      47      14   .text       
+     ILI9163B_write_para16                   FE9713      56      86       6   .text       
+     ILI9163B_init                           FE9769     132     306      36   .text       
+     ILI9163B_SetPos                         FE989B      36      54       4   .text       
+     ILI9163B_address_rst                    FE98D1      34      52       2   .text       
+     delay                                   FE9905      1B      27       8   .text       
+     ILI9163B_display_full                   FE9920      26      38       2   .text       
+     LCD_printc16                            FE9946      57      87       2   .text       
+     LCD_prints16                            FE999D      26      38      40   .text       
+     LCD_printc7                             FE99C3      57      87       8   .text       
+     LCD_bianliang                           FE9A1A      AF     175      10   .text       
+     bee_didi                                FE9AC9      40      64       2   .text       
+     KB_Init                                 FE9B09      17      23       2   .text       
+     keyscan                                 FE9B20     18C     396      25   .text       
+     Calc                                    FE9CAC      1F      31       2   .text       
+     Calc_3                                  FE9CCB      2A      42       2   .text       
+     set_data                                FE9CF5      C1     193       9   .text       
+     ATD0_Init                               FE9DB6      1B      27       2   .text       
+     ADtransform                             FE9DD1     126     294       2   .text       
+     ADtransform1                            FE9EF7     126     294       2   .text       
+     Get_ADresultY                           FEA01D     26C     620       2   .text       
+     Get_ADresultX                           FEA289     26C     620       2   .text       
+     Get_Gyr_OFFSET                          FEA4F5      C8     200       2   .text       
+     DatehandleY                             FEA5BD      C5     197       2   .text       
+     DatehandleX                             FEA682      C5     197       2   .text       
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+NOT USED PROCEDURES
+main.c.o:
+  ABS delay11 delay111 delay_s delay_ms delay_1 
+MATH.C.o (ansixb.lib):
+  copysign isint pow_i exp_r exp log_r log log10 pow sincos tan sin cos sqrt_r 
+  sqrt asin acos sncsh sinh cosh tanh ceil floor fmod 
+DANSI.C.o (ansixb.lib):
+  modf 
+FADD.C.o (ansixb.lib):
+  _FINC _FDEC _FABS 
+FANSI.C.o (ansixb.lib):
+  F_MODF modff 
+FCONV.C.o (ansixb.lib):
+  _FSFLOAT _FUTRUNC 
+FREGS.C.o (ansixb.lib):
+  F_STAL F_TKL F_CLRL 
+rtshc12.c.o (ansixb.lib):
+  _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHL _LSHRU _LSHRS 
+  _LADD _LSUB _LAND _LOR _LXOR _LCMP_P _LCMP_PP _LNEG _LCOM _LINC _LDEC _LMUL 
+  _LMULU16x32 _LMULS16x32 _lDivMod _LDIVU _LDIVS _LMODU _LMODS _ILSEXT _COPY 
+  _CASE_DIRECT _CASE_DIRECT_BYTE _CASE_CHECKED _CASE_SEARCH _CASE_SEARCH_BYTE 
+  _CASE_SEARCH_8 _FCALL _FPCMP _PADD _PSUB _PINC _PDEC 
+VREGS.C.o (ansixb.lib):
+  SL_PULK 
+Init.c.o:
+  INIT_PLL_32 SetBusCLK_80M Interrupt_Priority_Set PIT_Init TIM_Init TimInit 
+  SCI_Init_9600 SCI_Init_115200 
+TFT.c.o:
+  ILI9163B_draw_part ILI9163B_draw_rectangle ILI9163B_draw_circle 
+  ILI9163B_draw_line ILI9163B_draw_dot LCD_printc6 LCD_prints6 LCD_printn6 
+  LCD_printc LCD_prints LCD_printn LCD_yanshi 
+NOT USED VARIABLES
+main.c.o:
+  shua_flag5 shua_flag6 shua_flag7 OUTX OUTY MID1 MID2 rqX1 rhX1 rzX1 lqX1 
+  lhX1 lzX1 rqY1 rhY1 rzY1 lqY1 lhY1 lzY1 P2X D2X P2Y D2Y 
+MATH.C.o (ansixb.lib):
+  nan_union small.1 big.2 
+rtshc12.c.o (ansixb.lib):
+  _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 
+Init.c.o:
+  OutData 
+TFT.c.o:
+  STRING.DRAW.PART.1 STRING.DRAW.RECTANGLE.2 STRING.DRAW.LINE.3 
+  STRING.DRAW.CIRCLE.4 STRING.PRINT.CHAR.5 STRING.Long.Qiu.i.s.t..6 
+  STRING.longqiu.taobao.com.7 b 
+Interrupt.c.o:
+  timer 
+ATD.C.o:
+  Gyr_OFFSET_DIR Gyr_OFFSET2 Gyr_OFFSET6 Gyr_OFFSET7 Gyr_OFFSET8 Gyr_OFFSET9 
+  jj 
+Datehandle.c.o:
+  Acc_GyrY Gyr_repairY Acc_GyrX Gyr_repairX 
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+------- ROM-ADDRESS: 0xC481 ---- SIZE       4 ---
+Filling bytes inserted
+ 00032101
+------- ROM-ADDRESS: 0xC485 ---- RAM-ADDRESS: 0x2101 ---- SIZE       1 ---
+Name of initialized Object : yuan_flag:1
+ 01
+------- ROM-ADDRESS: 0xC486 ---- SIZE       1 ---
+Filling bytes inserted
+ 00
+------- ROM-ADDRESS: 0xC487 ---- RAM-ADDRESS: 0x2103 ---- SIZE       1 ---
+Name of initialized Object : yuan_flag1:1
+ 01
+------- ROM-ADDRESS: 0xC488 ---- SIZE       4 ---
+Filling bytes inserted
+ 0255210D
+------- ROM-ADDRESS: 0xC48C ---- RAM-ADDRESS: 0x210D ---- SIZE       1 ---
+Name of initialized Object : Font_code8:9
+ 4F
+------- ROM-ADDRESS: 0xC48D ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC491 ---- RAM-ADDRESS: 0x2112 ---- SIZE      32 ---
+Name of initialized Object : Font_code8:14
+ 0700070000 147F147F14 00242A7F2A
+ 1200231308 6462003649 5522500000
+ 0503
+------- ROM-ADDRESS: 0xC4B1 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC4B5 ---- RAM-ADDRESS: 0x2136 ---- SIZE     110 ---
+Name of initialized Object : Font_code8:50
+ 1C22410000 0041221C00 0014083E08
+ 140008083E 0808000050 3000000008
+ 0808080800 0060600000 0020100804
+ 02003E5149 453E000042 7F40000042
+ 6151494600 2141454B31 001814127F
+ 1000274545 4539003C4A 4949300001
+ 7109050300 3649494936 0006494929
+ 1E00003636
+------- ROM-ADDRESS: 0xC523 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC527 ---- RAM-ADDRESS: 0x21A8 ---- SIZE     387 ---
+Name of initialized Object : Font_code8:164
+ 5636000000 0814224100 0014141414
+ 1400004122 1408000201 5109060032
+ 4979413E00 7E1111117E 007F494949
+ 3E003E4141 4122007F41 41221C007F
+ 4949494100 7F09090901 003E414949
+ 7A007F0808 087F000041 7F41000020
+ 40413F0100 7F08142241 007F404040
+ 40007F0204 027F007F04 08107F003E
+ 4141413E00 7F09090906 003E415121
+ 5E007F0919 2946004649 4949310001
+ 017F010100 3F4040403F 001F204020
+ 1F003F4038 403F006314 0814630003
+ 0478040300 6151494543 00007F4141
+ 000015167C 1615000041 417F000004
+ 0201020400 4040404040 0000010204
+ 0000205454 5478007F48 4444380038
+ 4444442000 384444487F 0038545454
+ 1800087E09 0102000C52 52523E007F
+ 0804047800 00447D4000 002040443D
+ 00007F1028 4400000041 7F4000007E
+ 020C027C00 7E0402027C 0038444444
+ 38007C1414 1408000814 14187C007C
+ 0804040800 4854545420 00043F4440
+ 20003C4040 207C001C20 40201C003C
+ 4030403C00 4428102844 000C505050
+ 3C00446454 4C44000008 3641
+------- ROM-ADDRESS: 0xC6AA ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC6AE ---- RAM-ADDRESS: 0x232F ---- SIZE       1 ---
+Name of initialized Object : Font_code8:555
+ 7F
+------- ROM-ADDRESS: 0xC6AF ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC6B3 ---- RAM-ADDRESS: 0x2334 ---- SIZE      46 ---
+Name of initialized Object : Font_code8:560
+ 4136080000 0804081008 0008082A1C
+ 0800081C2A 0808000402 7F02040010
+ 207F201000 1C2A322A1C 001C224422
+ 1C
+------- ROM-ADDRESS: 0xC6E1 ---- SIZE       4 ---
+Filling bytes inserted
+ 00142374
+------- ROM-ADDRESS: 0xC6E5 ---- RAM-ADDRESS: 0x2374 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:18
+ 1010101010 1010100000 1010
+------- ROM-ADDRESS: 0xC6F1 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC6F5 ---- RAM-ADDRESS: 0x2384 ---- SIZE       4 ---
+Name of initialized Object : Font_code16:34
+ 24242424
+------- ROM-ADDRESS: 0xC6F9 ---- SIZE       4 ---
+Filling bytes inserted
+ 00442394
+------- ROM-ADDRESS: 0xC6FD ---- RAM-ADDRESS: 0x2394 ---- SIZE      44 ---
+Name of initialized Object : Font_code16:50
+ 484848FE24 242424247F 1212120000
+ 107C929212 1418305090 92927C1000
+ 00008C9252 322C100868 94929260
+------- ROM-ADDRESS: 0xC729 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC72D ---- RAM-ADDRESS: 0x23C4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:98
+ 1824242418 98A4A24242 A29C
+------- ROM-ADDRESS: 0xC739 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC73D ---- RAM-ADDRESS: 0x23D4 ---- SIZE       4 ---
+Name of initialized Object : Font_code16:114
+ 10101010
+------- ROM-ADDRESS: 0xC741 ---- SIZE       4 ---
+Filling bytes inserted
+ 002923E3
+------- ROM-ADDRESS: 0xC745 ---- RAM-ADDRESS: 0x23E3 ---- SIZE      30 ---
+Name of initialized Object : Font_code16:129
+ 2010080804 0404040404 0808102000
+ 0004081010 2020202020 2010100804
+------- ROM-ADDRESS: 0xC763 ---- SIZE       6 ---
+Filling bytes inserted
+ 0000000000 00
+------- ROM-ADDRESS: 0xC769 ---- RAM-ADDRESS: 0x2407 ---- SIZE       5 ---
+Name of initialized Object : Font_code16:165
+ 082A1C1422
+------- ROM-ADDRESS: 0xC76E ---- SIZE       4 ---
+Filling bytes inserted
+ 00072416
+------- ROM-ADDRESS: 0xC772 ---- RAM-ADDRESS: 0x2416 ---- SIZE       7 ---
+Name of initialized Object : Font_code16:180
+ 101010FE10 1010
+------- ROM-ADDRESS: 0xC779 ---- SIZE       4 ---
+Filling bytes inserted
+ 000C242E
+------- ROM-ADDRESS: 0xC77D ---- RAM-ADDRESS: 0x242E ---- SIZE       3 ---
+Name of initialized Object : Font_code16:204
+ 101008
+------- ROM-ADDRESS: 0xC780 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xC788 ---- RAM-ADDRESS: 0x2439 ---- SIZE       1 ---
+Name of initialized Object : Font_code16:215
+ FE
+------- ROM-ADDRESS: 0xC789 ---- SIZE       4 ---
+Filling bytes inserted
+ 00E0244E
+------- ROM-ADDRESS: 0xC78D ---- RAM-ADDRESS: 0x244E ---- SIZE       2 ---
+Name of initialized Object : Font_code16:236
+ 1010
+------- ROM-ADDRESS: 0xC78F ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC793 ---- RAM-ADDRESS: 0x2454 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:242
+ 4040202010 1008080404 0202
+------- ROM-ADDRESS: 0xC79F ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC7A3 ---- RAM-ADDRESS: 0x2464 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:258
+ 3844828282 8282828282 4438
+------- ROM-ADDRESS: 0xC7AF ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC7B3 ---- RAM-ADDRESS: 0x2474 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:274
+ 101C101010 1010101010 1010
+------- ROM-ADDRESS: 0xC7BF ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC7C3 ---- RAM-ADDRESS: 0x2484 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:290
+ 3C42424040 2010080402 027E
+------- ROM-ADDRESS: 0xC7CF ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC7D3 ---- RAM-ADDRESS: 0x2494 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:306
+ 3C42424040 3C40404042 423C
+------- ROM-ADDRESS: 0xC7DF ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC7E3 ---- RAM-ADDRESS: 0x24A4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:322
+ 6060505048 484444FE40 4040
+------- ROM-ADDRESS: 0xC7EF ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC7F3 ---- RAM-ADDRESS: 0x24B4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:338
+ 7E0202023E 4240404042 423C
+------- ROM-ADDRESS: 0xC7FF ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC803 ---- RAM-ADDRESS: 0x24C4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:354
+ 3C42420202 3E42424242 423C
+------- ROM-ADDRESS: 0xC80F ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC813 ---- RAM-ADDRESS: 0x24D4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:370
+ 7E40202010 1010080808 0808
+------- ROM-ADDRESS: 0xC81F ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC823 ---- RAM-ADDRESS: 0x24E4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:386
+ 3C42424242 3C42424242 423C
+------- ROM-ADDRESS: 0xC82F ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC833 ---- RAM-ADDRESS: 0x24F4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:402
+ 3C42424242 427C404042 423C
+------- ROM-ADDRESS: 0xC83F ---- SIZE       6 ---
+Filling bytes inserted
+ 0000000000 00
+------- ROM-ADDRESS: 0xC845 ---- RAM-ADDRESS: 0x2506 ---- SIZE       2 ---
+Name of initialized Object : Font_code16:420
+ 0808
+------- ROM-ADDRESS: 0xC847 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC84B ---- RAM-ADDRESS: 0x250C ---- SIZE       2 ---
+Name of initialized Object : Font_code16:426
+ 0808
+------- ROM-ADDRESS: 0xC84D ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xC855 ---- RAM-ADDRESS: 0x2516 ---- SIZE       2 ---
+Name of initialized Object : Font_code16:436
+ 1010
+------- ROM-ADDRESS: 0xC857 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC85B ---- RAM-ADDRESS: 0x251C ---- SIZE       4 ---
+Name of initialized Object : Font_code16:442
+ 10101008
+------- ROM-ADDRESS: 0xC85F ---- SIZE       5 ---
+Filling bytes inserted
+ 0000000000
+------- ROM-ADDRESS: 0xC864 ---- RAM-ADDRESS: 0x2525 ---- SIZE       9 ---
+Name of initialized Object : Font_code16:451
+ 4030080601 06083040
+------- ROM-ADDRESS: 0xC86D ---- SIZE       4 ---
+Filling bytes inserted
+ 00042538
+------- ROM-ADDRESS: 0xC871 ---- RAM-ADDRESS: 0x2538 ---- SIZE       4 ---
+Name of initialized Object : Font_code16:470
+ FE0000FE
+------- ROM-ADDRESS: 0xC875 ---- SIZE       4 ---
+Filling bytes inserted
+ 02012545
+------- ROM-ADDRESS: 0xC879 ---- RAM-ADDRESS: 0x2545 ---- SIZE       9 ---
+Name of initialized Object : Font_code16:483
+ 020C106080 60100C02
+------- ROM-ADDRESS: 0xC882 ---- SIZE       6 ---
+Filling bytes inserted
+ 0000000000 00
+------- ROM-ADDRESS: 0xC888 ---- RAM-ADDRESS: 0x2554 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:498
+ 3844828240 2010101000 1010
+------- ROM-ADDRESS: 0xC894 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC898 ---- RAM-ADDRESS: 0x2564 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:514
+ 384482B2AA AAAAAAD202 8478
+------- ROM-ADDRESS: 0xC8A4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC8A8 ---- RAM-ADDRESS: 0x2574 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:530
+ 1010102828 2844447C82 8282
+------- ROM-ADDRESS: 0xC8B4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC8B8 ---- RAM-ADDRESS: 0x2584 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:546
+ 3E42828242 3E42828282 423E
+------- ROM-ADDRESS: 0xC8C4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC8C8 ---- RAM-ADDRESS: 0x2594 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:562
+ 3844828202 0202028282 4438
+------- ROM-ADDRESS: 0xC8D4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC8D8 ---- RAM-ADDRESS: 0x25A4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:578
+ 3E42428282 8282828242 423E
+------- ROM-ADDRESS: 0xC8E4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC8E8 ---- RAM-ADDRESS: 0x25B4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:594
+ FE02020202 7E02020202 02FE
+------- ROM-ADDRESS: 0xC8F4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC8F8 ---- RAM-ADDRESS: 0x25C4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:610
+ FE02020202 7E02020202 0202
+------- ROM-ADDRESS: 0xC904 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC908 ---- RAM-ADDRESS: 0x25D4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:626
+ 3844820202 02E2828282 C4B8
+------- ROM-ADDRESS: 0xC914 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC918 ---- RAM-ADDRESS: 0x25E4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:642
+ 8282828282 FE82828282 8282
+------- ROM-ADDRESS: 0xC924 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC928 ---- RAM-ADDRESS: 0x25F4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:658
+ 1010101010 1010101010 1010
+------- ROM-ADDRESS: 0xC934 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC938 ---- RAM-ADDRESS: 0x2604 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:674
+ 2020202020 2020202022 221C
+------- ROM-ADDRESS: 0xC944 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC948 ---- RAM-ADDRESS: 0x2614 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:690
+ 824222120A 06060A1222 4282
+------- ROM-ADDRESS: 0xC954 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC958 ---- RAM-ADDRESS: 0x2624 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:706
+ 0202020202 0202020202 027E
+------- ROM-ADDRESS: 0xC964 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC968 ---- RAM-ADDRESS: 0x2634 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:722
+ 8282C6C6AA AA92929282 8282
+------- ROM-ADDRESS: 0xC974 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC978 ---- RAM-ADDRESS: 0x2644 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:738
+ 8286868A8A 9292A2A2C2 C282
+------- ROM-ADDRESS: 0xC984 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC988 ---- RAM-ADDRESS: 0x2654 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:754
+ 3844828282 8282828282 4438
+------- ROM-ADDRESS: 0xC994 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC998 ---- RAM-ADDRESS: 0x2664 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:770
+ 3E42828282 423E020202 0202
+------- ROM-ADDRESS: 0xC9A4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC9A8 ---- RAM-ADDRESS: 0x2674 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:786
+ 3844828282 82828282A2 44B8
+------- ROM-ADDRESS: 0xC9B4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC9B8 ---- RAM-ADDRESS: 0x2684 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:802
+ 3E42828282 423E428282 8282
+------- ROM-ADDRESS: 0xC9C4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC9C8 ---- RAM-ADDRESS: 0x2694 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:818
+ 7C82820204 1820408082 827C
+------- ROM-ADDRESS: 0xC9D4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC9D8 ---- RAM-ADDRESS: 0x26A4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:834
+ FE10101010 1010101010 1010
+------- ROM-ADDRESS: 0xC9E4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC9E8 ---- RAM-ADDRESS: 0x26B4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:850
+ 8282828282 8282828282 827C
+------- ROM-ADDRESS: 0xC9F4 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xC9F8 ---- RAM-ADDRESS: 0x26C4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:866
+ 8282824444 4428282810 1010
+------- ROM-ADDRESS: 0xCA04 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCA08 ---- RAM-ADDRESS: 0x26D4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:882
+ 9292929292 AAAAAA4444 4444
+------- ROM-ADDRESS: 0xCA14 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCA18 ---- RAM-ADDRESS: 0x26E4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:898
+ 8282444428 1028284444 8282
+------- ROM-ADDRESS: 0xCA24 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCA28 ---- RAM-ADDRESS: 0x26F4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:914
+ 8282444428 2810101010 1010
+------- ROM-ADDRESS: 0xCA34 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCA38 ---- RAM-ADDRESS: 0x2704 ---- SIZE      66 ---
+Name of initialized Object : Font_code16:930
+ 7E40202010 1008080404 027E000000
+ 7808080808 0808080808 0808087800
+ 0000929292 FF92AAAAAA 4444444400
+ 00001E1010 1010101010 1010101010
+ 1E00001028 44
+------- ROM-ADDRESS: 0xCA7A ---- SIZE       4 ---
+Filling bytes inserted
+ 00062760
+------- ROM-ADDRESS: 0xCA7E ---- RAM-ADDRESS: 0x2760 ---- SIZE       6 ---
+Name of initialized Object : Font_code16:1022
+ FE00000408 10
+------- ROM-ADDRESS: 0xCA84 ---- SIZE       4 ---
+Filling bytes inserted
+ 01D22778
+------- ROM-ADDRESS: 0xCA88 ---- RAM-ADDRESS: 0x2778 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1046
+ 3C42407C42 4242BC
+------- ROM-ADDRESS: 0xCA90 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCA94 ---- RAM-ADDRESS: 0x2784 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:1058
+ 020202023A 4682828282 463A
+------- ROM-ADDRESS: 0xCAA0 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCAA8 ---- RAM-ADDRESS: 0x2798 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1078
+ 7884020202 028478
+------- ROM-ADDRESS: 0xCAB0 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCAB4 ---- RAM-ADDRESS: 0x27A4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:1090
+ 80808080B8 C482828282 C4B8
+------- ROM-ADDRESS: 0xCAC0 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCAC8 ---- RAM-ADDRESS: 0x27B8 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1110
+ 384482FE02 028478
+------- ROM-ADDRESS: 0xCAD0 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCAD4 ---- RAM-ADDRESS: 0x27C4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:1122
+ 700808087E 0808080808 0808
+------- ROM-ADDRESS: 0xCAE0 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCAE8 ---- RAM-ADDRESS: 0x27D8 ---- SIZE      24 ---
+Name of initialized Object : Font_code16:1142
+ 5864424242 6458423C00 0000020202
+ 023A464242 42424242
+------- ROM-ADDRESS: 0xCB00 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCB04 ---- RAM-ADDRESS: 0x27F4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:1170
+ 1010000010 1010101010 1010
+------- ROM-ADDRESS: 0xCB10 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCB14 ---- RAM-ADDRESS: 0x2804 ---- SIZE      28 ---
+Name of initialized Object : Font_code16:1186
+ 1010000010 1010101010 10100C0000
+ 0002020242 22120A060A 122242
+------- ROM-ADDRESS: 0xCB30 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCB34 ---- RAM-ADDRESS: 0x2824 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:1218
+ 1010101010 1010101010 1010
+------- ROM-ADDRESS: 0xCB40 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCB48 ---- RAM-ADDRESS: 0x2838 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1238
+ 6E92929292 929292
+------- ROM-ADDRESS: 0xCB50 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCB58 ---- RAM-ADDRESS: 0x2848 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1254
+ 3A46424242 424242
+------- ROM-ADDRESS: 0xCB60 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCB68 ---- RAM-ADDRESS: 0x2858 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1270
+ 3844828282 824438
+------- ROM-ADDRESS: 0xCB70 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCB78 ---- RAM-ADDRESS: 0x2868 ---- SIZE       9 ---
+Name of initialized Object : Font_code16:1286
+ 3A46828282 463A0202
+------- ROM-ADDRESS: 0xCB81 ---- SIZE       7 ---
+Filling bytes inserted
+ 0000000000 0000
+------- ROM-ADDRESS: 0xCB88 ---- RAM-ADDRESS: 0x2878 ---- SIZE       9 ---
+Name of initialized Object : Font_code16:1302
+ B8C4828282 C4B88080
+------- ROM-ADDRESS: 0xCB91 ---- SIZE       7 ---
+Filling bytes inserted
+ 0000000000 0000
+------- ROM-ADDRESS: 0xCB98 ---- RAM-ADDRESS: 0x2888 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1318
+ 740C040404 040404
+------- ROM-ADDRESS: 0xCBA0 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCBA8 ---- RAM-ADDRESS: 0x2898 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1334
+ 3C42020C30 40423C
+------- ROM-ADDRESS: 0xCBB0 ---- SIZE       4 ---
+Filling bytes inserted
+ 00000000
+------- ROM-ADDRESS: 0xCBB4 ---- RAM-ADDRESS: 0x28A4 ---- SIZE      12 ---
+Name of initialized Object : Font_code16:1346
+ 080808087E 0808080808 0870
+------- ROM-ADDRESS: 0xCBC0 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCBC8 ---- RAM-ADDRESS: 0x28B8 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1366
+ 4242424242 42427C
+------- ROM-ADDRESS: 0xCBD0 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCBD8 ---- RAM-ADDRESS: 0x28C8 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1382
+ 8282444428 281010
+------- ROM-ADDRESS: 0xCBE0 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCBE8 ---- RAM-ADDRESS: 0x28D8 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1398
+ 82929292AA 6C4444
+------- ROM-ADDRESS: 0xCBF0 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCBF8 ---- RAM-ADDRESS: 0x28E8 ---- SIZE       8 ---
+Name of initialized Object : Font_code16:1414
+ 8244281010 284482
+------- ROM-ADDRESS: 0xCC00 ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xCC08 ---- RAM-ADDRESS: 0x28F8 ---- SIZE       9 ---
+Name of initialized Object : Font_code16:1430
+ 8282444428 2810100E
+------- ROM-ADDRESS: 0xCC11 ---- SIZE       7 ---
+Filling bytes inserted
+ 0000000000 0000
+------- ROM-ADDRESS: 0xCC18 ---- RAM-ADDRESS: 0x2908 ---- SIZE      57 ---
+Name of initialized Object : Font_code16:1446
+ 7E40201008 04027E0000 0060101010
+ 10100C1010 1010101060 0000101010
+ 1010101010 1010101010 1000000608
+ 0808080830 0808080808 0806
+------- ROM-ADDRESS: 0xCC51 ---- SIZE       7 ---
+Filling bytes inserted
+ 0000000000 0000
+------- ROM-ADDRESS: 0xCC58 ---- RAM-ADDRESS: 0x2948 ---- SIZE       2 ---
+Name of initialized Object : Font_code16:1510
+ 8C72
+------- ROM-ADDRESS: 0xCC5A ---- SIZE       4 ---
+Filling bytes inserted
+ 00012953
+------- ROM-ADDRESS: 0xCC5E ---- RAM-ADDRESS: 0x2953 ---- SIZE       1 ---
+Name of initialized Object : bee_flag:1
+ 01
+------- ROM-ADDRESS: 0xCC5F ---- SIZE       2 ---
+Filling bytes inserted
+ 0000
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+_Startup                  USES __SEG_END_SSTACK Init main 
+frexp                     USES frexpf 
+ldexp                     USES ldexpf 
+F_ADDKL                   USES F_XGKL F_NORMK 
+_FADD                     USES F_PULK F_PULL F_ADDKL F_PSHK 
+_FSUB                     USES _FADD 
+F_FREXP                   USES F_NORMK 
+frexpf                    USES F_PULL F_TLK F_FREXP F_PSHK 
+RetErrDom                 USES errno infinity 
+ldexpf                    USES F_PULL F_TLK F_LDEXP F_PSHK RetErrDom 
+_FUFLOAT                  USES UL_PULK F_FRLONGK F_PSHK 
+_FSTRUNC                  USES F_PULK F_TOLONGK L_PSHK 
+F_DIVKL                   USES F_MAXK F_NORMK 
+F_MULKL                   USES F_CLRK F_NORMK 
+_FMUL                     USES F_PULK F_PULL F_MULKL F_PSHK 
+_FDIV                     USES F_PULL F_PULK F_DIVKL F_PSHK 
+F_MAXK                    USES F_CLRK 
+F_NORMK                   USES F_MAXK 
+L_NEGK                    USES _NEG_P 
+L_PSHK                    USES L_NEGK 
+PIT_ISR                   USES num num1 bee_count time_35_ bee_flag bee_didi 
+                                _PITTF 
+_Vector_66                USES PIT_ISR 
+delay1                    USES t1 j1 
+delay_us                  USES i j 
+main                      USES ATD0_Init Init_all Get_Gyr_OFFSET main ADValue1 
+                                _FSTRUNC LCD_bianliang ADValue2 _PTM shua_flag 
+                                STRING.Model.1.1 LCD_prints16 STRING..Straight.line.2 i rz lz 
+                                _FCMP set_data shua_flag1 STRING.Model.2.3 
+                                STRING.Line.4 STRING.long..5 result STRING.cm.6 _FUFLOAT SDZ 
+                                m _FDIV _FADD _FMUL JIAO JIAOQ JIAOH _FNEG _FSUB 
+                                shua_flag2 STRING.Model.3.7 STRING.direction..8 jisuan 
+                                result1 jiaodu _PWMDTY45 _PWMDTY67 _PWMDTY23 
+                                shua_flag3 STRING.Model.4.9 STRING.STOP.10 rqX rhX 
+                                GyrAccCraY rqY rhY rzX rzY _PWMDTY01 shua_flag4 
+                                STRING.Model.5.11 STRING.Circle.12 STRING.R..13 STRING.20.14 
+                                STRING.cm.15 yuan_flag yuan_flag1 count2 count3 bee_flag 
+                                lzX lzY STRING.Model.5.16 STRING.Circle.17 
+                                STRING.R..18 STRING.20.19 STRING.cm.20 SDZX SDZY GyrAccCraX 
+                                lqX lhX lqY lhY JIAOX JIAOQX JIAOHX JIAOY JIAOQY 
+                                JIAOHY count rq rh lq lh P1X D1X P1Y D1Y 
+                                Get_ADresultY DatehandleY Get_ADresultX DatehandleX R atan 
+                                ILI9163B_display_full delay1 
+Init                      USES _startupData 
+logb                      USES frexp 
+is_special                USES _LCMP 
+SetSign                   USES fabs _FNEG 
+atan2                     USES errno atan2 is_special _CASE_CHECKED_BYTE 
+                                SetSign fabs logb ldexp _FCMP _FADD _FMUL _FSTRUNC 
+                                _FSUB _FDIV _FNEG 
+atan                      USES atan2 
+SetBusCLK_64M             USES _CLKSEL _PLLCTL _SYNR _REFDV _POSTDIV _CRGFLG 
+IO_init                   USES _DDRAB _DDRM _DDRK _PORTK 
+PWM_int                   USES _PWME _PWMPRCLK _PWMSCLA _PWMSCLB _PWMCTL 
+                                _PWMPOL _PWMCLK _PWMCAE _PWMPER01 _PWMDTY01 _PWMCNT01 
+                                _PWMPER23 _PWMDTY23 _PWMCNT23 _PWMPER45 _PWMDTY45 
+                                _PWMCNT45 _PWMPER67 _PWMDTY67 _PWMCNT67 
+PIT_Init_1ms              USES _PITCFLMT _PITCE _PITMUX _PITMTLD0 _PITLD0 
+                                _PITINTE 
+TFT_Init                  USES _PORTAB delay ILI9163B_init 
+Init_all                  USES SetBusCLK_64M PIT_Init_1ms IO_init PWM_int 
+                                TFT_Init KB_Init 
+ILI9163B_write_command    USES _PORTAB 
+ILI9163B_write_para8      USES _PORTAB 
+ILI9163B_write_para16     USES _PORTAB 
+ILI9163B_init             USES ILI9163B_init delay ILI9163B_write_para8 
+                                ILI9163B_write_command 
+ILI9163B_SetPos           USES ILI9163B_write_command ILI9163B_write_para8 
+ILI9163B_address_rst      USES ILI9163B_write_command ILI9163B_write_para8 
+ILI9163B_display_full     USES ILI9163B_address_rst ILI9163B_write_para16 
+LCD_printc16              USES ILI9163B_SetPos _BSHL Font_code16 
+                                ILI9163B_write_para16 
+LCD_prints16              USES LCD_printc16 
+LCD_printc7               USES ILI9163B_SetPos _BSHL Font_code8 
+                                ILI9163B_write_para16 
+LCD_bianliang             USES LCD_printc7 
+bee_didi                  USES bee_count1 bee_count _PORTK bee_flag 
+KB_Init                   USES _PTH _DDRH _PERH _PPSH _PIEH _PIFH 
+keyscan                   USES keyscan _CASE_SEARCH_8_BYTE m n _PTH delay_us k 
+Calc                      USES flag result _FUFLOAT 
+Calc_3                    USES flag result1 _FUFLOAT 
+set_data                  USES m flag1 flag2 flag3 set_data jisuan Calc Calc_3 
+                                flag keyscan p 
+ATD0_Init                 USES _ATD0CTL01 _ATD0CTL23 _ATD0CTL45 _ATD0DIEN 
+ADtransform               USES AD1 AD1_MAX AD1_MIN AD2 AD2_MAX AD2_MIN mm 
+                                _ATD0STAT0 _ATD0DR1 _FUFLOAT _ATD0DR2 _FCMP 
+ADtransform1              USES AD3 AD3_MAX AD3_MIN AD4 AD4_MAX AD4_MIN mm 
+                                _ATD0STAT0 _ATD0DR3 _FUFLOAT _ATD0DR4 _FCMP 
+Get_ADresultY             USES ADtransform AD1 _FADD AD1_MAX _FSUB AD1_MIN 
+                                _FDIV ADValue1 AD2 AD2_MAX AD2_MIN ADValue2 
+Get_ADresultX             USES ADtransform1 AD3 _FADD AD3_MAX _FSUB AD3_MIN 
+                                _FDIV ADValue3 AD4 AD4_MAX AD4_MIN ADValue4 
+Get_Gyr_OFFSET            USES Gyr_OFFSET Gyr_OFFSET3 nn _ATD0STAT0 _ATD0DR2 
+                                _FUFLOAT Gyr_OFFSET0 _FADD _ATD0DR4 Gyr_OFFSET4 _FDIV 
+                                Gyr_OFFSET1 Gyr_OFFSET5 
+DatehandleY               USES ADValue1 _FADD AccY ADValue2 Gyr_OFFSET1 _FSUB 
+                                GyrY _FMUL Acc_jiaoY Gyr_jiaoY real_angleY 
+                                GyrAccCraY 
+DatehandleX               USES ADValue3 _FADD AccX ADValue4 Gyr_OFFSET5 _FSUB 
+                                GyrX _FMUL Acc_jiaoX Gyr_jiaoX real_angleX 
+                                GyrAccCraX 
+
+*********************************************************************************************
+DEPENDENCY TREE
+*********************************************************************************************
+ main and _Startup Group
+ | 
+ +- main                
+ |  | 
+ |  +- ATD0_Init           
+ |  |    
+ |  +- Init_all            
+ |  |  | 
+ |  |  +- SetBusCLK_64M       
+ |  |  |    
+ |  |  +- PIT_Init_1ms        
+ |  |  |    
+ |  |  +- IO_init             
+ |  |  |    
+ |  |  +- PWM_int             
+ |  |  |    
+ |  |  +- TFT_Init            
+ |  |  |  | 
+ |  |  |  +- delay               
+ |  |  |  |    
+ |  |  |  +- ILI9163B_init       
+ |  |  |     | 
+ |  |  |     +- delay                (see above)
+ |  |  |     |  
+ |  |  |     +- ILI9163B_write_para8
+ |  |  |     |    
+ |  |  |     +- ILI9163B_write_command
+ |  |  |          
+ |  |  +- KB_Init             
+ |  |       
+ |  +- Get_Gyr_OFFSET      
+ |  |  | 
+ |  |  +- _FUFLOAT            
+ |  |  |  | 
+ |  |  |  +- UL_PULK             
+ |  |  |  |    
+ |  |  |  +- F_FRLONGK           
+ |  |  |  |    
+ |  |  |  +- F_PSHK              
+ |  |  |       
+ |  |  +- _FADD               
+ |  |  |  | 
+ |  |  |  +- F_PULK              
+ |  |  |  |    
+ |  |  |  +- F_PULL              
+ |  |  |  |    
+ |  |  |  +- F_ADDKL             
+ |  |  |  |  | 
+ |  |  |  |  +- F_XGKL              
+ |  |  |  |  |    
+ |  |  |  |  +- F_NORMK             
+ |  |  |  |     | 
+ |  |  |  |     +- F_MAXK              
+ |  |  |  |        | 
+ |  |  |  |        +- F_CLRK              
+ |  |  |  |             
+ |  |  |  +- F_PSHK               (see above)
+ |  |  |     
+ |  |  +- _FDIV               
+ |  |     | 
+ |  |     +- F_PULL               (see above)
+ |  |     |  
+ |  |     +- F_PULK               (see above)
+ |  |     |  
+ |  |     +- F_DIVKL             
+ |  |     |  | 
+ |  |     |  +- F_MAXK               (see above)
+ |  |     |  |  
+ |  |     |  +- F_NORMK              (see above)
+ |  |     |     
+ |  |     +- F_PSHK               (see above)
+ |  |        
+ |  +- _FSTRUNC            
+ |  |  | 
+ |  |  +- F_PULK               (see above)
+ |  |  |  
+ |  |  +- F_TOLONGK           
+ |  |  |    
+ |  |  +- L_PSHK              
+ |  |     | 
+ |  |     +- L_NEGK              
+ |  |        | 
+ |  |        +- _NEG_P              
+ |  |             
+ |  +- LCD_bianliang       
+ |  |  | 
+ |  |  +- LCD_printc7         
+ |  |     | 
+ |  |     +- ILI9163B_SetPos     
+ |  |     |  | 
+ |  |     |  +- ILI9163B_write_command (see above)
+ |  |     |  |  
+ |  |     |  +- ILI9163B_write_para8 (see above)
+ |  |     |     
+ |  |     +- _BSHL               
+ |  |     |    
+ |  |     +- ILI9163B_write_para16
+ |  |          
+ |  +- LCD_prints16        
+ |  |  | 
+ |  |  +- LCD_printc16        
+ |  |     | 
+ |  |     +- ILI9163B_SetPos      (see above)
+ |  |     |  
+ |  |     +- _BSHL                (see above)
+ |  |     |  
+ |  |     +- ILI9163B_write_para16 (see above)
+ |  |        
+ |  +- _FCMP               
+ |  |    
+ |  +- set_data            
+ |  |  | 
+ |  |  +- Calc                
+ |  |  |  | 
+ |  |  |  +- _FUFLOAT             (see above)
+ |  |  |     
+ |  |  +- Calc_3              
+ |  |  |  | 
+ |  |  |  +- _FUFLOAT             (see above)
+ |  |  |     
+ |  |  +- keyscan             
+ |  |     | 
+ |  |     +- _CASE_SEARCH_8_BYTE 
+ |  |     |    
+ |  |     +- delay_us            
+ |  |          
+ |  +- _FUFLOAT             (see above)
+ |  |  
+ |  +- _FDIV                (see above)
+ |  |  
+ |  +- _FADD                (see above)
+ |  |  
+ |  +- _FMUL               
+ |  |  | 
+ |  |  +- F_PULK               (see above)
+ |  |  |  
+ |  |  +- F_PULL               (see above)
+ |  |  |  
+ |  |  +- F_MULKL             
+ |  |  |  | 
+ |  |  |  +- F_CLRK               (see above)
+ |  |  |  |  
+ |  |  |  +- F_NORMK              (see above)
+ |  |  |     
+ |  |  +- F_PSHK               (see above)
+ |  |     
+ |  +- _FNEG               
+ |  |    
+ |  +- _FSUB               
+ |  |  | 
+ |  |  +- _FADD                (see above)
+ |  |     
+ |  +- Get_ADresultY       
+ |  |  | 
+ |  |  +- ADtransform         
+ |  |  |  | 
+ |  |  |  +- _FUFLOAT             (see above)
+ |  |  |  |  
+ |  |  |  +- _FCMP                (see above)
+ |  |  |     
+ |  |  +- _FADD                (see above)
+ |  |  |  
+ |  |  +- _FSUB                (see above)
+ |  |  |  
+ |  |  +- _FDIV                (see above)
+ |  |     
+ |  +- DatehandleY         
+ |  |  | 
+ |  |  +- _FADD                (see above)
+ |  |  |  
+ |  |  +- _FSUB                (see above)
+ |  |  |  
+ |  |  +- _FMUL                (see above)
+ |  |     
+ |  +- Get_ADresultX       
+ |  |  | 
+ |  |  +- ADtransform1        
+ |  |  |  | 
+ |  |  |  +- _FUFLOAT             (see above)
+ |  |  |  |  
+ |  |  |  +- _FCMP                (see above)
+ |  |  |     
+ |  |  +- _FADD                (see above)
+ |  |  |  
+ |  |  +- _FSUB                (see above)
+ |  |  |  
+ |  |  +- _FDIV                (see above)
+ |  |     
+ |  +- DatehandleX         
+ |  |  | 
+ |  |  +- _FADD                (see above)
+ |  |  |  
+ |  |  +- _FSUB                (see above)
+ |  |  |  
+ |  |  +- _FMUL                (see above)
+ |  |     
+ |  +- atan                
+ |  |  | 
+ |  |  +- atan2               
+ |  |     | 
+ |  |     +- is_special          
+ |  |     |  | 
+ |  |     |  +- _LCMP               
+ |  |     |       
+ |  |     +- _CASE_CHECKED_BYTE  
+ |  |     |    
+ |  |     +- SetSign             
+ |  |     |  | 
+ |  |     |  +- fabs                
+ |  |     |  |    
+ |  |     |  +- _FNEG                (see above)
+ |  |     |     
+ |  |     +- fabs                 (see above)
+ |  |     |  
+ |  |     +- logb                
+ |  |     |  | 
+ |  |     |  +- frexp               
+ |  |     |     | 
+ |  |     |     +- frexpf              
+ |  |     |        | 
+ |  |     |        +- F_PULL               (see above)
+ |  |     |        |  
+ |  |     |        +- F_TLK               
+ |  |     |        |    
+ |  |     |        +- F_FREXP             
+ |  |     |        |  | 
+ |  |     |        |  +- F_NORMK              (see above)
+ |  |     |        |     
+ |  |     |        +- F_PSHK               (see above)
+ |  |     |           
+ |  |     +- ldexp               
+ |  |     |  | 
+ |  |     |  +- ldexpf              
+ |  |     |     | 
+ |  |     |     +- F_PULL               (see above)
+ |  |     |     |  
+ |  |     |     +- F_TLK                (see above)
+ |  |     |     |  
+ |  |     |     +- F_LDEXP             
+ |  |     |     |    
+ |  |     |     +- F_PSHK               (see above)
+ |  |     |     |  
+ |  |     |     +- RetErrDom           
+ |  |     |          
+ |  |     +- _FCMP                (see above)
+ |  |     |  
+ |  |     +- _FADD                (see above)
+ |  |     |  
+ |  |     +- _FMUL                (see above)
+ |  |     |  
+ |  |     +- _FSTRUNC             (see above)
+ |  |     |  
+ |  |     +- _FSUB                (see above)
+ |  |     |  
+ |  |     +- _FDIV                (see above)
+ |  |     |  
+ |  |     +- _FNEG                (see above)
+ |  |        
+ |  +- ILI9163B_display_full
+ |  |  | 
+ |  |  +- ILI9163B_address_rst
+ |  |  |  | 
+ |  |  |  +- ILI9163B_write_command (see above)
+ |  |  |  |  
+ |  |  |  +- ILI9163B_write_para8 (see above)
+ |  |  |     
+ |  |  +- ILI9163B_write_para16 (see above)
+ |  |     
+ |  +- delay1              
+ |       
+ +- _Startup            
+    | 
+    +- Init                
+    |    
+    +- main                 (see above)
+       
+ _Vector_66          
+ | 
+ +- PIT_ISR             
+    | 
+    +- bee_didi            
+         
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 8
+Total size of all blocks to be downloaded: 13228
+
