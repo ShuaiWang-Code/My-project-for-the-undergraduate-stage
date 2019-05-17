@@ -1,0 +1,21 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\Dr.W\Desktop\第四个修改未验证\1602SS.uvproj
+Project File Date:  10/15/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling 1602SS.C...
+linking...
+Program Size: data=52.0 xdata=0 code=1046
+creating hex file from "1602SS"...
+"1602SS" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling 1602SS.C...
+linking...
+Program Size: data=52.0 xdata=0 code=1046
+creating hex file from "1602SS"...
+"1602SS" - 0 Error(s), 0 Warning(s).

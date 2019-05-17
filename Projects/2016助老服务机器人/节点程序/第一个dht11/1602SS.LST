@@ -1,0 +1,488 @@
+C51 COMPILER V9.01   1602SS                                                                10/23/2016 22:54:48 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 1602SS
+OBJECT MODULE PLACED IN 1602SS.OBJ
+COMPILER INVOKED BY: E:\单片机\KEIL4\C51\BIN\C51.EXE 1602SS.C LARGE BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg52.h>
+   2          
+   3          #define uint unsigned int  
+   4          #define uchar unsigned char 
+   5          
+   6          typedef bit BOOL  ;  
+   7          
+   8          sbit io = P2^0 ; 
+   9          sbit door = P1^7;
+  10          sbit beep = P0^6;
+  11          sbit delay_fs=P0^5;
+  12          sbit delay_td=P0^4;
+  13           
+  14          uchar data_byte; 
+  15          uchar RH,RL,TH,TL;
+  16          uchar T_H,T_L,R_H,R_L,check,num_check; 
+  17          uchar count; 
+  18          uchar rx[14],rx_cnt=0,flag_start=0,flag_control=0,start0=0,start1=0;
+  19          
+  20          uchar str[14]="a010199990S00E";
+  21          uchar str1[14]="00000000000001";
+  22           
+  23          unsigned int time=0;
+  24          
+  25          extern void Init_BH1750(void);
+  26          extern uchar   ge,shi,bai,qian,wan;
+  27          extern get_bh1750();
+  28          extern float temp;
+  29          
+  30          
+  31          void delay(uchar ms) ;
+  32          void delay1();
+  33          void Uart1Sends(uchar *str);
+  34          void io_init();
+  35          void start();
+  36          uchar receive_byte();
+  37          void receive();
+  38          void SerialInti();
+  39          
+  40          void protocol_model();
+  41          void protocol_select();
+  42          void get_info();
+  43          /******************************************************************************
+  44          
+  45          **************************** 
+  46          
+  47          **********************主函数
+  48          
+  49          ***************************************************/
+  50           
+  51          
+  52          void main() 
+  53          {  
+  54   1              SerialInti();
+  55   1              Init_BH1750();  
+C51 COMPILER V9.01   1602SS                                                                10/23/2016 22:54:48 PAGE 2   
+
+  56   1              io_init();
+  57   1              delay(20); 
+  58   1              while(1) 
+  59   1              {               
+  60   2                              get_info();
+  61   2                              protocol_select();      
+  62   2              } 
+  63   1      
+  64   1      }
+  65          void get_info()
+  66          {
+  67   1                              receive(); 
+  68   1                              delay(100); 
+  69   1                              get_bh1750();
+  70   1                              delay(100);
+  71   1      }
+  72          
+  73          void protocol_select()
+  74          {
+  75   1      
+  76   1                         if(flag_start==1)
+  77   1                              {        
+  78   2                                              start0=1;
+  79   2                                              flag_start=0;
+  80   2      
+  81   2                                              if(TH>35)
+  82   2                                              {
+  83   3                                                              delay_fs=1;
+  84   3                                                              str[11]=1+0x30;
+  85   3                                              }
+  86   2                                              if(TH<=35)
+  87   2                                              {
+  88   3                                                              delay_fs=0;
+  89   3                                                              str[11]=0+0x30;
+  90   3                                              }
+  91   2                                              
+  92   2                                              if(temp<20)
+  93   2                                              {
+  94   3                                                      time++;
+  95   3                                                      if(time>22)
+  96   3                                                      {
+  97   4                                                              time=0;
+  98   4                                                              delay_td=1;
+  99   4                                                              str[12]=1+0x30;
+ 100   4                                                      }
+ 101   3                                                      
+ 102   3                                              }
+ 103   2                                              else
+ 104   2                                              {
+ 105   3                                                      delay_td=0;
+ 106   3                                                      str[12]=0+0x30;
+ 107   3                                              }
+ 108   2      
+ 109   2                                              if(door==1)
+ 110   2                                              {
+ 111   3                      
+ 112   3                                                      beep=1;
+ 113   3                                                      str[9]=1+0x30;
+ 114   3                                              }
+ 115   2                                              else
+ 116   2                                              {
+ 117   3                      
+C51 COMPILER V9.01   1602SS                                                                10/23/2016 22:54:48 PAGE 3   
+
+ 118   3                                                      beep=0;
+ 119   3                                                      str[9]=0+0x30;
+ 120   3                                              }
+ 121   2      
+ 122   2                                              Uart1Sends(str);
+ 123   2                                              
+ 124   2                                              rx[0] ='0';
+ 125   2                                              rx[10]='0';
+ 126   2                                              rx[13]='0';
+ 127   2      
+ 128   2                              }
+ 129   1                              
+ 130   1                              if(start0==1)
+ 131   1                              {
+ 132   2                                              if(TH>35)
+ 133   2                                              {
+ 134   3                                                              delay_fs=1;
+ 135   3                                                              str[11]=1+0x30;
+ 136   3                                              }
+ 137   2                                              if(TH<=35)
+ 138   2                                              {
+ 139   3                                                              delay_fs=0;
+ 140   3                                                              str[11]=0+0x30;
+ 141   3                                              }
+ 142   2                                              
+ 143   2                                              if(temp<20)
+ 144   2                                              {
+ 145   3                                                      time++;
+ 146   3                                                      
+ 147   3                                                      if(time>22)
+ 148   3                                                      {
+ 149   4                                                                      time=0;
+ 150   4                                                                      delay_td=1;
+ 151   4                                                                      str[12]=1+0x30;
+ 152   4                                                      }
+ 153   3                                                      
+ 154   3                                              }
+ 155   2                                              else
+ 156   2                                              {
+ 157   3                                                      delay_td=0;
+ 158   3                                                      str[12]=0+0x30;
+ 159   3                                              }
+ 160   2      
+ 161   2                                              if(door==1)
+ 162   2                                              {
+ 163   3                      
+ 164   3                                                      beep=1;
+ 165   3                                                      str[9]=1+0x30;
+ 166   3                                              }
+ 167   2                                              else
+ 168   2                                              {
+ 169   3                      
+ 170   3                                                      beep=0;
+ 171   3                                                      str[9]=0+0x30;
+ 172   3                                              }       
+ 173   2                              }
+ 174   1      
+ 175   1                              if(flag_control==1)
+ 176   1                              {
+ 177   2                                              flag_control=0;
+ 178   2                                              start1=1;
+ 179   2                                              
+C51 COMPILER V9.01   1602SS                                                                10/23/2016 22:54:48 PAGE 4   
+
+ 180   2                                              if(rx[11]=='1')    // 风扇
+ 181   2                                              {
+ 182   3                                                      delay_fs=1;
+ 183   3                                                      str[11]=1+0x30;         
+ 184   3                                              }
+ 185   2      
+ 186   2                                              if(rx[11]=='0')                   //关风扇
+ 187   2                                              {
+ 188   3                                                      delay_fs=0;
+ 189   3                                                      str[11]=0+0x30;
+ 190   3                                              }
+ 191   2      
+ 192   2                                              if(rx[12]=='1')    //台灯
+ 193   2                                              {
+ 194   3                                                      delay_td=1;
+ 195   3                                                      str[12]=1+0x30; 
+ 196   3                                              }
+ 197   2                                              if(rx[12]=='0')
+ 198   2                                              {
+ 199   3                                                      delay_td=0;
+ 200   3                                                      str[12]=0+0x30; 
+ 201   3                                              }
+ 202   2      
+ 203   2                                              if(door==1)
+ 204   2                                              {
+ 205   3                      
+ 206   3                                                      beep=1;
+ 207   3                                                      str[9]=1+0x30;
+ 208   3                                              }
+ 209   2                                              else
+ 210   2                                              {
+ 211   3                      
+ 212   3                                                      beep=0;
+ 213   3                                                      str[9]=0+0x30;
+ 214   3                                              }
+ 215   2                                              Uart1Sends(str);
+ 216   2                                              
+ 217   2                                              rx[0] ='0';
+ 218   2                                              rx[10]='0';
+ 219   2                                              rx[13]='0';
+ 220   2      
+ 221   2      
+ 222   2                              }
+ 223   1                              if(start1==1)
+ 224   1                              {               
+ 225   2                                              
+ 226   2                                              if(rx[11]=='1')    // 风扇
+ 227   2                                              {
+ 228   3                                                      delay_fs=1;
+ 229   3                                                      str[11]=1+0x30;         
+ 230   3                                              }
+ 231   2      
+ 232   2                                              if(rx[11]=='0')                   //关风扇
+ 233   2                                              {
+ 234   3                                                      delay_fs=0;
+ 235   3                                                      str[11]=0+0x30;
+ 236   3                                              }
+ 237   2      
+ 238   2                                              if(rx[12]=='1')    //台灯
+ 239   2                                              {
+ 240   3                                                      delay_td=1;
+ 241   3                                                      str[12]=1+0x30; 
+C51 COMPILER V9.01   1602SS                                                                10/23/2016 22:54:48 PAGE 5   
+
+ 242   3                                              }
+ 243   2                                              if(rx[12]=='0')
+ 244   2                                              {
+ 245   3                                                      delay_td=0;
+ 246   3                                                      str[12]=0+0x30; 
+ 247   3                                              }
+ 248   2      
+ 249   2                                              if(door==1)
+ 250   2                                              {
+ 251   3                      
+ 252   3                                                      beep=1;
+ 253   3                                                      str[9]=1+0x30;
+ 254   3                                              }
+ 255   2                                              else
+ 256   2                                              {
+ 257   3                      
+ 258   3                                                      beep=0;
+ 259   3                                                      str[9]=0+0x30;
+ 260   3                                              }
+ 261   2                                              
+ 262   2                              }
+ 263   1      }
+ 264          
+ 265          
+ 266          void Serial_interrupt() interrupt 4 
+ 267          {
+ 268   1      
+ 269   1                      protocol_model();
+ 270   1                      
+ 271   1      }
+ 272          
+ 273          void protocol_model()
+ 274          {
+ 275   1                      if(RI)
+ 276   1                      {
+ 277   2                                      RI=0;
+ 278   2                                      rx[rx_cnt]=SBUF;
+ 279   2                                      if(rx[0]== 'A')
+ 280   2                                      {
+ 281   3                                                      rx_cnt++;
+ 282   3                                                      if(rx_cnt>=14)
+ 283   3                                                      {
+ 284   4                                                                      if(rx[0]=='A' && rx[10]=='S'&&rx[13]=='E')
+ 285   4                                                                      {
+ 286   5                                                                                      flag_start=1;   start1=0;               rx_cnt=0;       
+ 287   5                                                                      }
+ 288   4                                                                      
+ 289   4                                                                      if(rx[0]=='A' && rx[10]=='M'&&rx[13]=='E')
+ 290   4                                                                      {
+ 291   5                                                                              
+ 292   5                                                                                      flag_control=1; start0=0;       rx_cnt=0;
+ 293   5                                                                      }                       
+ 294   4                                                                                      
+ 295   4                                                                      rx_cnt=0;
+ 296   4                                                      }
+ 297   3                                      }
+ 298   2                                      else
+ 299   2                                      {
+ 300   3                                                      rx_cnt=0;
+ 301   3                                      }
+ 302   2      
+ 303   2                      }
+C51 COMPILER V9.01   1602SS                                                                10/23/2016 22:54:48 PAGE 6   
+
+ 304   1      
+ 305   1                      if(TI)
+ 306   1                      {
+ 307   2                              TI=0;
+ 308   2                      }       
+ 309   1      }
+ 310          
+ 311          //串行口连续发送char型数组，遇到终止号/0将停止
+ 312          void Uart1Sends(uchar *str)
+ 313          {
+ 314   1              unsigned char *p;
+ 315   1          
+ 316   1          p = str;
+ 317   1          while(*p != '\0')
+ 318   1          {
+ 319   2              SBUF = *p;
+ 320   2                      while(TI == 0); 
+ 321   2                      TI = 0;
+ 322   2              p++;
+ 323   2          }
+ 324   1      }
+ 325          
+ 326          void io_init()
+ 327          {
+ 328   1                      delay_fs=0;
+ 329   1                      delay_td=0;
+ 330   1                      beep=0;
+ 331   1      }
+ 332          void start()//开始信号 
+ 333          { 
+ 334   1                       io=1; 
+ 335   1                       delay1();  
+ 336   1                       delay1(); 
+ 337   1                       
+ 338   1                       io=0; 
+ 339   1                       delay(40);//>18ms                //20
+ 340   1      
+ 341   1                       io=1; 
+ 342   1                       delay1();//20-40us 
+ 343   1                       delay1(); 
+ 344   1                       delay1(); 
+ 345   1                       delay1();
+ 346   1                       delay1(); 
+ 347   1                       delay1();                      //
+ 348   1                       delay1(); 
+ 349   1      
+ 350   1      } 
+ 351          
+ 352          uchar receive_byte()//接收一个字节 
+ 353          { 
+ 354   1                       uchar i,temp,count; 
+ 355   1                       for(i=0;i<8;i++) 
+ 356   1                       { 
+ 357   2                                        count=2; 
+ 358   2                                        while((!io)&&count++)//等待50us低电平结束 
+ 359   2                                        temp=0; 
+ 360   2                                        delay1();delay1();delay1();delay1(); delay1(); delay1();delay1();delay1(); delay1(); //4
+ 361   2                                      
+ 362   2                                        if(io==1)             
+ 363   2                                        temp=1; 
+ 364   2      
+ 365   2                                        count=2; 
+C51 COMPILER V9.01   1602SS                                                                10/23/2016 22:54:48 PAGE 7   
+
+ 366   2                                        while((io)&&count++); 
+ 367   2                                        if(count==1)break; 
+ 368   2                                        data_byte<<=1;  
+ 369   2                                        data_byte|=temp; 
+ 370   2                        } 
+ 371   1                       
+ 372   1                       return data_byte; 
+ 373   1      
+ 374   1      } 
+ 375          
+ 376          void receive()//接收数据 
+ 377          { 
+ 378   1                       //uchar T_H,T_L,R_H,R_L,check,num_check; 
+ 379   1                       //uchar count; 
+ 380   1                       start();//开始信号 
+ 381   1                       io=1; 
+ 382   1                       if(!io)//读取DHT11响应信号 
+ 383   1                       { 
+ 384   2                                       count=2; 
+ 385   2                                       while((!io)&&count++);//DHT11高电平80us是否结束 
+ 386   2                                       count=2;
+ 387   2                                        
+ 388   2                                       while((io)&&count++); 
+ 389   2                                       R_H=receive_byte(); 
+ 390   2                                       R_L=receive_byte(); 
+ 391   2                                       T_H=receive_byte(); 
+ 392   2                                       T_L=receive_byte(); 
+ 393   2                                       check=receive_byte();
+ 394   2                                        
+ 395   2                                       io=0;//拉低延时50us 
+ 396   2                                       delay1();delay1();delay1();delay1();delay1(); delay1();delay1();delay1(); delay1();  
+ 397   2                                       
+ 398   2                                       io=1; 
+ 399   2                                       num_check=R_H+R_L+T_H+T_L; 
+ 400   2                                       
+ 401   2                                       if(num_check=check) 
+ 402   2                                       { 
+ 403   3                                                        RH=R_H; 
+ 404   3                                                        RL=R_L; 
+ 405   3                                                        TH=T_H; 
+ 406   3                                                        TL=T_L; 
+ 407   3                                                        check=num_check;
+ 408   3                                                        str[1]= RH/10+0x30;
+ 409   3                                                        str[2]= RH%10+0x30;
+ 410   3                                                        str[3]= TH/10+0x30;
+ 411   3                                                        str[4]= TH%10+0x30;
+ 412   3                                       } 
+ 413   2                      
+ 414   2                       } 
+ 415   1      
+ 416   1      } 
+ 417          
+ 418          
+ 419          
+ 420          void SerialInti()//初始化程序（必须使用，否则无法收发）
+ 421          {       
+ 422   1                      TMOD = 0x20;
+ 423   1                  SCON = 0x50;
+ 424   1                  TH1 = 0xFD;
+ 425   1                  TL1 = TH1;
+ 426   1                  PCON = 0x00;
+ 427   1                  EA = 1;
+C51 COMPILER V9.01   1602SS                                                                10/23/2016 22:54:48 PAGE 8   
+
+ 428   1                  ES = 1;
+ 429   1                  TR1 = 1;            //启动定时器1
+ 430   1          
+ 431   1      }
+ 432          
+ 433          void delay(uchar ms) 
+ 434          {       
+ 435   1                      uchar i ; 
+ 436   1                      while(ms--) 
+ 437   1                      { 
+ 438   2                      for(i=0;i<250;i++); 
+ 439   2                      } 
+ 440   1      } 
+ 441          
+ 442          void delay1()//10us 
+ 443          { 
+ 444   1                       uchar i; 
+ 445   1                       i--;           
+ 446   1                       i--;           
+ 447   1                       i--;           
+ 448   1                       i--;           
+ 449   1                       i--;           
+ 450   1                       i--; 
+ 451   1      } 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1225    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     61       4
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

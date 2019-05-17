@@ -1,0 +1,314 @@
+C51 COMPILER V9.01   CHENGXU                                                               10/23/2016 14:37:21 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE CHENGXU
+OBJECT MODULE PLACED IN chengxu.OBJ
+COMPILER INVOKED BY: E:\单片机\KEIL4\C51\BIN\C51.EXE chengxu.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*********************************************************************/
+   2          /********************************************************************
+   3          说明：1、       当测量有雨滴时，单片机IO口输出低电平
+   4          *********************************************************************/
+   5          #include<reg52.h>              //库文件
+   6          
+   7          #define uchar unsigned char//宏定义无符号字符型
+   8          #define uint unsigned int  //宏定义无符号整型
+   9          
+  10          typedef bit BOOL  ;  
+  11          uchar data_byte; 
+  12          uchar str[14]="b000000000S00E";
+  13          
+  14          sbit delay_yudi=P0^4;    //定义单片机P1口的第1位 （即P0.0）为开关端
+  15          sbit delay_1=P0^0;
+  16          sbit delay_2=P0^1;
+  17          sbit beep=P0^6;
+  18          sbit DOUT=P2^0;  //定义单片机P2口的第1位 （即P2.0）为传感器的输入端 
+  19          
+  20          void delay();
+  21          void SerialInti();
+  22          void Uart1Sends(uchar *str);
+  23          void protocol_model();
+  24          void protocol_select();
+  25          void io_init();
+  26          uchar rx[14],rx_cnt=0,flag_start=0,flag_control=0,start0=0,start1=0;
+  27          
+  28          
+  29          
+  30          
+  31          void main()
+  32          {
+  33   1              SerialInti();
+  34   1              io_init();
+  35   1              while(1)  
+  36   1              {
+  37   2                      
+  38   2                      protocol_select();      
+  39   2      
+  40   2              }
+  41   1      }
+  42          
+  43          void io_init()
+  44          {
+  45   1                      delay_yudi=0;
+  46   1                      beep=0;
+  47   1                      delay_1=0;
+  48   1                      delay_2=0;
+  49   1      }
+  50          
+  51          
+  52          void protocol_select()
+  53          {
+  54   1                      if(flag_start==1)
+  55   1                      {          
+C51 COMPILER V9.01   CHENGXU                                                               10/23/2016 14:37:21 PAGE 2   
+
+  56   2                                      flag_start=0;
+  57   2                                      start0=1;
+  58   2      
+  59   2                                      if(DOUT==0)//当有水滴时 ，执行条件函数
+  60   2                                      {
+  61   3                                      delay();//延时抗干扰
+  62   3                                              if(DOUT==0)//确定 浓度高于设定值时 ，执行条件函数
+  63   3                                      {
+  64   4                                                      delay_yudi=1;      //闭合常开开关
+  65   4                                                      beep=1;
+  66   4                                                      str[1]=1+0X30;
+  67   4                                              }
+  68   3                                      }
+  69   2                      
+  70   2                                      if(DOUT!=0)
+  71   2                                      {
+  72   3                                                      delay_yudi=0;
+  73   3                                                      beep=0;
+  74   3                                                      str[1]=0+0X30;
+  75   3                                      }
+  76   2      
+  77   2                                      Uart1Sends(str);
+  78   2                                              
+  79   2                                      rx[0] ='0';
+  80   2                                      rx[10]='0';
+  81   2                                      rx[13]='0';     
+  82   2                      }
+  83   1      
+  84   1                      if(start0==1)
+  85   1                      {
+  86   2                                      if(DOUT==0)//当有水滴时 ，执行条件函数
+  87   2                                      {
+  88   3                                      delay();//延时抗干扰
+  89   3                                              if(DOUT==0)//确定 浓度高于设定值时 ，执行条件函数
+  90   3                                      {
+  91   4                                                      delay_yudi=1;      //闭合常开开关
+  92   4                                                      beep=1;
+  93   4                                                      str[1]=1+0X30;
+  94   4                                              }
+  95   3                                      }
+  96   2                      
+  97   2                                      if(DOUT!=0)
+  98   2                                      {
+  99   3                                                      delay_yudi=0;
+ 100   3                                                      beep=0;
+ 101   3                                                      str[1]=0+0X30;
+ 102   3                                      }
+ 103   2                      }
+ 104   1      
+ 105   1                              if(flag_control==1)
+ 106   1                              {
+ 107   2                                              flag_control=0;
+ 108   2                                              start1=1;
+ 109   2                                              
+ 110   2                                              if(rx[1]=='1')     // 开水阀
+ 111   2                                              {
+ 112   3                                                      delay_yudi=1;
+ 113   3                                                      str[1]=1+0x30;
+ 114   3                                                      beep=0;         
+ 115   3                                              }
+ 116   2                                              if(rx[1]=='0')                    //关
+ 117   2                                              {
+C51 COMPILER V9.01   CHENGXU                                                               10/23/2016 14:37:21 PAGE 3   
+
+ 118   3                                                      delay_yudi=0;
+ 119   3                                                      str[1]=0+0x30;
+ 120   3                                                      beep=0;
+ 121   3                                              }
+ 122   2      
+ 123   2                                              if(rx[11]=='1')    // 开水阀
+ 124   2                                              {
+ 125   3                                                      delay_1=1;
+ 126   3                                                      str[11]=1+0x30;
+ 127   3                                                      //beep=0;               
+ 128   3                                              }
+ 129   2                                              if(rx[11]=='0')                   //关
+ 130   2                                              {
+ 131   3                                                      delay_1=0;
+ 132   3                                                      str[11]=0+0x30;
+ 133   3                                                      //beep=0;
+ 134   3                                              }
+ 135   2      
+ 136   2                                              if(rx[12]=='1')    // 开水阀
+ 137   2                                              {
+ 138   3                                                      delay_2=1;
+ 139   3                                                      str[12]=1+0x30;
+ 140   3                                              //      beep=0;         
+ 141   3                                              }
+ 142   2                                              if(rx[12]=='0')                   //关
+ 143   2                                              {
+ 144   3                                                      delay_2=0;
+ 145   3                                                      str[12]=0+0x30;
+ 146   3                                              //      beep=0;
+ 147   3                                              }
+ 148   2                                              Uart1Sends(str);
+ 149   2                                              
+ 150   2                                              rx[0]='0' ;
+ 151   2                                              rx[10]='0';
+ 152   2                                              rx[13]='0';
+ 153   2                              }
+ 154   1      
+ 155   1                              if(start1==1)
+ 156   1                              {
+ 157   2                                              if(rx[1]=='1')     // 开水阀
+ 158   2                                              {
+ 159   3                                                      delay_yudi=1;
+ 160   3                                                      str[1]=1+0x30;
+ 161   3                                                      beep=0;         
+ 162   3                                              }
+ 163   2                                              
+ 164   2                                              if(rx[1]=='0')                    //关
+ 165   2                                              {
+ 166   3                                                      delay_yudi=0;
+ 167   3                                                      str[1]=0+0x30;
+ 168   3                                                      beep=0;
+ 169   3                                              }
+ 170   2      
+ 171   2                                              if(rx[11]=='1')    // 开水阀
+ 172   2                                              {
+ 173   3                                                      delay_1=1;
+ 174   3                                                      str[11]=1+0x30;
+ 175   3                                              //      beep=0;         
+ 176   3                                              }
+ 177   2                                              if(rx[11]=='0')                   //关
+ 178   2                                              {
+ 179   3                                                      delay_1=0;
+C51 COMPILER V9.01   CHENGXU                                                               10/23/2016 14:37:21 PAGE 4   
+
+ 180   3                                                      str[11]=0+0x30;
+ 181   3                                              //      beep=0;
+ 182   3                                              }
+ 183   2      
+ 184   2                                              if(rx[12]=='1')    // 开水阀
+ 185   2                                              {
+ 186   3                                                      delay_2=1;
+ 187   3                                                      str[12]=1+0x30;
+ 188   3                                              //      beep=0;         
+ 189   3                                              }
+ 190   2                                              if(rx[12]=='0')                   //关
+ 191   2                                              {
+ 192   3                                                      delay_2=0;
+ 193   3                                                      str[12]=0+0x30;
+ 194   3                                              //      beep=0;
+ 195   3                                              }
+ 196   2                              }       
+ 197   1      }
+ 198          
+ 199          
+ 200          void Serial_interrupt() interrupt 4 
+ 201          {
+ 202   1                 
+ 203   1                 protocol_model();
+ 204   1      
+ 205   1      }
+ 206          
+ 207          void protocol_model()
+ 208          {
+ 209   1                      if(RI)
+ 210   1                      {
+ 211   2                                      RI=0;
+ 212   2                                      rx[rx_cnt]=SBUF;
+ 213   2                                      if(rx[0]== 'B')
+ 214   2                                      {
+ 215   3                                                      rx_cnt++;
+ 216   3                                                      if(rx_cnt>=14)
+ 217   3                                                      {
+ 218   4                                                                      if(rx[0]=='B' && rx[10]=='S'&&rx[13]=='E')
+ 219   4                                                                      {
+ 220   5                                                                                      flag_start=1;   start1=0;       rx_cnt=0;       
+ 221   5                                                                      }
+ 222   4                                                                      if(rx[0]=='B' && rx[10]=='M'&&rx[13]=='E')
+ 223   4                                                                      {
+ 224   5                                                                              
+ 225   5                                                                                      flag_control=1; start0=0;       rx_cnt=0;
+ 226   5                                                                      }                       
+ 227   4                                                                                      
+ 228   4                                                                      rx_cnt=0;
+ 229   4                                                      }
+ 230   3                                      }
+ 231   2                                      else
+ 232   2                                      {
+ 233   3                                                      rx_cnt=0;
+ 234   3                                      }
+ 235   2                              
+ 236   2                              
+ 237   2      
+ 238   2                      }
+ 239   1      
+ 240   1                      if(TI)
+ 241   1                      {
+C51 COMPILER V9.01   CHENGXU                                                               10/23/2016 14:37:21 PAGE 5   
+
+ 242   2                                      TI=0;
+ 243   2                      }
+ 244   1      }
+ 245          
+ 246          void delay()//延时程序
+ 247          {
+ 248   1                      uchar m,n,s;
+ 249   1                      for(m=20;m>0;m--)
+ 250   1                      for(n=20;n>0;n--)
+ 251   1                      for(s=248;s>0;s--);
+ 252   1      }
+ 253          
+ 254          void SerialInti()//初始化程序（必须使用，否则无法收发）
+ 255          {       
+ 256   1                      TMOD = 0x20;
+ 257   1                  SCON = 0x50;
+ 258   1                  TH1 = 0xFD;
+ 259   1                  TL1 = TH1;
+ 260   1                  PCON = 0x00;
+ 261   1                  EA = 1;
+ 262   1                  ES = 1;
+ 263   1                  TR1 = 1;            //启动定时器1
+ 264   1          
+ 265   1      }       
+ 266          
+ 267          //串行口连续发送char型数组，遇到终止号/0将停止
+ 268          void Uart1Sends(uchar *str)
+ 269          {
+ 270   1              unsigned char *p;
+ 271   1          
+ 272   1          p = str;
+ 273   1          while(*p != '\0')
+ 274   1          {
+ 275   2              SBUF = *p;
+ 276   2                      while(TI == 0); 
+ 277   2                      TI = 0;
+ 278   2              p++;
+ 279   2          }
+ 280   1      }
+ 281          /********************************************************************
+ 282                                        结束
+ 283          *********************************************************************/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    464    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     34    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
