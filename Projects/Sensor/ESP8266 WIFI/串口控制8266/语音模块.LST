@@ -1,0 +1,199 @@
+C51 COMPILER V9.01   语音模块                                                              10/12/2016 20:26:54 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 语音模块
+OBJECT MODULE PLACED IN 语音模块.OBJ
+COMPILER INVOKED BY: D:\MCU\KEIL4\C51\BIN\C51.EXE 语音模块.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "reg52.h"
+   2          #define uchar unsigned char 
+   3          #define uint unsigned int
+   4          
+   5          uint cnt;
+   6          sbit men=P0^0;
+   7          sbit io2=P1^2;
+   8          sbit io4=P1^3;
+   9          sbit ena=P1^4;
+  10          sbit io15=P1^1;
+  11          bit rflag=0;
+  12          
+  13          uchar RX1_Buffer[32];
+  14          uchar RX1_Cnt=0;
+  15          void SerialInti()//初始化程序（必须使用，否则无法收发）
+  16          {
+  17   1          TMOD = 0x20;
+  18   1          SCON = 0x50;
+  19   1          TH1 = 0xFF;
+  20   1          TL1 = TH1;
+  21   1      
+  22   1          PCON = 0x80;
+  23   1      
+  24   1          EA = 1;
+  25   1          ES = 1;
+  26   1          TR1 = 1;
+  27   1      }
+  28          
+  29          /*串行通讯中断，收发完成将进入该中断*/
+  30          void Serial_interrupt() interrupt 4 
+  31          {
+  32   1      //      a=SBUF;
+  33   1              if(RI)
+  34   1              {
+  35   2                      RI=0;
+  36   2                      
+  37   2                RX1_Buffer[RX1_Cnt] = SBUF;   
+  38   2                      if(RX1_Buffer[0]=='0')
+  39   2                      {
+  40   3                              RX1_Cnt++;
+  41   3                      }
+  42   2                      else
+  43   2                      {
+  44   3                              RX1_Cnt=0;
+  45   3                      }
+  46   2                      if(RX1_Cnt>4)
+  47   2                      {
+  48   3                      if((RX1_Buffer[1]==',')&&(RX1_Buffer[2]=='C')&&(RX1_Buffer[3]=='O'))    
+  49   3                      rflag=1;
+  50   3                      RX1_Cnt=0;
+  51   3                      }
+  52   2                      if(RX1_Cnt>4)
+  53   2                      {
+  54   3                      if((RX1_Buffer[1]==',')&&(RX1_Buffer[2]=='C')&&(RX1_Buffer[3]=='L'))
+  55   3                      {
+C51 COMPILER V9.01   语音模块                                                              10/12/2016 20:26:54 PAGE 2   
+
+  56   4                              rflag=0;
+  57   4                      RX1_Cnt=0;
+  58   4                      }                       
+  59   3              
+  60   3                      }
+  61   2              }
+  62   1              //接收中断信号清零，表示将继续接收
+  63   1      //      flag=1;//进入中断的标志符号
+  64   1      }
+  65          
+  66          
+  67          
+  68          void Uart1Send(uchar c)
+  69          {
+  70   1              SBUF=c;
+  71   1              while(!TI);//等待发送完成信号（TI=1）出现
+  72   1              TI=0;   
+  73   1      }
+  74          
+  75          //串行口连续发送char型数组，遇到终止号/0将停止
+  76          void Uart1Sends(uchar *str)
+  77          {
+  78   1              unsigned char *p;
+  79   1          
+  80   1          p = str;
+  81   1          while(*p != '\0')
+  82   1          {
+  83   2              SBUF = *p;
+  84   2                      while(TI == 0); 
+  85   2                      TI = 0;
+  86   2              p++;
+  87   2          }
+  88   1      }
+  89          void delay(uint ms)
+  90          {
+  91   1       uint i;
+  92   1              while(ms--)
+  93   1              {
+  94   2              for(i=0;i<=500;i++);
+  95   2              }
+  96   1      }
+  97          void main()
+  98          {       men=0;
+  99   1              io15=0;
+ 100   1              io2=1;
+ 101   1              io4=1;
+ 102   1              ena=1;
+ 103   1                delay(2500);  
+ 104   1                      
+ 105   1      
+ 106   1              SerialInti();
+ 107   1              delay(500);
+ 108   1      Uart1Sends("AT+RST\r\n");       
+ 109   1      delay(1500);    
+ 110   1      Uart1Sends("AT+CWMODE=2\r\n");  
+ 111   1      delay(500);
+ 112   1      Uart1Sends("AT+CIPMUX=1\r\n");
+ 113   1      delay(500);
+ 114   1      Uart1Sends("AT+CIPSERVER=1,8888\r\n");
+ 115   1      delay(500);
+ 116   1      while(1)
+ 117   1      {
+C51 COMPILER V9.01   语音模块                                                              10/12/2016 20:26:54 PAGE 3   
+
+ 118   2      
+ 119   2                                      while(rflag==1)
+ 120   2      {
+ 121   3              if(men==1)
+ 122   3              {
+ 123   4      delay(2500);
+ 124   4      Uart1Sends("AT+RST\r\n");       
+ 125   4      delay(1500);    
+ 126   4      Uart1Sends("AT+CWMODE=2\r\n");  
+ 127   4      delay(500);
+ 128   4      Uart1Sends("AT+CIPMUX=1\r\n");
+ 129   4      delay(500);
+ 130   4      Uart1Sends("AT+CIPSERVER=1,8888\r\n");
+ 131   4      delay(500);
+ 132   4              
+ 133   4                      while(men==1)
+ 134   4                      {       
+ 135   5      
+ 136   5      Uart1Sends("AT+CIPSEND=0,8\r\n");
+ 137   5      delay(500);
+ 138   5      Uart1Sends("waiting\n");        
+ 139   5      delay(1500);
+ 140   5                              if(men==0)
+ 141   5                              {break;}
+ 142   5                      }
+ 143   4      }
+ 144   3              if(men==0)
+ 145   3              {
+ 146   4              delay(2500);
+ 147   4      Uart1Sends("AT+RST\r\n");       
+ 148   4      delay(1500);    
+ 149   4      Uart1Sends("AT+CWMODE=2\r\n");  
+ 150   4      delay(500);
+ 151   4      Uart1Sends("AT+CIPMUX=1\r\n");
+ 152   4      delay(500);
+ 153   4      Uart1Sends("AT+CIPSERVER=1,8888\r\n");
+ 154   4      delay(500);
+ 155   4                      while(men==0)
+ 156   4                      {       
+ 157   5              
+ 158   5      Uart1Sends("AT+CIPSEND=0,8\r\n");
+ 159   5      delay(500);
+ 160   5      Uart1Sends("working\r\n");      
+ 161   5      delay(1500);
+ 162   5              if(men==1)
+ 163   5              {break;}                
+ 164   5      }
+ 165   4      }
+ 166   3      }
+ 167   2      
+ 168   2      
+ 169   2              }
+ 170   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    341    ----
+   CONSTANT SIZE    =     95    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     35    ----
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   语音模块                                                              10/12/2016 20:26:54 PAGE 4   
+
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

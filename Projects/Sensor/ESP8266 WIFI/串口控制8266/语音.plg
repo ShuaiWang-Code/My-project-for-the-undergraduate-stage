@@ -1,0 +1,18 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\单片机\51\串口控制8266\语音.uvproj
+Project File Date:  10/12/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling 语音模块.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UART1SEND?语音模块
+Program Size: data=44.1 xdata=0 code=613
+creating hex file from "语音"...
+"语音" - 0 Error(s), 1 Warning(s).
