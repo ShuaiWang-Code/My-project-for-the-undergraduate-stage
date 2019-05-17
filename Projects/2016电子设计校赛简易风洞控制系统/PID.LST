@@ -1,0 +1,71 @@
+C51 COMPILER V9.01   PID                                                                   07/30/2016 02:40:17 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE PID
+OBJECT MODULE PLACED IN PID.OBJ
+COMPILER INVOKED BY: E:\单片机\KEIL4\C51\BIN\C51.EXE PID.C LARGE BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "reg52.h"
+   2          #include "nokia_5110.h"
+   3          extern unsigned int b,intr;
+   4          struct _pid{
+   5          int set_distance;//定义设定距离
+   6          int actual_distance;//实际距离
+   7          int integral;
+   8          int error;
+   9          int error_next;
+  10          int error_last;
+  11          int kp,ki,kd;
+  12          int zengliang;
+  13          }pid;
+  14          void PID_init()
+  15          {
+  16   1              pid.set_distance=0;
+  17   1              pid.actual_distance=0;
+  18   1              pid.error=0;
+  19   1              pid.error_next=0;
+  20   1              pid.error_last=0;
+  21   1              pid.kp=2;
+  22   1              pid.ki=0;
+  23   1              pid.kd=0;       
+  24   1              pid.zengliang=0;
+  25   1              pid.integral=0;
+  26   1      }
+  27          void PID_realize(int distance,int pibo)
+  28          {
+  29   1              pid.set_distance=distance;
+  30   1              if(b>distance)
+  31   1              {
+  32   2              pid.error=pid.actual_distance-pid.set_distance;
+  33   2              pid.zengliang=pid.kp*(pid.error);
+  34   2              intr=pibo+pid.zengliang;
+  35   2              }
+  36   1              if(b<distance)
+  37   1              {
+  38   2              pid.error=pid.set_distance-pid.actual_distance;
+  39   2              pid.zengliang=pid.kp*(pid.error);
+  40   2              intr=pibo-pid.zengliang;
+  41   2              }
+  42   1              pid.integral+=pid.error;
+  43   1              pid.actual_distance=b;
+  44   1              pid.error_last=pid.error_next;
+  45   1              pid.error_next=pid.error;
+  46   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    304    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     20       2
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   PID                                                                   07/30/2016 02:40:17 PAGE 2   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

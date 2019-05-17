@@ -1,0 +1,632 @@
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 1
+OBJECT MODULE PLACED IN 1.OBJ
+COMPILER INVOKED BY: E:\单片机\KEIL4\C51\BIN\C51.EXE 1.c LARGE BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          //******************************************************************************
+   2          //头文件
+   3          #include <reg52.h>     //包括一个52标准内核的头文件
+   4          #include "nokia_5110.h"
+   5          #include "bmp_pixel.h"
+   6          //******************************************************************************
+   7          //宏定义
+   8          #define uchar unsigned char //定义一下方便使用
+   9          #define uint  unsigned int
+  10          #define ulong unsigned long
+  11          #define delay_time      25767
+  12          //*******************************************************************************************
+  13          //special IO_sfr
+  14          sfr   P0M1   = 0X93;
+  15          sfr   P0M0   = 0X94;
+  16          sfr   P1M1   = 0X91;
+  17          sfr   P1M0   = 0X92;
+  18          sfr       P2M1   = 0X95;
+  19          sfr       P2M0   = 0X96;
+  20          //********************************************************************************
+  21          //定义引脚
+  22          sbit Trig  = P1^0; //产生脉冲引脚
+  23          sbit Echo  = P3^2; //回波引脚
+  24          sbit PWM=P1^1;
+  25          sbit IN1=P1^3;
+  26          sbit IN2=P1^4;            //电机
+  27          sbit D1=P3^3;
+  28          sbit D2=P3^4;
+  29          sbit D3=P3^5;
+  30          sbit D4=P3^6;
+  31          //*******************************************************************************************
+  32          //标志位
+  33          bit succeed_flag;  //测量成功标志
+  34          bit flag_model1=0,flag_sheding=0,flag_model2=0,flag_model3=0,flag_warning;  //model flag
+  35          //*******************************************************************************************
+  36          //计数时间变量
+  37          unsigned int timer1,intr=130,intr1=170,intr2=115;               //定时器计数标志、PWM波大小
+  38          unsigned int timer2,shijian=0;                                                  //时间
+  39          unsigned int distance_data,a,b,tt,height=24;                                            //超生波变量
+  40          unsigned char ge,shi,bai,temp,flag,outcomeH,outcomeL,i,ge_data;
+  41          unsigned char shi_data,bai_data,CONT_1,gaodu,sheding=0;          //自定义寄存器
+  42          int set,error,error_last,juli=25,juli1=24,cishu=0;                //feedback 变量
+  43          float k=1;                                                                                                //feedback 参数
+  44          //***************************************************************************************
+  45          //函数声明
+  46          void LCD_display(unsigned int num);                              //display_distance
+  47          void LCD_display_pwm(unsigned int nu);                   //display_time
+  48          void Delay10ms(unsigned int c);                                  //
+  49          void delay_20us();                                                               //delay
+  50          void KeyDown(void);                                                              //keyscan
+  51          void pwm_generate(unsigned int changdu);                 //pwm_generate
+  52          void time_generate(unsigned int tg);             //time_generate
+  53          void model_select();                                                     //model_select
+  54          void model_display();
+  55          void ultrasonic_wave_generate();                                 //ultrasonic wave
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 2   
+
+  56          void interface();                                //interface
+  57          void io_init();                                                                  //io_init
+  58          void motor_init();                                                               //motor
+  59          void timer_init();                                                               //timer_init
+  60          //********************************************************************************
+  61          void main(void)   // 主程序
+  62          {   
+  63   1          LCD_init();                                                                 //初始化液晶 
+  64   1              interface();                                                            //界面
+  65   1              io_init();                                                              //io设为推挽
+  66   1              motor_init();                                                           //电机初始化
+  67   1              timer_init();                                                           //定时器初始化
+  68   1              PID_init();                                                                     //PID初始化
+  69   1              while(1)                                                                //程序循环
+  70   1              {       
+  71   2                      model_display();                                                //model显示
+  72   2                      ultrasonic_wave_generate();                             //超声波产生
+  73   2              }
+  74   1      }
+  75          
+  76          //****************************************************************
+  77          timer0() interrupt 1  // 定时器0中断是1号
+  78            { 
+  79   1              TL0 = 0x23;                                         //设置定时初值
+  80   1              TH0 = 0xFF;                                                             //设置定时初值  
+  81   1              timer1++;                                                               //PWM计数标志
+  82   1              timer2++;                                                               //时间计数标志
+  83   1              pwm_generate(intr);                                                     //PWM产生        
+  84   1              KeyDown();                                                              //键盘扫描      
+  85   1              time_generate(5000);                                            //time产生
+  86   1              model_select();                                                         //model选择       （PID）
+  87   1                                                   
+  88   1      } 
+  89          //******************************************************************
+  90          //DISPLAY子函数
+  91          void LCD_display(unsigned int num)                                                      //显示距离
+  92          {
+  93   1              unsigned char str[2];
+  94   1              if(num>=22)
+  95   1              {
+  96   2                      num=num-22;
+  97   2                      LCD_write_english_string(52,0,"+"); 
+  98   2              }
+  99   1              else
+ 100   1              {       
+ 101   2                      num=22-num;
+ 102   2                      LCD_write_english_string(52,0,"-"); 
+ 103   2              }
+ 104   1              str[0]=(num%100)/10 + 0x30;  
+ 105   1              str[1]=num%10 + 0x30;
+ 106   1              LCD_write_english_string(58,0,(char *)str); 
+ 107   1              LCD_write_english_string(70,0,"cm");
+ 108   1      }
+ 109          void LCD_display_pwm(unsigned int nu)                                            //显示时间
+ 110          {
+ 111   1              unsigned char str1[2];
+ 112   1          str1[0]=(nu%100)/10 + 0x30;  
+ 113   1          str1[1]=nu%10 + 0x30;
+ 114   1              LCD_write_english_string(54,2,(char *)str1);
+ 115   1              LCD_write_english_string(66,2,"sec"); 
+ 116   1      }
+ 117          //******************************************************************
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 3   
+
+ 118          //延时函数
+ 119          void Delay10ms(unsigned int c)   //误差 0us
+ 120          {
+ 121   1          unsigned char aa, bb;
+ 122   1              //--c已经在传递过来的时候已经赋值了，所以在for语句第一句就不用赋值了--//
+ 123   1          for (;c>0;c--)
+ 124   1              {
+ 125   2                      for (bb=38;bb>0;bb--)
+ 126   2                      {
+ 127   3                              for (aa=130;aa>0;aa--);
+ 128   3                      }          
+ 129   2              }       
+ 130   1      }
+ 131          void delay_20us()
+ 132          {  uchar bt ;
+ 133   1          for(bt=0;bt<100;bt++);
+ 134   1      }
+ 135          //******************************************************************
+ 136          //PWM产生
+ 137          void pwm_generate(unsigned int changdu)
+ 138          {
+ 139   1               if(timer1>500)  //PWM周期
+ 140   1               {
+ 141   2                      timer1=0;
+ 142   2               }      
+ 143   1               if(timer1 < changdu)   //改变这个值可以改变直流电机的速度
+ 144   1               {
+ 145   2                      PWM=1;
+ 146   2           }
+ 147   1               else
+ 148   1               {
+ 149   2                      PWM=0;
+ 150   2               }
+ 151   1      }
+ 152          //******************************************************************
+ 153          //time_generate
+ 154          void time_generate(unsigned int tg)
+ 155          {
+ 156   1               if(timer2>tg)
+ 157   1               {
+ 158   2                      timer2=0;
+ 159   2                      shijian=shijian+1;
+ 160   2      //              flag_warning=~flag_warning;
+ 161   2               }
+ 162   1               if(timer2>(tg/2))
+ 163   1               {
+ 164   2                       flag_warning=~flag_warning;
+ 165   2               }
+ 166   1      }
+ 167          //******************************************************************
+ 168          //model select
+ 169          void model_select()
+ 170          {
+ 171   1               if(flag_model1==0 && flag_model2==0 &&flag_model3==0)
+ 172   1               {      
+ 173   2                      if(shijian<1)
+ 174   2                      {
+ 175   3                              intr=intr1;
+ 176   3                      }
+ 177   2      
+ 178   2                      if(shijian>2)      //12
+ 179   2                      {
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 4   
+
+ 180   3                      PID_realize(juli1,intr2);          
+ 181   3                      }
+ 182   2      
+ 183   2               }
+ 184   1      
+ 185   1               if(flag_model2==1)                                                                       //flag_model2
+ 186   1               {
+ 187   2                      if(shijian>2)
+ 188   2                      {
+ 189   3                              PID_realize(12,119);
+ 190   3                      }
+ 191   2                      
+ 192   2                      if(shijian>10)
+ 193   2                      {
+ 194   3                              PID_realize(34,115);
+ 195   3                      }
+ 196   2      
+ 197   2                      if(shijian>18)
+ 198   2                      {
+ 199   3                              shijian=0;
+ 200   3                              cishu++;
+ 201   3                                      
+ 202   3                              if(cishu==2)
+ 203   3                              {
+ 204   4                                      intr=480;
+ 205   4                                      cishu=0;
+ 206   4                              }
+ 207   3                      }
+ 208   2      
+ 209   2               }      
+ 210   1      }
+ 211          //******************************************************************
+ 212          //model_show
+ 213          void model_display()
+ 214          {
+ 215   1               if(b<51)
+ 216   1               {
+ 217   2                      LCD_display(50-b);                                                       //显示距离
+ 218   2               
+ 219   2                      if(50-b<20)                                                                      //显示区域
+ 220   2                      {
+ 221   3                              LCD_write_english_string(56,4,"CD"); 
+ 222   3                              if(b>35)
+ 223   3                              {
+ 224   4                               D1=0;
+ 225   4                               D2=0;
+ 226   4                               D3=0;
+ 227   4                               D4=1;
+ 228   4                              }
+ 229   3                      }
+ 230   2      
+ 231   2                      if(50-b>=20 && 50-b<=30)
+ 232   2                      {
+ 233   3                              LCD_write_english_string(56,4,"BC");
+ 234   3                              D1=0; 
+ 235   3                              D2=0;
+ 236   3                              D3=1;
+ 237   3                              D4=0;
+ 238   3                      }
+ 239   2      
+ 240   2                      if(50-b>30)
+ 241   2                      {
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 5   
+
+ 242   3                               LCD_write_english_string(56,4,"AB"); 
+ 243   3                               if(flag_warning==1)
+ 244   3                               {
+ 245   4                                      D1=1;
+ 246   4                               }
+ 247   3                               else
+ 248   3                               {
+ 249   4                                      D1=0;
+ 250   4                               }
+ 251   3                               D2=1;
+ 252   3                               D3=0;
+ 253   3                               D4=0;
+ 254   3                      }
+ 255   2               }
+ 256   1               if(flag_model1==0 && flag_model2==0 &&flag_model3==0)   //model 0
+ 257   1               {       
+ 258   2                      if(shijian>7)
+ 259   2                      {
+ 260   3                      LCD_display_pwm(shijian-7);
+ 261   3                      }
+ 262   2               }
+ 263   1                      
+ 264   1               if(flag_model1==1)                                                                               //model1
+ 265   1               {              
+ 266   2                      if(shijian>3)
+ 267   2                      {
+ 268   3                              LCD_display_pwm(shijian-3);
+ 269   3                      }
+ 270   2               }
+ 271   1      
+ 272   1           if(flag_model3==1)                                                                           //model3
+ 273   1               {       
+ 274   2                      if(b<6)
+ 275   2                      {
+ 276   3                              IN2=0;
+ 277   3                              flag_model3=0;
+ 278   3                              shijian=0;
+ 279   3                      }                       
+ 280   2               }
+ 281   1      
+ 282   1               if(flag_model2==1)                                                                          //model2
+ 283   1               {
+ 284   2                      if(shijian>5)
+ 285   2                              LCD_display_pwm(shijian-5);
+ 286   2                  
+ 287   2                      if(shijian>12)
+ 288   2                              LCD_display_pwm(shijian-12);
+ 289   2               }
+ 290   1      }
+ 291          //******************************************************************
+ 292          //超声波
+ 293          void ultrasonic_wave_generate()
+ 294          {
+ 295   1                      Trig=1;
+ 296   1              delay_20us();
+ 297   1              Trig=0;         //产生一个20us的脉冲，在Trig引脚  
+ 298   1              while(Echo==0); //等待Echo回波引脚变高电平
+ 299   1                      succeed_flag=0; //清测量成功标志
+ 300   1                      TH1=0;          //定时器1清零
+ 301   1              TL1=0;          //定时器1清零
+ 302   1                  TF1=0;          //
+ 303   1              TR1=1;          //启动定时器1
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 6   
+
+ 304   1              while(!Echo==0);//等待测量的结果，周期65.535毫秒（可用中断实现）  
+ 305   1                      {
+ 306   2                              TR1=0;          //关闭定时器1
+ 307   2                              outcomeH =TH1;    //取出定时器的值
+ 308   2                      outcomeL =TL1;    //取出定时器的值
+ 309   2                      succeed_flag=1;   //至成功测量的标志
+ 310   2                      }
+ 311   1              if(succeed_flag==1)
+ 312   1                  {   
+ 313   2                         distance_data=outcomeH;                //测量结果的高8位
+ 314   2                 distance_data<<=8;                   //放入16位的高8位
+ 315   2                         distance_data=distance_data|outcomeL;//与低8位合并成为16位结果数据
+ 316   2                 distance_data/=58;                   //微秒的单位除以58等于厘米
+ 317   2              }                                      //为什么除以58等于厘米，  Y米=（X秒*344）/2
+ 318   1                                                                     // X秒=（ 2*Y米）/344 ==》X秒=0.0058*Y米 ==》厘米=微秒/58 
+ 319   1                 a=distance_data;
+ 320   1      
+ 321   1             if(b==a) CONT_1=0;
+ 322   1      
+ 323   1             if(b!=a) CONT_1++;
+ 324   1      
+ 325   1             if(CONT_1>=3)
+ 326   1                 {   
+ 327   2                     CONT_1=0;
+ 328   2                         b=a; 
+ 329   2                                         
+ 330   2                 } 
+ 331   1      }
+ 332          //******************************************************************
+ 333          //interface
+ 334          void interface()
+ 335          {
+ 336   1              LCD_write_chinese_string(12,0,12,3,0,5);         //显示界面汉子
+ 337   1              LCD_write_chinese_string(12,2,12,3,3,5);  
+ 338   1              LCD_write_chinese_string(12,4,12,3,8,5);
+ 339   1      }
+ 340          //******************************************************************
+ 341          //IO_INIT
+ 342          void io_init()
+ 343          {
+ 344   1              P0M1 = 0;   //将io口设置为推挽输出
+ 345   1          P1M1 = 0;
+ 346   1          P2M1 = 0;
+ 347   1          P0M0 = 0XFF;
+ 348   1          P1M0 = 0XFF;
+ 349   1          P2M0 = 0XFF;
+ 350   1              D1=0;
+ 351   1              D2=0;
+ 352   1              D3=0;
+ 353   1              D4=0;
+ 354   1      }
+ 355          //******************************************************************
+ 356          //motor_init
+ 357          void motor_init()
+ 358          {
+ 359   1              IN1=1;           //电机
+ 360   1              IN2=0;
+ 361   1          i=0;
+ 362   1          flag=0;
+ 363   1              Trig=0;       //首先拉低脉冲输入引脚
+ 364   1      }
+ 365          //******************************************************************
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 7   
+
+ 366          //timer_init
+ 367          void timer_init()
+ 368          {
+ 369   1              TMOD=0x11;    //定时器0，定时器1，16位工作方式
+ 370   1              TR0=1;       //启动定时器0
+ 371   1          IT0=0;        //由高电平变低电平，触发外部中断
+ 372   1              ET0=1;        //打开定时器0中
+ 373   1              EX0=0;        //关闭外部中断
+ 374   1              EA=1;         //打开总中断0     
+ 375   1      }
+ 376          //******************************************************************
+ 377          void KeyDown(void)                                                                                       //键盘扫描
+ 378          {
+ 379   1              uchar temp;
+ 380   1          P0=0xf7;
+ 381   1          temp=P0;
+ 382   1          temp=temp&0xF0;
+ 383   1      
+ 384   1          if(temp!=0xF0)
+ 385   1              {
+ 386   2              Delay10ms(1);
+ 387   2              temp=P0;
+ 388   2                      temp=temp&0xF0;
+ 389   2                      
+ 390   2                      if(temp!=0xF0)
+ 391   2                      {
+ 392   3                              temp=P0;
+ 393   3                              switch(temp)
+ 394   3                              {
+ 395   4                              case 0Xe7:                                                                 //model1
+ 396   4                                              flag_model2=0;
+ 397   4                                              flag_model1=1;
+ 398   4                                              flag_model3=0;
+ 399   4                                              PID_realize(7,150);
+ 400   4                                              shijian=0;
+ 401   4                              break;
+ 402   4      
+ 403   4                              case 0Xd7:                                                                //model2
+ 404   4                                              flag_model1=0;
+ 405   4                                              flag_model2=1;
+ 406   4                                              flag_model3=0;
+ 407   4                                              PID_realize(10,125);
+ 408   4                                              shijian=0;
+ 409   4                              break;
+ 410   4      
+ 411   4                              case 0xb7:                                                                      //model3
+ 412   4                                              flag_model1=0;
+ 413   4                                              flag_model2=0;
+ 414   4                                              flag_model3=1;
+ 415   4                                              shijian=0;
+ 416   4                                              intr1=400;
+ 417   4                                              IN2=1;
+ 418   4                              break;
+ 419   4      //
+ 420   4                              case 0x77:                                                                      //model1
+ 421   4                                              flag_model2=0;
+ 422   4                                              flag_model1=1;
+ 423   4                                              flag_model3=0;
+ 424   4                                              PID_realize(7,150);
+ 425   4                                              shijian=0;
+ 426   4                              break;
+ 427   4      
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 8   
+
+ 428   4                              }
+ 429   3                              while(temp!=0xf0)
+ 430   3                              {                       
+ 431   4                              temp=P0;
+ 432   4                              temp=temp&0xf0;
+ 433   4                              }
+ 434   3                      }
+ 435   2              }
+ 436   1      
+ 437   1                      P0=0xFB;
+ 438   1                      temp=P0;
+ 439   1                      temp=temp&0xF0;
+ 440   1                      
+ 441   1              if(temp!=0xF0)
+ 442   1                      {
+ 443   2                              Delay10ms(1);
+ 444   2                              temp=P0;
+ 445   2                              temp=temp&0xF0;
+ 446   2                              
+ 447   2                              if(temp!=0xF0)
+ 448   2                              {
+ 449   3                                      temp=P0;
+ 450   3                                      switch(temp)
+ 451   3                                      {
+ 452   4                                              case 0XEB:
+ 453   4                                                                      juli1=22;
+ 454   4                                                                      intr2=116; //7
+ 455   4                                                                      shijian=0;
+ 456   4      
+ 457   4                                                                      break;
+ 458   4      
+ 459   4                                              case 0xDB:
+ 460   4                                                                      juli1=20;
+ 461   4                                                                      intr2=116;                 //8
+ 462   4                                                                      shijian=0;
+ 463   4                                                                      
+ 464   4                                                                      break;
+ 465   4                                                                                                 //9
+ 466   4                                              case 0xBB:
+ 467   4                                                                      juli1=17;
+ 468   4                                                                      intr2=116; 
+ 469   4                                                                      shijian=0;
+ 470   4                                                                      
+ 471   4                                                                      break;
+ 472   4      
+ 473   4                                              case 0x7B:
+ 474   4                                                                      juli1=20;
+ 475   4                                                                      intr2=125; 
+ 476   4                                                                      shijian=0;
+ 477   4                                                                      
+ 478   4                                                                      break;
+ 479   4      
+ 480   4                                      }
+ 481   3                                      while(temp!=0xf0)
+ 482   3                                      {
+ 483   4                                                      temp=P0;
+ 484   4                                              temp=temp&0xf0;
+ 485   4                                      }
+ 486   3                              }
+ 487   2                      }
+ 488   1      
+ 489   1                      P0=0xfd;
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 9   
+
+ 490   1                      temp=P0;
+ 491   1                      temp=temp&0xF0;
+ 492   1                      
+ 493   1              if(temp!=0xF0)
+ 494   1            {
+ 495   2                              Delay10ms(1);
+ 496   2                              temp=P0;
+ 497   2                              temp=temp&0xF0;
+ 498   2       
+ 499   2                              if(temp!=0xF0)
+ 500   2                              {
+ 501   3                                      temp=P0;
+ 502   3                                      switch(temp)
+ 503   3                                      {
+ 504   4                                              case 0XED:
+ 505   4                                                                      juli1=24;
+ 506   4                                                                      intr2=114;                              //4
+ 507   4                                                                      shijian=0;
+ 508   4                                                                      
+ 509   4                                                                      break;
+ 510   4      
+ 511   4                                              case 0xDD:                                               //5
+ 512   4                                                                      juli1=21;
+ 513   4                                                                      intr2=114; 
+ 514   4                                                                      shijian=0;
+ 515   4                                                                      
+ 516   4                                                                      break;
+ 517   4      
+ 518   4                                              case 0xBD:
+ 519   4                                                                      juli1=22;
+ 520   4                                                                      intr2=115;                                       //6
+ 521   4                                                                      shijian=0;
+ 522   4                                                              
+ 523   4                                                                      break;
+ 524   4      
+ 525   4                                              case 0x7D:
+ 526   4                                                      flag_model1=1;
+ 527   4                                              shijian=0;
+ 528   4                                              break;
+ 529   4      
+ 530   4                                              }
+ 531   3                                              while(temp!=0xf0)
+ 532   3                                              {
+ 533   4                                                      temp=P0;
+ 534   4                                              temp=temp&0xf0;
+ 535   4                                              }
+ 536   3                                      }
+ 537   2                              }
+ 538   1      
+ 539   1                      P0=0xFE;
+ 540   1                      temp=P0;
+ 541   1                      temp=temp&0xF0;
+ 542   1                      
+ 543   1                      if(temp!=0xF0)
+ 544   1                      {
+ 545   2                              Delay10ms(1);
+ 546   2                              temp=P0;
+ 547   2                              temp=temp&0xF0;
+ 548   2                              
+ 549   2                              if(temp!=0xF0)
+ 550   2                              {
+ 551   3                                      temp=P0;
+C51 COMPILER V9.01   1                                                                     07/30/2016 02:40:17 PAGE 10  
+
+ 552   3                                      switch(temp)
+ 553   3                                      {
+ 554   4                                              case 0XEE:                                      //1
+ 555   4                                                                      juli1=27;
+ 556   4                                                                      intr2=113;
+ 557   4                                                                      shijian=0;
+ 558   4      
+ 559   4                                                                      break;
+ 560   4      
+ 561   4                                              case 0xDE:
+ 562   4                                                                      juli1=25;
+ 563   4                                                                      intr2=113;
+ 564   4                                                                      shijian=0;               //2
+ 565   4                                              
+ 566   4                                                                      break;
+ 567   4      
+ 568   4                                              case 0xBE:
+ 569   4                                                                      juli1=25;
+ 570   4                                                                      intr2=114;
+ 571   4                                                                      shijian=0;                              //3
+ 572   4                                              
+ 573   4                                                                      break;
+ 574   4      
+ 575   4                                              case 0x7E:
+ 576   4                                                                      flag_model1=1;
+ 577   4                                                                      shijian=0;
+ 578   4                                              break;
+ 579   4      
+ 580   4                                      }
+ 581   3                                              while(temp!=0xf0)
+ 582   3                                              {
+ 583   4                                                      temp=P0;
+ 584   4                                              temp=temp&0xf0;
+ 585   4                                              }
+ 586   3                                      }
+ 587   2      
+ 588   2      
+ 589   2                        }
+ 590   1      
+ 591   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1817    ----
+   CONSTANT SIZE    =    370    ----
+   XDATA SIZE       =     52       7
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      6    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

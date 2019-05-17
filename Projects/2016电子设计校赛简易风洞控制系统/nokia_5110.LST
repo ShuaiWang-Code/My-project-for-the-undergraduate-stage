@@ -1,0 +1,274 @@
+C51 COMPILER V9.01   NOKIA_5110                                                            07/30/2016 02:40:17 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE NOKIA_5110
+OBJECT MODULE PLACED IN nokia_5110.OBJ
+COMPILER INVOKED BY: E:\单片机\KEIL4\C51\BIN\C51.EXE nokia_5110.c LARGE BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          
+   2          
+   3          #include "nokia_5110.h"
+   4          #include "english_6x8_pixel.h"
+   5          #include "write_chinese_string_pixel.h"
+   6          
+   7          
+   8          /*-----------------------------------------------------------------------
+   9          LCD_init          : 3310LCD初始化
+  10          
+  11          编写日期          ：2004-8-10 
+  12          最后修改日期      ：2004-8-10 
+  13          -----------------------------------------------------------------------*/
+  14          
+  15          void delay_1us(void)                 //1us延时函数
+  16            {
+  17   1         unsigned int i;
+  18   1        for(i=0;i<1000;i++);
+  19   1        }
+  20          
+  21          //  void delay_1ms(void)                 //1ms延时函数
+  22          //  {
+  23          //   unsigned int i;
+  24          //   for (i=0;i<1140;i++);
+  25          //  }
+  26            
+  27          //void delay_nms(unsigned int n)       //N ms延时函数
+  28          //  {
+  29          //   unsigned int i=0;
+  30          //   for (i=0;i<n;i++)
+  31          //   delay_1ms();
+  32          //  }
+  33          
+  34          
+  35          void LCD_init(void)
+  36            {
+  37   1                  // 产生一个让LCD复位的低电平脉冲
+  38   1         LCD_RST = 0;
+  39   1          delay_1us();
+  40   1      
+  41   1         LCD_RST = 1;
+  42   1          
+  43   1                      // 关闭LCD
+  44   1         LCD_CE = 0;
+  45   1          delay_1us();
+  46   1                      // 使能LCD
+  47   1         LCD_CE = 1;
+  48   1          delay_1us();
+  49   1      
+  50   1          LCD_write_byte(0x21, 0);    // 使用扩展命令设置LCD模式
+  51   1          LCD_write_byte(0xb9, 0);    // 设置偏置电压
+  52   1          LCD_write_byte(0x06, 0);    // 温度校正
+  53   1          LCD_write_byte(0x13, 0);    // 1:48
+  54   1          LCD_write_byte(0x20, 0);    // 使用基本命令
+  55   1          LCD_clear();                // 清屏
+C51 COMPILER V9.01   NOKIA_5110                                                            07/30/2016 02:40:17 PAGE 2   
+
+  56   1          LCD_write_byte(0x0c, 0);    // 设定显示模式，正常显示
+  57   1              
+  58   1                 // 关闭LCD
+  59   1         LCD_CE = 0;
+  60   1        }
+  61          
+  62          /*-----------------------------------------------------------------------
+  63          LCD_clear         : LCD清屏函数
+  64          
+  65          编写日期          ：2004-8-10 
+  66          最后修改日期      ：2004-8-10 
+  67          -----------------------------------------------------------------------*/
+  68          void LCD_clear(void)
+  69            {
+  70   1          unsigned int i;
+  71   1      
+  72   1          LCD_write_byte(0x0c, 0);                    
+  73   1          LCD_write_byte(0x80, 0);                    
+  74   1      
+  75   1          for (i=0; i<504; i++)
+  76   1            LCD_write_byte(0, 1);                     
+  77   1        }
+  78          
+  79          /*-----------------------------------------------------------------------
+  80          LCD_set_XY        : 设置LCD坐标函数
+  81          
+  82          输入参数：X       ：0－83
+  83                    Y       ：0－5
+  84          
+  85          编写日期          ：2004-8-10 
+  86          最后修改日期      ：2004-8-10 
+  87          -----------------------------------------------------------------------*/
+  88          void LCD_set_XY(unsigned char X, unsigned char Y)
+  89            {
+  90   1          LCD_write_byte(0x40 | Y, 0);                // column
+  91   1          LCD_write_byte(0x80 | X, 0);                // row
+  92   1        }
+  93          
+  94          /*-----------------------------------------------------------------------
+  95          LCD_write_char    : 显示英文字符
+  96          
+  97          输入参数：c       ：显示的字符；
+  98          
+  99          编写日期          ：2004-8-10 
+ 100          最后修改日期      ：2004-8-10 
+ 101          -----------------------------------------------------------------------*/
+ 102          void LCD_write_char(unsigned char c)
+ 103            {
+ 104   1          unsigned char line;
+ 105   1      
+ 106   1          c -= 32;
+ 107   1      
+ 108   1          for (line=0; line<6; line++)
+ 109   1            LCD_write_byte(font6x8[c][line], 1);
+ 110   1        }
+ 111          
+ 112          /*-----------------------------------------------------------------------
+ 113          LCD_write_english_String  : 英文字符串显示函数
+ 114          
+ 115          输入参数：*s      ：英文字符串指针；
+ 116                    X、Y    : 显示字符串的位置,x 0-83 ,y 0-5
+ 117          
+C51 COMPILER V9.01   NOKIA_5110                                                            07/30/2016 02:40:17 PAGE 3   
+
+ 118          编写日期          ：2004-8-10 
+ 119          最后修改日期      ：2004-8-10           
+ 120          -----------------------------------------------------------------------*/
+ 121          void LCD_write_english_string(unsigned char X,unsigned char Y,char *s)
+ 122            {
+ 123   1          LCD_set_XY(X,Y);
+ 124   1          while (*s) 
+ 125   1            {
+ 126   2               LCD_write_char(*s);
+ 127   2               s++;
+ 128   2            }
+ 129   1        }
+ 130          /*-----------------------------------------------------------------------
+ 131          LCD_write_chinese_string: 在LCD上显示汉字
+ 132          
+ 133          输入参数：X、Y    ：显示汉字的起始X、Y坐标；
+ 134                    ch_with ：汉字点阵的宽度
+ 135                    num     ：显示汉字的个数；  
+ 136                    line    ：汉字点阵数组中的起始行数
+ 137                    row     ：汉字显示的行间距
+ 138          编写日期          ：2004-8-11 
+ 139          最后修改日期      ：2004-8-12 
+ 140          测试：
+ 141                  LCD_write_chi(0,0,12,7,0,0);
+ 142                  LCD_write_chi(0,2,12,7,0,0);
+ 143                  LCD_write_chi(0,4,12,7,0,0);    
+ 144          -----------------------------------------------------------------------*/                        
+ 145          void LCD_write_chinese_string(unsigned char X, unsigned char Y, 
+ 146                             unsigned char ch_with,unsigned char num,
+ 147                             unsigned char line,unsigned char row)
+ 148            {
+ 149   1          unsigned char i,n;
+ 150   1          
+ 151   1          LCD_set_XY(X,Y);                             //设置初始位置
+ 152   1          
+ 153   1          for (i=0;i<num;)
+ 154   1            {
+ 155   2              for (n=0; n<ch_with*2; n++)              //写一个汉字
+ 156   2                { 
+ 157   3                  if (n==ch_with)                      //写汉字的下半部分
+ 158   3                    {
+ 159   4                      if (i==0) LCD_set_XY(X,Y+1);
+ 160   4                      else
+ 161   4                         LCD_set_XY((X+(ch_with+row)*i),Y+1);
+ 162   4                    }
+ 163   3                  LCD_write_byte(write_chinese[line+i][n],1);
+ 164   3                }
+ 165   2              i++;
+ 166   2              LCD_set_XY((X+(ch_with+row)*i),Y);
+ 167   2            }
+ 168   1        }
+ 169            
+ 170          
+ 171          
+ 172          /*-----------------------------------------------------------------------
+ 173          LCD_draw_map      : 位图绘制函数
+ 174          
+ 175          输入参数：X、Y    ：位图绘制的起始X、Y坐标；
+ 176                    *map    ：位图点阵数据；
+ 177                    Pix_x   ：位图像素（长）
+ 178                    Pix_y   ：位图像素（宽）
+ 179          
+C51 COMPILER V9.01   NOKIA_5110                                                            07/30/2016 02:40:17 PAGE 4   
+
+ 180          编写日期          ：2004-8-13
+ 181          最后修改日期      ：2004-8-13 
+ 182          -----------------------------------------------------------------------*/
+ 183          //void LCD_draw_bmp_pixel(unsigned char X,unsigned char Y,unsigned char *map,
+ 184          //                  unsigned char Pix_x,unsigned char Pix_y)
+ 185          //  {
+ 186          //    unsigned int i,n;
+ 187          //    unsigned char row;
+ 188          //    
+ 189          //    if (Pix_y%8==0) row=Pix_y/8;      //计算位图所占行数
+ 190          //      else
+ 191          //        row=Pix_y/8+1;
+ 192          //    
+ 193          //    for (n=0;n<row;n++)
+ 194          //      {
+ 195          //              LCD_set_XY(X,Y);
+ 196          //        for(i=0; i<Pix_x; i++)
+ 197          //          {
+ 198          //            LCD_write_byte(map[i+n*Pix_x], 1);
+ 199          //          }
+ 200          //        Y++;                         //换行
+ 201          //      }      
+ 202          //  }
+ 203          
+ 204          /*-----------------------------------------------------------------------
+ 205          LCD_write_byte    : 使用SPI接口写数据到LCD
+ 206          
+ 207          输入参数：data    ：写入的数据；
+ 208                    command ：写数据/命令选择；
+ 209          
+ 210          编写日期          ：2004-8-10 
+ 211          最后修改日期      ：2004-8-13 
+ 212          -----------------------------------------------------------------------*/
+ 213          void LCD_write_byte(unsigned char dat, unsigned char command)
+ 214            {
+ 215   1          unsigned char i;
+ 216   1          //PORTB &= ~LCD_CE ;                        // 使能LCD
+ 217   1          LCD_CE = 0;
+ 218   1          
+ 219   1          if (command == 0)
+ 220   1           // PORTB &= ~LCD_DC ;              // 传送命令
+ 221   1           LCD_DC = 0;
+ 222   1          else
+ 223   1           // PORTB |= LCD_DC ;                       // 传送数据
+ 224   1           LCD_DC = 1;
+ 225   1                      for(i=0;i<8;i++)
+ 226   1                      {
+ 227   2                              if(dat&0x80)
+ 228   2                                      SDIN = 1;
+ 229   2                              else
+ 230   2                                      SDIN = 0;
+ 231   2                              SCLK = 0;
+ 232   2                              dat = dat << 1;
+ 233   2                              SCLK = 1;
+ 234   2                      }
+ 235   1         // SPDR = data;                      // 传送数据到SPI寄存器
+ 236   1      
+ 237   1         // while ((SPSR & 0x80) == 0);         // 等待数据传送完毕
+ 238   1              
+ 239   1          //PORTB |= LCD_CE ;                 // 关闭LCD
+ 240   1           LCD_CE = 1;
+ 241   1        }
+C51 COMPILER V9.01   NOKIA_5110                                                            07/30/2016 02:40:17 PAGE 5   
+
+ 242          
+ 243          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    536    ----
+   CONSTANT SIZE    =    816    ----
+   XDATA SIZE       =   ----      16
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
