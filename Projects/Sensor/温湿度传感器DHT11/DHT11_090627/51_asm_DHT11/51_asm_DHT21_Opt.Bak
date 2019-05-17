@@ -1,0 +1,44 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.s*; *.src; *.a*)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt; *.h; *.inc)
+ pExt (*.plm)
+ CppX (*.cpp)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (Target 1), 0x0000 // Tools: 'MCS-51'
+GRPOPT 1,(Source Group 1),1,0,0
+
+OPTFFF 1,1,2,285212674,0,116,116,0,<.\51_asm_DHT21.asm><51_asm_DHT21.asm> { 44,0,0,0,2,0,0,0,3,0,0,0,255,255,255,255,255,255,255,255,252,255,255,255,226,255,255,255,22,0,0,0,29,0,0,0,182,3,0,0,3,2,0,0 }
+
+
+TARGOPT 1, (Target 1)
+ CLK51=25000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTAX 0
+  OPTBL 0,(Data Sheet)<DATASHTS\STC\STC89C58RD+_datasheet_v01.pdf>
+  OPTBL 1,(Add on databooks)<DATASHTS\ADDBOOKS.PDF>
+  OPTBL 2,(Instruction Set Manual)<DATASHTS\STC\STC89C58RD+_datasheet_v01.pdf>
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p53)(S8051.DLL)()(TP51.DLL)(-p53)
+  OPTDBG 48125,-1,()()()()()()()()()() ()()()()
+  OPTKEY 0,(DLGDP51)((98=-1,-1,-1,-1,0)(82=-1,-1,-1,-1,0)(83=-1,-1,-1,-1,0)(84=1027,136,1225,239,1)(85=-1,-1,-1,-1,0)(5011=-1,-1,-1,-1,0)(3003=150,116,351,367,0)(91=-1,-1,-1,-1,0)(92=-1,-1,-1,-1,0)(93=-1,-1,-1,-1,0))
+  OPTBB 0,0,45,1,-16777136,0,0,0,0,1,<51_asm_DHT21.asm>()()
+  OPTBB 1,0,89,1,-16777041,0,0,0,0,1,<51_asm_DHT21.asm>()()
+  OPTBB 2,0,105,1,-16777001,0,0,0,0,1,<51_asm_DHT21.asm>()()
+  OPTWA 0,1,(38)
+  OPTMM 1,0,(D:30H)
+  OPTDF 0x40000096
+  OPTLE <>
+  OPTLC <>
+EndOpt
+

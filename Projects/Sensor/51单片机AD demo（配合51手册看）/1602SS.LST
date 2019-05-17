@@ -1,0 +1,274 @@
+C51 COMPILER V9.01   1602SS                                                                10/15/2016 21:22:30 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE 1602SS
+OBJECT MODULE PLACED IN 1602SS.OBJ
+COMPILER INVOKED BY: E:\单片机\KEIL4\C51\BIN\C51.EXE 1602SS.C BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include "intrins.h"
+   3          #include  <math.h>    //Keil library  
+   4          #include  <stdio.h>   //Keil library
+   5          
+   6          #define uint unsigned int  
+   7          #define uchar unsigned char 
+   8          //#define FOSC    11059200L  //晶振11.0592M
+   9          //#define BAUD    9600
+  10          
+  11          typedef unsigned char BYTE;
+  12          typedef unsigned int WORD;
+  13          typedef bit BOOL  ; 
+  14          
+  15          /*Declare SFR associated with the ADC */
+  16          sfr AUXR1       =   0XA2;
+  17          sfr ADC_CONTR   =   0xBC;           //ADC control register
+  18          sfr ADC_RES     =   0xBD;           //ADC high 8-bit result register
+  19          sfr ADC_RESL    =   0xBE;
+  20          sfr ADC_LOW2    =   0xBE;           //ADC low 2-bit result register
+  21          sfr P1ASF       =   0x9D;           //P1 secondary function control register
+  22          
+  23          /*Define ADC operation const for ADC_CONTR*/
+  24          #define ADC_POWER   0x80            //ADC power control bit
+  25          #define ADC_FLAG    0x10            //ADC complete flag
+  26          #define ADC_START   0x08            //ADC start control bit
+  27          #define ADC_SPEEDLL 0x00            //420 clocks
+  28          #define ADC_SPEEDL  0x20            //280 clocks
+  29          #define ADC_SPEEDH  0x40            //140 clocks
+  30          #define ADC_SPEEDHH 0x60            //70 clocks 
+  31          
+  32          sbit io = P2^0 ; 
+  33          sbit rs = P2^6 ;  
+  34          sbit rw = P2^5 ; 
+  35          sbit ep = P2^7 ; 
+  36          
+  37          void InitUart();
+  38          void InitADC();
+  39          int GetADCResult(BYTE ch);
+  40          void Delay2(WORD n);
+  41          
+  42          uchar ge,shi,bai,qian,wan;           //显示变量
+  43          
+  44          void conversion(uint temp_data)  
+  45          {  
+  46   1          wan=temp_data/10000+0x30 ;
+  47   1          temp_data=temp_data%10000;   //取余运算
+  48   1              qian=temp_data/1000+0x30 ;
+  49   1          temp_data=temp_data%1000;    //取余运算
+  50   1          bai=temp_data/100+0x30   ;
+  51   1          temp_data=temp_data%100;     //取余运算
+  52   1          shi=temp_data/10+0x30    ;
+  53   1          temp_data=temp_data%10;      //取余运算
+  54   1          ge=temp_data+0x30;  
+  55   1      }
+C51 COMPILER V9.01   1602SS                                                                10/15/2016 21:22:30 PAGE 2   
+
+  56          
+  57          int GetADCResult(BYTE ch)
+  58          {   int AD10bitResult; 
+  59   1          ADC_CONTR = ADC_POWER | ADC_SPEEDLL | ch | ADC_START;
+  60   1          _nop_();                        //Must wait before inquiry
+  61   1          _nop_();
+  62   1          _nop_();
+  63   1          _nop_();
+  64   1          while (!(ADC_CONTR & ADC_FLAG));//Wait complete flag
+  65   1          ADC_CONTR &= ~ADC_FLAG;         //Close ADC
+  66   1      
+  67   1          AD10bitResult=ADC_RES;
+  68   1          AD10bitResult<<=8;
+  69   1          AD10bitResult|=ADC_RESL;
+  70   1          return AD10bitResult;                  //Return 10BIT ADC result
+  71   1      }
+  72          
+  73          void InitADC()
+  74          {
+  75   1          P1ASF = 0xff;                   //Open 8 channels ADC function
+  76   1      
+  77   1              AUXR1=AUXR1|0X04;              //ad值左对齐
+  78   1          ADC_RES = 0;                    //Clear previous result
+  79   1          ADC_CONTR = ADC_POWER | ADC_SPEEDLL;
+  80   1          Delay2(2);                       //ADC power-on and delay
+  81   1      }
+  82          
+  83          void Delay2(WORD n)
+  84          {
+  85   1          WORD x;
+  86   1      
+  87   1          while (n--)
+  88   1          {
+  89   2              x = 5000;
+  90   2              while (x--);
+  91   2          }
+  92   1      }
+  93          
+  94          void delay(uchar ms) 
+  95          {       
+  96   1                      uchar i ; 
+  97   1                      while(ms--) 
+  98   1                      { 
+  99   2                      for(i=0;i<250;i++); 
+ 100   2                      } 
+ 101   1      } 
+ 102          
+ 103          //void delay1()//10us 
+ 104          //{ 
+ 105          //               uchar i; 
+ 106          //               i--;           
+ 107          //               i--;           
+ 108          //               i--;           
+ 109          //               i--;           
+ 110          //               i--;           
+ 111          //               i--; 
+ 112          //} 
+ 113          
+ 114          void longdelay(uchar s) //长延时 
+ 115          { 
+ 116   1                        while(s--) 
+ 117   1                        { 
+C51 COMPILER V9.01   1602SS                                                                10/15/2016 21:22:30 PAGE 3   
+
+ 118   2                          delay(90) ; 
+ 119   2                        }  
+ 120   1      } 
+ 121          
+ 122          BOOL lcd_bz()//测试LCD忙碌状态 
+ 123          {       
+ 124   1                        BOOL result ; 
+ 125   1                        rs = 0 ; 
+ 126   1                        rw = 1 ; 
+ 127   1                        ep = 1 ; 
+ 128   1                        result = (BOOL)(P0 & 0x80) ; 
+ 129   1                        ep = 0 ; 
+ 130   1                        return result ;  
+ 131   1      } 
+ 132          
+ 133           
+ 134          
+ 135          void write_cmd(uchar cmd)// xie
+ 136          {        
+ 137   1                       while(lcd_bz()) ;              
+ 138   1                       rs = 0 ;               
+ 139   1                       rw = 0 ;               
+ 140   1                       ep = 0 ;               
+ 141   1                       P0 = cmd ;             
+ 142   1                       ep = 1 ;               
+ 143   1                       ep = 0 ;   
+ 144   1      }
+ 145          
+ 146          void write_addr(uchar addr)//address 
+ 147          {        
+ 148   1                      write_cmd(addr|0x80) ; 
+ 149   1      } 
+ 150          
+ 151          void write_byte(uchar dat)//dat
+ 152          {       
+ 153   1      
+ 154   1                      while(lcd_bz()) ; 
+ 155   1                      rs = 1 ; 
+ 156   1                      rw = 0 ; 
+ 157   1                      ep = 0 ; 
+ 158   1                      P0 = dat ; 
+ 159   1                      ep = 1 ; 
+ 160   1                      ep = 0 ;  
+ 161   1      } 
+ 162          
+ 163          
+ 164          void lcd_init()          //2
+ 165          {        
+ 166   1                        write_cmd(0x38) ;  
+ 167   1                        delay(3); 
+ 168   1                        write_cmd(0x08) ;   
+ 169   1                        delay(3); 
+ 170   1                        write_cmd(0x01) ;  
+ 171   1                        delay(3); 
+ 172   1                        write_cmd(0x06) ; 
+ 173   1                        delay(3); 
+ 174   1                        write_cmd(0x0c) ;  
+ 175   1                        delay(3);
+ 176   1      } 
+ 177          
+ 178           
+ 179          
+C51 COMPILER V9.01   1602SS                                                                10/15/2016 21:22:30 PAGE 4   
+
+ 180          void display(uchar addr, uchar q) 
+ 181          {    
+ 182   1      
+ 183   1                        delay(15) ;                                      //10         
+ 184   1                        write_addr(addr) ;            
+ 185   1                        write_byte(q) ;               
+ 186   1                        longdelay(2) ;                                   //2
+ 187   1      } 
+ 188          
+ 189          /******************************************************************************
+ 190          
+ 191          ******************************* 
+ 192          
+ 193          ************************************************ DHT11测试模块
+ 194          
+ 195          ***********************************************/ 
+ 196          
+ 197           
+ 198          
+ 199          
+ 200          void display_lcd1602()
+ 201          {
+ 202   1                        
+ 203   1                              
+ 204   1                              display(0x40,'L');
+ 205   1                              display(0x41,'i');
+ 206   1                              display(0x42,'g');
+ 207   1                              display(0x43,'h');
+ 208   1                              display(0x44,'t');
+ 209   1                              display(0x45,':');
+ 210   1                          display(0x46,wan);
+ 211   1                          display(0x47,qian);
+ 212   1                          display(0x48,bai);
+ 213   1                          display(0x49,shi);
+ 214   1                          display(0x4a,ge);
+ 215   1                          display(0x4b,'l');
+ 216   1                          display(0x4c,'x');
+ 217   1      }
+ 218          
+ 219          
+ 220          /******************************************************************************
+ 221          
+ 222          **************************** 
+ 223          
+ 224          *************************************************主函数
+ 225          
+ 226          ***************************************************/ 
+ 227          
+ 228          void main() 
+ 229          {  
+ 230   1                      int x;
+ 231   1              lcd_init();
+ 232   1              InitADC(); 
+ 233   1              delay(20); 
+ 234   1              while(1) 
+ 235   1              { 
+ 236   2                          //Init UART, use to show ADC result
+ 237   2                               //Init ADC sfr
+ 238   2                      x=GetADCResult(0);
+ 239   2                      conversion(x);
+ 240   2                      display_lcd1602();
+ 241   2              } 
+C51 COMPILER V9.01   1602SS                                                                10/15/2016 21:22:30 PAGE 5   
+
+ 242   1      
+ 243   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    479    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

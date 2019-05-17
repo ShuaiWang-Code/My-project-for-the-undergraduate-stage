@@ -1,0 +1,322 @@
+A51 MACRO ASSEMBLER  51_ASM_DHT21                                                         06/27/2009 09:15:23 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.08a
+OBJECT MODULE PLACED IN 51_asm_DHT21.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE 51_asm_DHT21.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1        ;*********************************************;
+                       2        ;            DHT21Ê¹ÓÃ·¶Àý 
+                       3        ;µ¥Æ¬»ú £º AT89S52»ò STC89C52RC
+                       4        ;¹¦ÄÜ   £» ´®¿Ú·¢ËÍÎÂÊª¶ÈÊý¾Ý ²¨ÌØÂÊ 9600
+                       5        ;Ó²¼þÁ¬½Ó£º P2.0¿ÚÎªÍ¨Ñ¶¿ÚÁ¬½ÓDHT11,DHT11µÄµçÔ´ºÍµØÁ¬½Óµ¥Æ¬»úµÄµçÔ´ºÍµØ£¬µ¥Æ¬»ú´®¿Ú¼ÓMAX
+                             232Á¬½ÓµçÄÔ 
+                       6        ;¹«Ë¾   £» ¹ãÖÝ°ÂËÉµç×Ó 
+                       7        ;*********************************************;
+                       8     
+                       9       ;--------------------
+                      10       ;----±äÁ¿¶¨ÒåÇø------
+                      11       ;--------------------
+  0030                12       FLAG        EQU 30H
+  0031                13       U8comdata   EQU 31H
+  0032                14       U8T_data_H  EQU 32H
+  0033                15       U8T_data_L  EQU 33H
+  0034                16       U8RH_data_H EQU 34H
+  0035                17       U8RH_data_L EQU 35H
+  0036                18       U8checkdata EQU 36H
+  0037                19       U8temp      EQU 37H
+  0038                20       temp        EQU 38H
+                      21       ;--------------------
+                      22       ;--------------------
+                      23       ;--------------------
+0000                  24             org 0000h
+0000 0125             25                 AJMP START
+0023                  26                 org 0023h
+0023 2141             27                 AJMP SET_INT
+0025                  28     START:             
+0025 7580FF           29                 MOV P0,#0FFH                    
+0028 758920           30             MOV TMOD,#20H     ;T1¹¤×÷·½Ê½2             
+002B 758DFD           31             MOV TH1,#0FDH     ;´®¿Ú²¨ÌØÂÊÎª9600               
+002E 759850           32             MOV SCON,#50H     ;´®¿Ú¹¤×÷ÓÚ·½Ê½1²¢ÔÊÐí½ÓÊÜ                
+0031 D28E             33             SETB TR1          ;Æô¶¯T1                
+0033 D2AC             34             SETB ES           ;ÔÊÐí´®¿ÚÖÐ¶Ï                
+0035 D2AF             35             SETB EA           ;ÔÊÐíÈ«²¿ÍâÉèÖÐ¶Ï  
+0037                  36     MAIN:   
+                      37     
+                      38     ;---------------------------
+                      39     ;-----µ÷ÓÃÊª¶È¶ÁÈ¡×Ó³ÌÐò----
+                      40     ;---------------------------
+0037 120059           41             LCALL  RH
+                      42     ;---------------------------
+                      43     ;------´®¿Ú·¢ËÍ³ÌÐò --------
+                      44     ;---------------------------  
+003A                  45     TT:        
+003A E534             46             MOV    A,U8RH_data_H
+003C 120135           47                 LCALL  TX_DATA
+003F E535             48                 MOV    A,U8RH_data_L
+0041 120135           49                 LCALL  TX_DATA
+0044 E532             50                 MOV    A,U8T_data_H
+0046 120135           51                 LCALL  TX_DATA
+0049 E533             52                 MOV    A,U8T_data_L
+004B 120135           53                 LCALL  TX_DATA
+004E E536             54                 MOV    A,U8checkdata
+0050 120135           55                 LCALL  TX_DATA
+                      56     
+                      57             
+A51 MACRO ASSEMBLER  51_ASM_DHT21                                                         06/27/2009 09:15:23 PAGE     2
+
+0053 12010C           58             LCALL  Delay_2S
+                      59     
+0056 020037           60             LJMP MAIN
+                      61     
+                      62     
+                      63     ;--------------------------------
+                      64     ;-----Êª¶È¶ÁÈ¡×Ó³ÌÐò ------------
+                      65     ;--------------------------------
+                      66     ;----ÒÔÏÂ±äÁ¿¾ùÎªÈ«¾Ö±äÁ¿--------
+                      67     ;----ÎÂ¶È¸ß8Î»== U8T_data_H------
+                      68     ;----ÎÂ¶ÈµÍ8Î»== U8T_data_L------
+                      69     ;----Êª¶È¸ß8Î»== U8RH_data_H-----
+                      70     ;----Êª¶ÈµÍ8Î»== U8RH_data_L-----
+                      71     ;----Ð£Ñé 8Î» == U8checkdata-----
+                      72     ;----µ÷ÓÃÏà¹Ø×Ó³ÌÐòÈçÏÂ----------
+                      73     ;---- Read,Delay_10us , Delay 
+                      74     ;--------------------------------
+0059                  75     RH:
+                      76            ;Ö÷»úÀ­µÍ×ÜÏß,ÑÓÊ±500us 
+0059 C2A0             77             CLR   P2.0  
+005B 7424             78             MOV   A,#36                  
+005D 1200FD           79                 LCALL Delay
+0060 D2A0             80                 SETB  P2.0
+                      81                ;ÑÓÊ±40us 
+0062 120105           82             LCALL Delay_10us   
+0065 120105           83             LCALL Delay_10us   
+0068 120105           84             LCALL Delay_10us   
+006B 120105           85             LCALL Delay_10us 
+                      86            ;¼ì²â´Ó»úÊÇ·ñÏìÓ¦£¬ÎÞÏìÓ¦ÔòÌø³ö    
+006E 20A040           87             JB    P2.0,RH_END
+0071 753000           88             MOV   FLAG,#0
+0074                  89     LOOP1:
+0074 0530             90             INC   FLAG
+0076 E530             91             MOV   A,FLAG
+0078 20A006           92             JB    P2.0,LOOP1_END  ;Îª¸ßµçÆ½ÔòÌø³ö   
+007B B400F6           93             CJNE  A,#0,LOOP1
+007E 0200B1           94             LJMP  RH_END
+0081                  95     LOOP1_END:
+0081 753000           96             MOV  FLAG,#0
+0084                  97     LOOP2:
+0084 0530             98             INC  FLAG
+0086 E530             99             MOV  A,FLAG
+0088 30A006          100             JNB  P2.0,LOOP2_END  ;ÎªµÍµçÆ½ÔòÌø³ö     
+008B B400F6          101             CJNE A,#0,LOOP2
+008E 0200B1          102             LJMP RH_END
+0091                 103     LOOP2_END:
+                     104            ;½øÈëÊý¾Ý½ÓÊÕ½×¶Î                  
+0091 1200B2          105             LCALL  Read
+0094 853134          106                 MOV U8RH_data_H,U8comdata;
+0097 1200B2          107                 LCALL  Read
+009A 853135          108                 MOV U8RH_data_L,U8comdata;
+009D 1200B2          109                 LCALL  Read
+00A0 853132          110                 MOV U8T_data_H,U8comdata;
+00A3 1200B2          111                 LCALL  Read
+00A6 853133          112                 MOV U8T_data_L,U8comdata;
+00A9 1200B2          113                 LCALL  Read
+00AC 853136          114                 MOV U8checkdata,U8comdata;
+00AF D2A0            115                 SETB   P2.0
+                     116                ;----------------------------------------------------------------------------
+                     117                ;----×¢Òâ£º±¾³ÌÐòÃ»ÓÐ¼ÓÐ£Ñé³ÌÐò Èç¹ûÓÃ»§ÐèÒªÐ£ÑéÇë°²ÒÔÏÂËµÃ÷±àÐ´Ð£Ñé³ÌÐò-----   
+                                    
+                     118                ;----------------------------------------------------------------------------
+                     119                ;   Êý¾Ý´«ËÍÕýÈ·Ê±Ð£ÑéºÍU8checkdataµÄÖµµÈÓÚ  
+                     120                ;  "8bitÊª¶ÈÕûÊýÊý¾Ý+8bitÊª¶ÈÐ¡ÊýÊý¾Ý+8biÎÂ¶ÈÕûÊýÊý¾Ý+8bitÎÂ¶ÈÐ¡ÊýÊý¾Ý"ËùµÃ½á¹ûµ
+                             ÄÄ©8Î»
+                     121                ;-----------------------------------------------------------------------------
+A51 MACRO ASSEMBLER  51_ASM_DHT21                                                         06/27/2009 09:15:23 PAGE     3
+
+                     122                ;-----------------------------------------------------------------------------
+                     123                ;----------------------------------------------------------------------------- 
+                     124     
+00B1                 125     RH_END:
+00B1 22              126             RET
+                     127     ;--------------------------------
+                     128     ;---------¶ÁÊý×Ó³ÌÐò-------------
+                     129     ;--------------------------------
+00B2                 130     Read:
+00B2 753808          131             MOV temp,#8
+00B5 753100          132                 MOV U8comdata,#0
+00B8                 133     LOOP_COM:
+                     134           ;ÅÐ¶ÏµÍµçÆ½ÊÇ·ñ½áÊø                
+00B8 753000          135             MOV  FLAG,#0
+00BB                 136     LOOP3:
+00BB 0530            137             INC  FLAG
+00BD E530            138             MOV  A,FLAG
+00BF 20A006          139             JB  P2.0,LOOP3_END  ;Îª¸ßµçÆ½ÔòÌø³ö              
+00C2 B400F6          140             CJNE A,#0,LOOP3
+00C5 0200FC          141             LJMP COM_END
+00C8                 142     LOOP3_END:
+                     143            ;----------------------
+                     144                 ;CLR    P2.1
+                     145                     ;SETB   P2.1
+                     146                ;----------------------
+00C8 120105          147             LCALL Delay_10us    
+00CB 120105          148             LCALL Delay_10us   
+00CE 120105          149             LCALL Delay_10us         
+                     150                ;----------------------
+                     151                 ;CLR    P2.1
+                     152                     ;SETB   P2.1
+                     153                ;----------------------
+00D1 753700          154             MOV   U8temp,#0
+00D4 30A003          155             JNB    P2.0,HIGH_END
+00D7 753701          156             MOV   U8temp,#1
+00DA                 157     HIGH_END:
+                     158           
+00DA 753000          159             MOV  FLAG,#0
+00DD                 160     LOOP4:
+00DD 0530            161             INC  FLAG
+00DF E530            162             MOV  A,FLAG
+00E1 30A006          163             JNB P2.0,LOOP4_END  ;ÎªµÍµçÆ½ÔòÌø³ö      
+00E4 B400F6          164             CJNE A,#0,LOOP4
+00E7 0200FC          165             LJMP COM_END
+00EA                 166     LOOP4_END:
+00EA E530            167             MOV  A,FLAG
+00EC B40003          168             CJNE  A,#0,NO_FLAG
+00EF 0200FC          169             LJMP  COM_END
+00F2                 170     NO_FLAG:
+00F2 E531            171             MOV A,U8comdata
+00F4 23              172             RL  A
+00F5 4537            173             ORL A,U8temp
+00F7 F531            174             MOV U8comdata,A
+                     175            ;ÅÐ¶Ï¸ßµçÆ½ÊÇ·ñ½áÊø        
+00F9 D538BC          176             DJNZ temp,LOOP_COM
+00FC                 177     COM_END:
+00FC 22              178             RET
+                     179     ;--------------------------------
+                     180     ;------ÑÓÊ±º¯Êý -----------------
+                     181     ;--------------------------------
+00FD FC              182     Delay:  MOV R4,A               ;2.5ms
+00FE 7DFF            183     D1:     MOV R5,#0FFH
+0100 DDFE            184                 DJNZ R5,$
+0102 DCFA            185                 DJNZ R4,D1
+0104 22              186                 RET
+                     187     ;--------------------------------
+A51 MACRO ASSEMBLER  51_ASM_DHT21                                                         06/27/2009 09:15:23 PAGE     4
+
+                     188     ;------ÑÓÊ±10usº¯Êý -----------------
+                     189     ;--------------------------------
+0105                 190     Delay_10us:                                ;10us
+0105 00              191             NOP
+0106 00              192                 NOP
+0107 00              193                 NOP
+0108 00              194                 NOP
+0109 00              195                 NOP
+010A 00              196                 NOP
+010B 22              197                 RET
+                     198     ;--------------------------------
+                     199     ;------ÑÓÊ±2Sº¯Êý -----------------
+                     200     ;--------------------------------
+010C                 201     Delay_2S:
+010C 74FA            202            MOV A,#250
+010E 1200FD          203                LCALL Delay
+0111 74FA            204            MOV A,#250
+0113 1200FD          205                LCALL Delay
+0116 74FA            206                MOV A,#250
+0118 1200FD          207                LCALL Delay
+011B 74FA            208                MOV A,#250
+011D 1200FD          209                LCALL Delay
+0120 74FA            210            MOV A,#250
+0122 1200FD          211                LCALL Delay
+0125 74FA            212            MOV A,#250
+0127 1200FD          213                LCALL Delay
+012A 74FA            214                MOV A,#250
+012C 1200FD          215                LCALL Delay
+012F 74FA            216                MOV A,#250
+0131 1200FD          217                LCALL Delay
+0134 22              218                RET
+                     219     ;--------------------------------
+                     220     ;------´®¿ÚÊý¾Ý·¢ËÍº¯Êý ---------
+                     221     ;--------------------------------
+0135                 222     TX_DATA:
+0135 C2AC            223            CLR ES             ;½ûÖ¹´®¿ÚÖÐ¶Ï             
+0137 F599            224            MOV SBUF,A
+0139 3099FD          225                JNB TI,$
+013C C299            226                CLR TI            ;½«Í¬Ò»Êý¾Ý·¢ËÍµ½´®¿Ú       
+013E D2AC            227            SETB ES           ;ÔÊÐí´®¿ÚÖÐ¶Ï   
+0140 22              228                RET
+                     229     ;--------------------------------
+                     230     ;------´®¿ÚÖÐ¶Ïº¯Êý -------------
+                     231     ;--------------------------------
+0141                 232     SET_INT:
+0141 C2AC            233                CLR ES                 ;½ûÖ¹´®¿ÚÖÐ¶Ï  
+0143 3098FD          234                JNB RI,$
+0146 C298            235            CLR RI
+0148 E599            236                MOV A,SBUF        ;½ÓÊÜ´®¿ÚÊý¾Ý          
+014A F580            237                MOV P0,A          ;½«´®¿ÚÊý¾ÝËÍÍùP0
+014C F599            238                MOV SBUF,A
+014E 3099FD          239                JNB TI,$
+0151 C299            240                CLR TI            ;½«Í¬Ò»Êý¾Ý·¢ËÍµ½´®¿Ú        
+0153 D2AC            241                SETB ES           ;ÔÊÐí´®¿ÚÖÐ¶Ï     
+0155 32              242                RETI
+                     243                END
+                             ;--------------------------------
+                             ;----------½áÊø------------------
+                             ;--------------------------------                                   
+A51 MACRO ASSEMBLER  51_ASM_DHT21                                                         06/27/2009 09:15:23 PAGE     5
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+COM_END. . . . . .  C ADDR   00FCH   A   
+D1 . . . . . . . .  C ADDR   00FEH   A   
+DELAY. . . . . . .  C ADDR   00FDH   A   
+DELAY_10US . . . .  C ADDR   0105H   A   
+DELAY_2S . . . . .  C ADDR   010CH   A   
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+ES . . . . . . . .  B ADDR   00A8H.4 A   
+FLAG . . . . . . .  N NUMB   0030H   A   
+HIGH_END . . . . .  C ADDR   00DAH   A   
+LOOP1. . . . . . .  C ADDR   0074H   A   
+LOOP1_END. . . . .  C ADDR   0081H   A   
+LOOP2. . . . . . .  C ADDR   0084H   A   
+LOOP2_END. . . . .  C ADDR   0091H   A   
+LOOP3. . . . . . .  C ADDR   00BBH   A   
+LOOP3_END. . . . .  C ADDR   00C8H   A   
+LOOP4. . . . . . .  C ADDR   00DDH   A   
+LOOP4_END. . . . .  C ADDR   00EAH   A   
+LOOP_COM . . . . .  C ADDR   00B8H   A   
+MAIN . . . . . . .  C ADDR   0037H   A   
+NO_FLAG. . . . . .  C ADDR   00F2H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+READ . . . . . . .  C ADDR   00B2H   A   
+RH . . . . . . . .  C ADDR   0059H   A   
+RH_END . . . . . .  C ADDR   00B1H   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+SET_INT. . . . . .  C ADDR   0141H   A   
+START. . . . . . .  C ADDR   0025H   A   
+TEMP . . . . . . .  N NUMB   0038H   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+TT . . . . . . . .  C ADDR   003AH   A   
+TX_DATA. . . . . .  C ADDR   0135H   A   
+U8CHECKDATA. . . .  N NUMB   0036H   A   
+U8COMDATA. . . . .  N NUMB   0031H   A   
+U8RH_DATA_H. . . .  N NUMB   0034H   A   
+U8RH_DATA_L. . . .  N NUMB   0035H   A   
+U8TEMP . . . . . .  N NUMB   0037H   A   
+U8T_DATA_H . . . .  N NUMB   0032H   A   
+U8T_DATA_L . . . .  N NUMB   0033H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

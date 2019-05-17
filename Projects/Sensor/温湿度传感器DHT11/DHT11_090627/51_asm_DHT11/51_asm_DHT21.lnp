@@ -1,0 +1,3 @@
+"51_asm_DHT21.obj" 
+TO "51_asm_DHT21" 
+RAMSIZE(256) 
